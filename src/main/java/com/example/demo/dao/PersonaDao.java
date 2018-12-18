@@ -8,12 +8,14 @@ import com.mongodb.DBCursor;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import static com.example.demo.dao.MongoConector.*;
+
 public class PersonaDao {
 
     private static PersonaDao INSTANCE = null;
     ArrayList<Persona> personas = null;
-    PersonaDao personaDao = null;
-    MongoConector conector = null;
+    private static PersonaDao personaDao = null;
+
 
     private static final String DB = "publicaciones";
     private static final String COLLECTION = "personas";
@@ -23,9 +25,8 @@ public class PersonaDao {
 
     public PersonaDao() {
         super();
-        ArrayList<Persona> personas= new ArrayList<Persona>();
-        conector = new MongoConector();
-        personaDao = PersonaDao.getInstance();
+        personas= new ArrayList<Persona>();
+
     }
 
     public static synchronized PersonaDao getInstance() {
@@ -38,14 +39,15 @@ public class PersonaDao {
 
     public ArrayList<Persona> listar() throws UnknownHostException {
 
-        DBCollection collection = conector.getConnectionDbAndCollection(DB, COLLECTION);
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
-        personas = personaDao.listar();
 
         // Busco todos los documentos de la colección y los imprimo
         try (DBCursor cursor = collection.find()) {
             while (cursor.hasNext()) {
+
                 personas.add(deMongoaJava((BasicDBObject) cursor.next()));
+                System.out.println(personas);
 
             }
         }
@@ -71,6 +73,8 @@ public class PersonaDao {
 
     // Transformo un objecto que me da MongoDB a un Objecto Java
     private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
+
+        System.out.println(toDBObjectLibro);
         Persona p = new Persona();
         p.setId(toDBObjectLibro.getLong("id"));
         p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));

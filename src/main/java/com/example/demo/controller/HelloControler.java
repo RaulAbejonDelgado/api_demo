@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/alumnos")
+@RequestMapping("/publicaciones/personas")
 public class HelloControler {
 
     ArrayList<Persona> personas = new ArrayList<Persona>();
@@ -42,6 +42,12 @@ public class HelloControler {
         System.out.println("*************Pasamos por get*************");
         try {
             personas = personaDao.listar();
+
+            if(personas != null){
+                response = new ResponseEntity<Object>(personas, HttpStatus.OK);
+            }else{
+                response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (UnknownHostException e) {
             e.printStackTrace();
 
