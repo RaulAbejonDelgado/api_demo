@@ -4,6 +4,15 @@ public class Persona {
 
     long id;
     String nombre;
+    private Hypermedia[] links;
+
+    public Hypermedia[] getLinks() {
+        return links;
+    }
+
+    public void setLinks(Hypermedia[] links) {
+        this.links = links;
+    }
 
     public Persona() {
     }
