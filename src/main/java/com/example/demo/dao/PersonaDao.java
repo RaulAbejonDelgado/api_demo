@@ -1,9 +1,13 @@
 package com.example.demo.dao;
 
+import com.example.demo.pojo.Hypermedia;
 import com.example.demo.pojo.Persona;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
+
+
+import org.mongojack.DBCursor;
+import org.mongojack.JacksonDBCollection;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -41,13 +45,11 @@ public class PersonaDao {
 
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
-
+        JacksonDBCollection <Persona,String> coll=JacksonDBCollection.wrap(collection,Persona.class,String.class);
         // Busco todos los documentos de la colección y los imprimo
-        try (DBCursor cursor = collection.find()) {
+        try (DBCursor<Persona> cursor = coll.find()) {
             while (cursor.hasNext()) {
-
-                personas.add(deMongoaJava((BasicDBObject) cursor.next()));
-                System.out.println(personas);
+                personas.add(cursor.next());
 
             }
         }
@@ -67,21 +69,19 @@ public class PersonaDao {
         dBObjectLibro.append("id", p.getId());
         dBObjectLibro.append("nombre", p.getNombre());
 
-
         return dBObjectLibro;
     }
 
     // Transformo un objecto que me da MongoDB a un Objecto Java
-    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
-
-        System.out.println(toDBObjectLibro);
-        Persona p = new Persona();
-        p.setId(toDBObjectLibro.getLong("id"));
-        p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));
-
-
-        return p;
-    }
+//    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
+//        Hypermedia[] links;
+//        Persona p = new Persona();
+//        p.setId(toDBObjectLibro.getLong("id"));
+//        p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));
+//
+//
+//        return p;
+//    }
 
 
 }

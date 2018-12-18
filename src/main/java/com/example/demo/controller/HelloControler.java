@@ -23,18 +23,17 @@ public class HelloControler {
     PersonaDao personaDao = null;
 
 
-
 //    @GetMapping
 //    public String getHello() {
 //        return "hello";
 //    }
 
-    public HelloControler(){
+    public HelloControler() {
         super();
         personaDao = PersonaDao.getInstance();
     }
 
-    @RequestMapping( method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listado() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,9 +42,9 @@ public class HelloControler {
         try {
             personas = personaDao.listar();
 
-            if(personas != null){
+            if (personas != null) {
                 response = new ResponseEntity<Object>(personas, HttpStatus.OK);
-            }else{
+            } else {
                 response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (UnknownHostException e) {
@@ -57,8 +56,6 @@ public class HelloControler {
         return response;
 
     }
-
-
 
 
 }

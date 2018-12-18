@@ -2,9 +2,19 @@ package com.example.demo.pojo;
 
 public class Persona {
 
-    long id;
-    String nombre;
+    private String _id;
+    private long id;
+    private String nombre;
     private Hypermedia[] links;
+
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public Hypermedia[] getLinks() {
         return links;
@@ -17,9 +27,10 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(long id, String nombre) {
+    public Persona(long id, String nombre, Hypermedia[] links ) {
         this.id = id;
         this.nombre = nombre;
+        this.links = links;
     }
 
     public long getId() {
