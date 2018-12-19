@@ -29,7 +29,7 @@ public class PersonaDao {
 
     public PersonaDao() {
         super();
-        personas= new ArrayList<Persona>();
+
 
     }
 
@@ -43,6 +43,7 @@ public class PersonaDao {
 
     public ArrayList<Persona> listar() throws UnknownHostException {
 
+        personas= new ArrayList<Persona>();
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
         JacksonDBCollection <Persona,String> coll=JacksonDBCollection.wrap(collection,Persona.class,String.class);
