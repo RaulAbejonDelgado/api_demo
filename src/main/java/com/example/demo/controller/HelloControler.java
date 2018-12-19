@@ -19,8 +19,8 @@ import java.util.ArrayList;
 @RequestMapping("/publicaciones/personas")
 public class HelloControler {
 
-    ArrayList<Persona> personas = new ArrayList<Persona>();
-    PersonaDao personaDao = null;
+    private static ArrayList<Persona> personas;
+    private static PersonaDao personaDao = null;
 
 
 //    @GetMapping
@@ -35,7 +35,7 @@ public class HelloControler {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listado() {
-
+        personas = new ArrayList<Persona>();
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         System.out.println("*************Pasamos por get*************");
