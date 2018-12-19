@@ -1,13 +1,21 @@
 package com.example.demo.pojo;
 
-import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceSupport;
 
-public class Persona extends ResourceSupport {
+public class Person extends ResourceSupport {
 
     private String _id;
-    private String personaId;
+    private int personId;
     private String nombre;
+
+    public Person() {
+    }
+
+    public Person(String _id, int personId, String nombre) {
+        this._id = _id;
+        this.personId = personId;
+        this.nombre = nombre;
+    }
 
     public String get_id() {
         return _id;
@@ -17,12 +25,12 @@ public class Persona extends ResourceSupport {
         this._id = _id;
     }
 
-    public String getPersonaId() {
-        return personaId;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setPersonaId(String personaId) {
-        this.personaId = personaId;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getNombre() {
