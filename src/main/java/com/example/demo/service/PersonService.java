@@ -33,4 +33,9 @@ public class PersonService {
 
         return persons;
     }
+
+    public Person obtenerPorId(int id) throws UnknownHostException{
+
+        return personDao.obtenerPorId(id);
+    }
 }

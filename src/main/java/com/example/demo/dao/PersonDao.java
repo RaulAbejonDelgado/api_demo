@@ -2,8 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.pojo.Person;
 import com.example.demo.pojo.Persona;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
+import com.mongodb.*;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 
@@ -59,6 +58,27 @@ public class PersonDao {
 
     }
 
+    public Person obtenerPorId(int id) throws UnknownHostException {
+        Person p = new Person();
+
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+        JacksonDBCollection <Person,String> coll=JacksonDBCollection.wrap(collection,Person.class,String.class);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("personId",id);
+
+        try (DBCursor<Person> cursor = coll.find(query)) {
+            while (cursor.hasNext()) {
+
+                p = cursor.next();
+
+            }
+        }
+        p.toString();
+
+        return p;
+    }
+
 
     private BasicDBObject toDBObjectLibro(Persona p) {
 
@@ -71,9 +91,9 @@ public class PersonDao {
         return dBObjectLibro;
     }
 
-    // Transformo un objecto que me da MongoDB a un Objecto Java
+     //Transformo un objecto que me da MongoDB a un Objecto Java
 //    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
-//        Hypermedia[] links;
+//
 //        Persona p = new Persona();
 //        p.setId(toDBObjectLibro.getLong("id"));
 //        p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));

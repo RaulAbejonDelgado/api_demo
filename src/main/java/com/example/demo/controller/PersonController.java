@@ -5,11 +5,13 @@ import com.example.demo.dao.PersonaDao;
 import com.example.demo.pojo.Person;
 import com.example.demo.pojo.Persona;
 import com.example.demo.pojo.ResponseMensaje;
+import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,7 +26,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class PersonController {
 
     private static ArrayList<Person> persons;
-    private static PersonDao personDao = null;
+   // private static PersonDao personDao = null;
+    private static PersonService servicioPerson = null;
 
 
 //    @GetMapping
@@ -34,7 +37,7 @@ public class PersonController {
 
     public PersonController() {
         super();
-        personDao = PersonDao.getInstance();
+        servicioPerson = PersonService.getInstance();
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -43,7 +46,8 @@ public class PersonController {
         ResponseEntity<Object> response = new ResponseEntity<>(persons,HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         try {
-            persons = personDao.listar();
+            persons = servicioPerson.listar();
+           // persons = personDao.listar();
             Person person = new Person();
 
             System.out.println("*************Pasamos por PersonController-get*************");
@@ -59,11 +63,36 @@ public class PersonController {
             e.printStackTrace();
         }
 
+        return response;
+
+    }
+
+
+    @RequestMapping( value="/{id}", method = RequestMethod.GET)
+        public ResponseEntity<Object> detalle(@PathVariable int id){
+        Person p = new Person();
+
+        ResponseEntity<Object> response = new ResponseEntity<>(persons,HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseMensaje rm = new ResponseMensaje();
+        try {
+
+            p = servicioPerson.obtenerPorId(id);
+            response = new ResponseEntity<>(p,HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        System.out.println(id);
+
 
 
         return response;
 
-    }
+        }
+
 
 
 }
