@@ -22,8 +22,6 @@ public class PersonDao {
     private static final String COLLECTION = "persons";
 
 
-
-
     public PersonDao() {
         super();
 
@@ -40,10 +38,10 @@ public class PersonDao {
 
     public ArrayList<Person> listar() throws UnknownHostException {
 
-        personas= new ArrayList<Person>();
+        personas = new ArrayList<Person>();
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
-        JacksonDBCollection <Person,String> coll=JacksonDBCollection.wrap(collection,Person.class,String.class);
+        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
         // Busco todos los documentos de la colección y los imprimo
         try (DBCursor<Person> cursor = coll.find()) {
             while (cursor.hasNext()) {
@@ -62,10 +60,10 @@ public class PersonDao {
         Person p = new Person();
 
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-        JacksonDBCollection <Person,String> coll=JacksonDBCollection.wrap(collection,Person.class,String.class);
+        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
 
         BasicDBObject query = new BasicDBObject();
-        query.put("personId",id);
+        query.put("personId", id);
 
         try (DBCursor<Person> cursor = coll.find(query)) {
             while (cursor.hasNext()) {
@@ -91,7 +89,7 @@ public class PersonDao {
         return dBObjectLibro;
     }
 
-     //Transformo un objecto que me da MongoDB a un Objecto Java
+    //Transformo un objecto que me da MongoDB a un Objecto Java
 //    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
 //
 //        Persona p = new Persona();

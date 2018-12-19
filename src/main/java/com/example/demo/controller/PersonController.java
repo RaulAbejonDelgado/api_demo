@@ -26,14 +26,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class PersonController {
 
     private static ArrayList<Person> persons;
-   // private static PersonDao personDao = null;
     private static PersonService servicioPerson = null;
-
-
-//    @GetMapping
-//    public String getHello() {
-//        return "hello";
-//    }
 
     public PersonController() {
         super();
@@ -43,23 +36,23 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listado() {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(persons,HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         try {
             persons = servicioPerson.listar();
-           // persons = personDao.listar();
             Person person = new Person();
-
-            System.out.println("*************Pasamos por PersonController-get*************");
-            for(Person p : persons){
-                Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
-                p.add(selfLink);
-                System.out.println(linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel());
+            if (persons.size() > 0) {
+                System.out.println("*************Pasamos por PersonController-get*************");
+                for (Person p : persons) {
+                    Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
+                    p.add(selfLink);
+                }
             }
-           response = new ResponseEntity<>(persons,HttpStatus.OK);
+
+            response = new ResponseEntity<>(persons, HttpStatus.OK);
 
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -68,33 +61,36 @@ public class PersonController {
     }
 
 
-    @RequestMapping( value="/{id}", method = RequestMethod.GET)
-        public ResponseEntity<Object> detalle(@PathVariable int id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Object> detalle(@PathVariable int id) {
         Person p = new Person();
 
-        ResponseEntity<Object> response = new ResponseEntity<>(persons,HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         try {
 
             p = servicioPerson.obtenerPorId(id);
-            Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
-            p.add(selfLink);
-            response = new ResponseEntity<>(p,HttpStatus.OK);
+            if (p != null) {
 
-        }catch (Exception e){
+                Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
+                p.add(selfLink);
+                response = new ResponseEntity<>(p, HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
         System.out.println(id);
 
 
-
         return response;
 
-        }
-
+    }
 
 
 }

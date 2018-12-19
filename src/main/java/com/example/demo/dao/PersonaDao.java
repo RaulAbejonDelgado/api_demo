@@ -25,8 +25,6 @@ public class PersonaDao {
     private static final String COLLECTION = "personas";
 
 
-
-
     public PersonaDao() {
         super();
 
@@ -43,10 +41,10 @@ public class PersonaDao {
 
     public ArrayList<Persona> listar() throws UnknownHostException {
 
-        personas= new ArrayList<Persona>();
+        personas = new ArrayList<Persona>();
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
-        JacksonDBCollection <Persona,String> coll=JacksonDBCollection.wrap(collection,Persona.class,String.class);
+        JacksonDBCollection<Persona, String> coll = JacksonDBCollection.wrap(collection, Persona.class, String.class);
         // Busco todos los documentos de la colección y los imprimo
         try (DBCursor<Persona> cursor = coll.find()) {
             while (cursor.hasNext()) {

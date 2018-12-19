@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.PersonDao;
-import com.example.demo.dao.PersonaDao;
 import com.example.demo.pojo.Person;
 
 import java.net.UnknownHostException;
@@ -14,7 +13,7 @@ public class PersonService {
     private static PersonDao personDao = null;
 
 
-    public PersonService(){
+    public PersonService() {
         super();
         personDao = PersonDao.getInstance();
     }
@@ -27,14 +26,14 @@ public class PersonService {
     }
 
 
-    public ArrayList<Person>  listar() throws UnknownHostException {
+    public ArrayList<Person> listar() throws UnknownHostException {
         ArrayList<Person> persons = new ArrayList<Person>();
         persons = personDao.listar();
 
         return persons;
     }
 
-    public Person obtenerPorId(int id) throws UnknownHostException{
+    public Person obtenerPorId(int id) throws UnknownHostException {
 
         return personDao.obtenerPorId(id);
     }
