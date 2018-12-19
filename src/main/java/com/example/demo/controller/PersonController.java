@@ -77,6 +77,8 @@ public class PersonController {
         try {
 
             p = servicioPerson.obtenerPorId(id);
+            Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
+            p.add(selfLink);
             response = new ResponseEntity<>(p,HttpStatus.OK);
 
         }catch (Exception e){
