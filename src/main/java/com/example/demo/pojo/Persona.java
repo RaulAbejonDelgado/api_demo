@@ -1,9 +1,10 @@
 package com.example.demo.pojo;
 
-public class Persona {
+public class Persona  {
 
     private String _id;
     private long id;
+    private String personaId;
     private String nombre;
     private Hypermedia[] links;
 
@@ -31,6 +32,14 @@ public class Persona {
         this.id = id;
         this.nombre = nombre;
         this.links = links;
+    }
+
+    public String getPersonaId() {
+        return personaId;
+    }
+
+    public void setPersonaId(String personaId) {
+        this.personaId = personaId;
     }
 
     public long getId() {
