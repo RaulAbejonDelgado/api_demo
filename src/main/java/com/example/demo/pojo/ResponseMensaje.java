@@ -10,7 +10,7 @@ public class ResponseMensaje {
 
     public ResponseMensaje() {
         super();
-        this.mensaje = "Soy una tetera";
+        this.mensaje = "";
     }
 
     public String[] getErrores() {

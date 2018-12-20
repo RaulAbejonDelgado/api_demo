@@ -114,10 +114,53 @@ public class PersonController {
         return response;
     }
 
-//    @RequestMapping( method = RequestMethod.POST)
-//    public ResponseEntity<Object> crear(@RequestBody Person persona) {
-//
-//    }
+    @RequestMapping( method = RequestMethod.POST)
+    public ResponseEntity<Object> crear(@RequestBody Person persona) {
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseMensaje rm = new ResponseMensaje();
+
+        try {
+
+            if (servicioPerson.crear(persona)) {
+                Link selfLink = linkTo(PersonController.class).slash(persona.getPersonId()).withSelfRel();
+                persona.add(selfLink);
+
+                response = new ResponseEntity<>(persona, HttpStatus.CREATED);
+            } else {
+
+                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> modificar(@RequestBody Person persona, @PathVariable int id) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseMensaje rm = new ResponseMensaje();
+
+        try {
+
+            servicioPerson.modficar(id, persona);
+            response = new ResponseEntity<>(persona, HttpStatus.OK);
+
+
+        }catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+
+
+
+        return response;
+
+    }
+
 
 }
 

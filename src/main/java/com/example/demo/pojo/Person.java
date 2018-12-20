@@ -40,4 +40,13 @@ public class Person extends ResourceSupport {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "_id='" + _id + '\'' +
+                ", personId=" + personId +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

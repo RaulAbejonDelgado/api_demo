@@ -1,9 +1,10 @@
 package com.example.demo.dao;
 
 import com.example.demo.pojo.Person;
-import com.example.demo.pojo.Persona;
-
-import com.mongodb.*;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.WriteResult;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 
@@ -84,7 +85,7 @@ public class PersonDao {
         JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
         long numDocumentos = collection.getCount();
 
-        DBObject findDoc = new BasicDBObject("id", id);
+        DBObject findDoc = new BasicDBObject("personId", id);
         collection.remove(findDoc);
         if (collection.getCount() < numDocumentos) {
             resul = true;
@@ -95,15 +96,84 @@ public class PersonDao {
     }
 
 
-    private BasicDBObject toDBObjectLibro(Persona p) {
+    private BasicDBObject toDBObjectPerson(Person p) {
 
         // Creamos una instancia BasicDBObject
         BasicDBObject dBObjectLibro = new BasicDBObject();
 
-        dBObjectLibro.append("id", p.getId());
+        dBObjectLibro.append("personId", p.getPersonId());
+
         dBObjectLibro.append("nombre", p.getNombre());
 
         return dBObjectLibro;
+    }
+
+
+    public boolean crear(Person p) throws UnknownHostException {
+        boolean resul = false;
+        Person pe = new Person();
+       // WriteResult wr = new WriteResult();
+        BasicDBObject dBObjectPerson;
+
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+
+        long numDocumentos = collection.getCount();
+        p.setPersonId((int) (numDocumentos + 1));
+        p.toString();
+        dBObjectPerson = toDBObjectPerson(p);
+        //JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
+        WriteResult wr = collection.insert(dBObjectPerson);
+        //org.mongojack.WriteResult<Person,String> test =  coll.insert(p);
+
+        System.out.println(wr);
+        System.out.println(wr.getUpsertedId());
+        System.out.println(wr.getN());
+        System.out.println(wr.isUpdateOfExisting());
+        System.out.println(wr.toString());
+        System.out.println(wr.wasAcknowledged());
+        pe = obtenerPorId(p.getPersonId());
+        p.set_id(pe.get_id());
+
+
+        if(numDocumentos < collection.getCount()){
+            //registro insertado
+            resul = true;
+
+        }
+       // System.out.println(wr);
+
+        return resul;
+
+    }
+
+
+    public boolean modificar(int id, Person p) throws  UnknownHostException{
+        boolean resul = false;
+        Person pe = new Person();
+
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
+
+        BasicDBObject query = new BasicDBObject();
+        query.put("personId", id);
+        p.setPersonId(id);
+        BasicDBObject datosNuevos = toDBObjectPerson(p);
+
+        WriteResult wr = collection.update(query,datosNuevos);
+        if(wr.isUpdateOfExisting()){
+            resul = true;
+            pe = obtenerPorId(p.getPersonId());
+            p.set_id(pe.get_id());
+        }
+
+        return resul;
+
+
+
+
+
+
+
     }
 
     //Transformo un objecto que me da MongoDB a un Objecto Java

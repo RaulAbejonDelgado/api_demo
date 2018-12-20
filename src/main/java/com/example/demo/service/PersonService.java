@@ -46,4 +46,23 @@ public class PersonService {
 
         return resul;
     }
+
+    public boolean crear(Person p) throws  UnknownHostException {
+        boolean resul  = false;
+        if(personDao.crear(p)){
+            resul = true;
+        }
+
+        return resul;
+    }
+
+    public boolean modficar(int id, Person p) throws  UnknownHostException{
+        boolean resul = false;
+
+        if(personDao.modificar(id, p)){
+            resul = true;
+        }
+
+        return resul;
+    }
 }
