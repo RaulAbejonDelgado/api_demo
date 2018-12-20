@@ -1,19 +1,31 @@
 package com.example.demo.pojo;
 
-public class Family {
+import org.springframework.hateoas.ResourceSupport;
+
+public class Family extends ResourceSupport {
 
     private String _id;
     private int familyId;
     private String nombre;
+    private Person[] personas;
 
 
     public Family() {
     }
 
-    public Family(String _id, int familyId, String nombre) {
+    public Family(String _id, int familyId, String nombre, Person[] personas) {
         this._id = _id;
         this.familyId = familyId;
         this.nombre = nombre;
+        this.personas = personas;
+    }
+
+    public Person[] getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(Person[] personas) {
+        this.personas = personas;
     }
 
     public String get_id() {

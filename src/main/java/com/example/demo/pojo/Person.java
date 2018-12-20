@@ -6,15 +6,25 @@ public class Person extends ResourceSupport {
 
     private String _id;
     private int personId;
+    private int familyId;
     private String nombre;
 
     public Person() {
     }
 
-    public Person(String _id, int personId, String nombre) {
-        this._id = _id;
+
+    public Person(int personId, int familyId, String nombre) {
         this.personId = personId;
+        this.familyId = familyId;
         this.nombre = nombre;
+    }
+
+    public int getFamilyId() {
+        return familyId;
+    }
+
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
     }
 
     public String get_id() {

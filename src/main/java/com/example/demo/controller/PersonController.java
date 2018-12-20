@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.PersonDao;
-import com.example.demo.dao.PersonaDao;
 import com.example.demo.pojo.Person;
-import com.example.demo.pojo.Persona;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Link;
@@ -12,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
