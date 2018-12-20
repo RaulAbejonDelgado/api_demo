@@ -37,4 +37,13 @@ public class PersonService {
 
         return personDao.obtenerPorId(id);
     }
+
+    public boolean eliminar(int id) throws  UnknownHostException {
+        boolean resul = false;
+        if(personDao.eliminar(id)){
+            resul = true;
+        }
+
+        return resul;
+    }
 }

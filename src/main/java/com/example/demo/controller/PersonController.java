@@ -10,10 +10,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -34,7 +31,7 @@ public class PersonController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> listado() {
+    public ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
@@ -62,7 +59,7 @@ public class PersonController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> detalle(@PathVariable int id) {
+    public ResponseEntity<Object> detail(@PathVariable int id) {
         Person p = new Person();
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -92,5 +89,37 @@ public class PersonController {
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> delete(@PathVariable int id) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseMensaje rm = new ResponseMensaje();
+        try {
+
+            if (servicioPerson.eliminar(id)) {
+
+                response = new ResponseEntity<>(HttpStatus.OK);
+
+            } else {
+                rm.setMensaje("Error Eliminando persona");
+
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+//    @RequestMapping( method = RequestMethod.POST)
+//    public ResponseEntity<Object> crear(@RequestBody Person persona) {
+//
+//    }
 
 }
+
+
+

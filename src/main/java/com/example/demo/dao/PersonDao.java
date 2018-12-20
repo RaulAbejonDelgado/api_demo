@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.pojo.Person;
 import com.example.demo.pojo.Persona;
+
 import com.mongodb.*;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
@@ -75,6 +76,22 @@ public class PersonDao {
         p.toString();
 
         return p;
+    }
+
+    public boolean eliminar(int id) throws UnknownHostException {
+        boolean resul = false;
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
+        long numDocumentos = collection.getCount();
+
+        DBObject findDoc = new BasicDBObject("id", id);
+        collection.remove(findDoc);
+        if (collection.getCount() < numDocumentos) {
+            resul = true;
+        }
+
+        return resul;
+
     }
 
 
