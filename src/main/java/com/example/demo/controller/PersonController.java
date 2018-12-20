@@ -36,10 +36,13 @@ public class PersonController {
             Person person = new Person();
             if (persons.size() > 0) {
                 System.out.println("*************Pasamos por PersonController-get*************");
+                //self
                 for (Person p : persons) {
                     Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
                     p.add(selfLink);
                 }
+
+
             }
 
             response = new ResponseEntity<>(persons, HttpStatus.OK);
@@ -141,8 +144,12 @@ public class PersonController {
 
         try {
 
-            servicioPerson.modficar(id, persona);
-            response = new ResponseEntity<>(persona, HttpStatus.OK);
+            if(servicioPerson.modficar(id, persona)){
+                Link selfLink = linkTo(PersonController.class).slash(persona.getPersonId()).withSelfRel();
+                persona.add(selfLink);
+                response = new ResponseEntity<>(persona, HttpStatus.OK);
+            }
+
 
 
         }catch (Exception e) {
