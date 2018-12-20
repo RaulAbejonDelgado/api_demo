@@ -1,22 +1,27 @@
 package com.example.demo.pojo;
 
-public class Coment {
+import org.springframework.hateoas.ResourceSupport;
+
+public class Coment extends ResourceSupport {
 
     private String _id;
-    private int familyId;
-    private String Texto;
-    private int userId;
+    private Family familia;
+    private String texto;
+    private Person persona;
+    private int comentarioId;
 
 
     public Coment() {
     }
 
-    public Coment(String _id, int familyId, String texto, int userId) {
+    public Coment(String _id, Family familia, String texto, Person persona, int comentarioId) {
         this._id = _id;
-        this.familyId = familyId;
-        Texto = texto;
-        this.userId = userId;
+        this.familia = familia;
+        this.texto = texto;
+        this.persona = persona;
+        this.comentarioId = comentarioId;
     }
+
 
     public String get_id() {
         return _id;
@@ -26,27 +31,35 @@ public class Coment {
         this._id = _id;
     }
 
-    public int getFamilyId() {
-        return familyId;
+    public Family getFamilia() {
+        return familia;
     }
 
-    public void setFamilyId(int familyId) {
-        this.familyId = familyId;
+    public void setFamilia(Family familia) {
+        this.familia = familia;
     }
 
     public String getTexto() {
-        return Texto;
+        return texto;
     }
 
     public void setTexto(String texto) {
-        Texto = texto;
+        this.texto = texto;
     }
 
-    public int getUserId() {
-        return userId;
+    public Person getPersona() {
+        return persona;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setPersona(Person persona) {
+        this.persona = persona;
+    }
+
+    public int getComentarioId() {
+        return comentarioId;
+    }
+
+    public void setComentarioId(int comentarioId) {
+        this.comentarioId = comentarioId;
     }
 }
