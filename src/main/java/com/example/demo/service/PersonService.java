@@ -39,6 +39,8 @@ public class PersonService {
 
     public ArrayList<Person> listar() throws UnknownHostException {
         ArrayList<Person> persons = new ArrayList<Person>();
+        ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
+
         persons = personDao.listar();
 
 
@@ -50,6 +52,14 @@ public class PersonService {
             p.add(detailLink);
             Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle familia");
             p.add(familyLink);
+            comentariosUsuario = comentService.obtenerComentPorUsuario(p.getselfId());
+
+            for(Coment c : comentariosUsuario){
+                Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
+                p.add(listComents);
+            }
+
+
 
 
         }
