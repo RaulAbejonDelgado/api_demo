@@ -199,6 +199,43 @@ public class ComentarioDao {
 
     }
 
+    public ArrayList<Coment> comentariosPorPersona(int id) throws UnknownHostException {
+//        DBCursor<Coment> comentarios;
+//        ArrayList<Coment> coment = new ArrayList<Coment>();
+//
+//        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+//        JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
+//
+//        BasicDBObject query = new BasicDBObject();
+//        query.put("persona.personaId", id);
+
+
+//        try (Db<Coment> cursor = coll.find(query)) {
+//            while(cursor.hasNext()){
+//                System.out.println(cursor.next());
+//                coment.add(cursor.next());
+//            }
+//        }
+        ArrayList<Coment>  comentarios= new ArrayList<Coment>();
+        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+        BasicDBObject query = new BasicDBObject();
+        query.put("persona.personaId", id);
+
+        // Busco todos los documentos de la colección y los imprimo
+        try (com.mongodb.DBCursor cursor = collection.find(query)) {
+            while (cursor.hasNext()) {
+
+                comentarios.add(deMongoaJava((BasicDBObject) cursor.next()));
+                System.out.println(comentarios);
+
+            }
+        }
+
+
+        return comentarios;
+
+    }
+
 
 
 

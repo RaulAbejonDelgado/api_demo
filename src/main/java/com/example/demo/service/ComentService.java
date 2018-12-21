@@ -51,10 +51,6 @@ public class ComentService {
         if (comentarios.size() > 0) {
             System.out.println("*************Pasamos por PersonController-get*************");
 
-
-
-
-
             for (Coment c : comentarios) {
 
                 //completamos el objeto
@@ -72,6 +68,8 @@ public class ComentService {
 
                 Link authorLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Detalle Author");
                 c.add(authorLink);
+
+
 
 
             }
@@ -122,5 +120,13 @@ public class ComentService {
         }
 
         return resul;
+    }
+
+    public ArrayList<Coment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
+        ArrayList<Coment> comentarios = new ArrayList<Coment>();
+
+        comentarios = comentarioDao.comentariosPorPersona(id);
+
+        return comentarios;
     }
 }

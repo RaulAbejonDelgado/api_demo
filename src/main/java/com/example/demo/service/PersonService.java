@@ -2,7 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
+import com.example.demo.controller.PublicacionController;
+import com.example.demo.dao.ComentarioDao;
 import com.example.demo.dao.PersonDao;
+import com.example.demo.pojo.Coment;
 import com.example.demo.pojo.Person;
 import org.springframework.hateoas.Link;
 
@@ -14,6 +17,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class PersonService {
 
     private static PersonService INSTANCE = null;
+    private static ComentService comentService = null;
 
     private static PersonDao personDao = null;
 
@@ -21,6 +25,8 @@ public class PersonService {
     public PersonService() {
         super();
         personDao = PersonDao.getInstance();
+        comentService = ComentService.getInstance();
+
     }
 
     public static synchronized PersonService getInstance() {
@@ -35,6 +41,8 @@ public class PersonService {
         ArrayList<Person> persons = new ArrayList<Person>();
         persons = personDao.listar();
 
+
+
         for (Person p : persons) {
             Link selfLink = linkTo(PersonController.class).withSelfRel();
             p.add(selfLink);
@@ -42,6 +50,8 @@ public class PersonService {
             p.add(detailLink);
             Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle familia");
             p.add(familyLink);
+
+
         }
 
         return persons;
@@ -50,6 +60,9 @@ public class PersonService {
     public Person obtenerPorId(int id) throws UnknownHostException {
 
         Person p = personDao.obtenerPorId(id);
+        ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
+        comentariosUsuario = comentService.obtenerComentPorUsuario(id);
+        //traer todos los comentarios de un usuario
 
         Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
         p.add(selfLink);
@@ -57,6 +70,12 @@ public class PersonService {
         p.add(familyLink);
         Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
         p.add(listAllLink);
+
+        for(Coment c : comentariosUsuario){
+            Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
+            p.add(listComents);
+        }
+
 
         return p;
     }
