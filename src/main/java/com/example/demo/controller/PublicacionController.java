@@ -35,15 +35,6 @@ public class PublicacionController {
         ResponseMensaje rm = new ResponseMensaje();
         try {
             comentarios = servicioComent.listar();
-            Coment coment = new Coment();
-            if (comentarios.size() > 0) {
-                System.out.println("*************Pasamos por PersonController-get*************");
-                //self
-                for (Coment c : comentarios) {
-                    Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
-                    c.add(selfLink);
-                }
-            }
 
             response = new ResponseEntity<>(comentarios, HttpStatus.OK);
 
@@ -68,8 +59,6 @@ public class PublicacionController {
             c = servicioComent.obtenerPorId(id);
             if (c != null) {
 
-                Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
-                c.add(selfLink);
                 response = new ResponseEntity<>(c, HttpStatus.OK);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -121,8 +110,7 @@ public class PublicacionController {
         try {
 
             if (servicioComent.crear(comentario)) {
-                Link selfLink = linkTo(PublicacionController.class).slash(comentario.getComentarioId()).withSelfRel();
-                comentario.add(selfLink);
+
 
                 response = new ResponseEntity<>(comentario, HttpStatus.CREATED);
             } else {
@@ -145,8 +133,7 @@ public class PublicacionController {
         try {
 
             if(servicioComent.modficar(id, comentario )){
-                Link selfLink = linkTo(PublicacionController.class).slash(comentario.getComentarioId()).withSelfRel();
-                comentario.add(selfLink);
+
                 response = new ResponseEntity<>(comentario, HttpStatus.OK);
             }
 

@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.PersonaDao;
+import com.example.demo.pojo.Index;
 import com.example.demo.pojo.Persona;
 import com.example.demo.pojo.ResponseMensaje;
+import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,40 +17,39 @@ import java.util.ArrayList;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
+
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/personas")
+@RequestMapping("/")
 public class HelloControler {
 
-    private static ArrayList<Persona> personas;
-    private static PersonaDao personaDao = null;
+    private static ArrayList<Index> resources = null;
 
 
-//    @GetMapping
-//    public String getHello() {
-//        return "hello";
-//    }
-
-    public HelloControler() {
+    public HelloControler(){
         super();
-        personaDao = PersonaDao.getInstance();
+        resources = new ArrayList<Index>();
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> listado() {
-        personas = new ArrayList<Persona>();
+    public ResponseEntity<Object> resourcesList() {
+
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+
         System.out.println("*************Pasamos por get*************");
         try {
-            personas = personaDao.listar();
+            if(resources.isEmpty()){
 
-            if (personas != null) {
-                response = new ResponseEntity<Object>(personas, HttpStatus.OK);
-            } else {
-                response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                resources.add(new Index(linkTo(PublicacionController.class).toString()));
+                resources.add(new Index(linkTo(FamilyController.class).toString()));
+                resources.add(new Index(linkTo(PersonController.class).toString()));
+
             }
-        } catch (UnknownHostException e) {
+
+                response = new ResponseEntity<Object>(resources, HttpStatus.OK);
+
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -57,6 +58,4 @@ public class HelloControler {
         return response;
 
     }
-
-
 }

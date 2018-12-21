@@ -24,6 +24,7 @@ public class FamilyController {
     private static ArrayList<Family> familias;
     private static FamilyService familyService = null;
 
+
     public FamilyController() {
         super();
         familyService = FamilyService.getInstance();
@@ -36,13 +37,7 @@ public class FamilyController {
         ResponseMensaje rm = new ResponseMensaje();
         try {
             familias = familyService.listar();
-            if (familias.size() > 0) {
-                System.out.println("*************Pasamos por FamilyController-get*************");
-                for (Family f : familias) {
-                    Link selfLink = linkTo(FamilyController.class).slash(f.getFamilyId()).withSelfRel();
-                    f.add(selfLink);
-                }
-            }
+
 
             response = new ResponseEntity<>(familias, HttpStatus.OK);
 
@@ -67,8 +62,7 @@ public class FamilyController {
             f = familyService.obtenerPorId(id);
             if (f != null) {
 
-                Link selfLink = linkTo(FamilyController.class).slash(f.getFamilyId()).withSelfRel();
-                f.add(selfLink);
+
                 response = new ResponseEntity<>(f, HttpStatus.OK);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -120,8 +114,7 @@ public class FamilyController {
         try {
 
             if (familyService.crear(familia)) {
-                Link selfLink = linkTo(FamilyController.class).slash(familia.getFamilyId()).withSelfRel();
-                familia.add(selfLink);
+
 
                 response = new ResponseEntity<>(familia, HttpStatus.CREATED);
             } else {
@@ -144,8 +137,7 @@ public class FamilyController {
         try {
 
             if (familyService.modficar(id, familia)) {
-                Link selfLink = linkTo(FamilyController.class).slash(familia.getFamilyId()).withSelfRel();
-                familia.add(selfLink);
+
                 response = new ResponseEntity<>(familia, HttpStatus.OK);
             }
 

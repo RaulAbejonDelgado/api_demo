@@ -37,12 +37,6 @@ public class PersonController {
             if (persons.size() > 0) {
                 System.out.println("*************Pasamos por PersonController-get*************");
                 //self
-                for (Person p : persons) {
-                    Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
-                    p.add(selfLink);
-                }
-
-
             }
 
             response = new ResponseEntity<>(persons, HttpStatus.OK);
@@ -68,8 +62,7 @@ public class PersonController {
             p = servicioPerson.obtenerPorId(id);
             if (p != null) {
 
-                Link selfLink = linkTo(PersonController.class).slash(p.getPersonId()).withSelfRel();
-                p.add(selfLink);
+
                 response = new ResponseEntity<>(p, HttpStatus.OK);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -121,7 +114,7 @@ public class PersonController {
         try {
 
             if (servicioPerson.crear(persona)) {
-                Link selfLink = linkTo(PersonController.class).slash(persona.getPersonId()).withSelfRel();
+                Link selfLink = linkTo(PersonController.class).slash(persona.getselfId()).withSelfRel();
                 persona.add(selfLink);
 
                 response = new ResponseEntity<>(persona, HttpStatus.CREATED);
@@ -145,20 +138,14 @@ public class PersonController {
         try {
 
             if(servicioPerson.modficar(id, persona)){
-                Link selfLink = linkTo(PersonController.class).slash(persona.getPersonId()).withSelfRel();
-                persona.add(selfLink);
+
                 response = new ResponseEntity<>(persona, HttpStatus.OK);
             }
-
-
 
         }catch (Exception e) {
 
             e.printStackTrace();
         }
-
-
-
 
         return response;
 

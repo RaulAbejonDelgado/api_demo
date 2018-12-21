@@ -101,7 +101,7 @@ public class PersonDao {
         // Creamos una instancia BasicDBObject
         BasicDBObject dBObjectPerson = new BasicDBObject();
 
-        dBObjectPerson.append("personId", p.getPersonId());
+        dBObjectPerson.append("personId", p.getselfId());
 
         dBObjectPerson.append("nombre", p.getNombre());
 
@@ -127,7 +127,7 @@ public class PersonDao {
         WriteResult wr = collection.insert(dBObjectPerson);
         //org.mongojack.WriteResult<Person,String> test =  coll.insert(p);
 
-        pe = obtenerPorId(p.getPersonId());
+        pe = obtenerPorId(p.getselfId());
         p.set_id(pe.get_id());
 
 
@@ -157,7 +157,7 @@ public class PersonDao {
         WriteResult wr = collection.update(query,datosNuevos);
         if(wr.isUpdateOfExisting()){
             resul = true;
-            pe = obtenerPorId(p.getPersonId());
+            pe = obtenerPorId(p.getselfId());
             p.set_id(pe.get_id());
         }
 

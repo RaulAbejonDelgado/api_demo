@@ -5,16 +5,20 @@ import org.springframework.hateoas.ResourceSupport;
 public class Person extends ResourceSupport {
 
     private String _id;
-    private int personId;
+    private int selfId;
     private int familyId;
     private String nombre;
 
     public Person() {
+        this._id="";
+        this.selfId = 0 ;
+        this.familyId = 0;
+
     }
 
 
     public Person(int personId, int familyId, String nombre) {
-        this.personId = personId;
+        this.selfId = personId;
         this.familyId = familyId;
         this.nombre = nombre;
     }
@@ -35,12 +39,12 @@ public class Person extends ResourceSupport {
         this._id = _id;
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getselfId() {
+        return selfId;
     }
 
     public void setPersonId(int personId) {
-        this.personId = personId;
+        this.selfId = personId;
     }
 
     public String getNombre() {
@@ -55,7 +59,7 @@ public class Person extends ResourceSupport {
     public String toString() {
         return "Person{" +
                 "_id='" + _id + '\'' +
-                ", personId=" + personId +
+                ", selfId=" + selfId +
                 ", nombre='" + nombre + '\'' +
                 '}';
     }

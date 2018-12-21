@@ -17,7 +17,7 @@ public class ComentarioDao {
     private static ComentarioDao INSTANCE = null;
 
     private static final String DB = "publicaciones";
-    private static final String COLLECTION = "publicaciones";
+    private static final String COLLECTION = "comentarios";
 
     public static synchronized ComentarioDao getInstance() {
         if (INSTANCE == null) {
@@ -29,17 +29,32 @@ public class ComentarioDao {
 
     public ArrayList<Coment> listarTodos() throws UnknownHostException {
         ArrayList<Coment>  comentarios= new ArrayList<Coment>();
+//        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+//
+//        //JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
+//        // Busco todos los documentos de la colección y los imprimo
+//        try (DBCursor<Coment> cursor = collection.find()) {
+//            while (cursor.hasNext()) {
+//                comentarios.add(cursor.next());
+//
+//            }
+//        }
+//        System.out.println(comentarios);
+//
+//        return comentarios;
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
-        JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
+
         // Busco todos los documentos de la colección y los imprimo
-        try (DBCursor<Coment> cursor = coll.find()) {
+        try (com.mongodb.DBCursor cursor = collection.find()) {
             while (cursor.hasNext()) {
-                comentarios.add(cursor.next());
+
+                comentarios.add(deMongoaJava((BasicDBObject) cursor.next()));
+                System.out.println(comentarios);
 
             }
         }
-        System.out.println(comentarios);
+
 
         return comentarios;
     }
@@ -83,7 +98,7 @@ public class ComentarioDao {
     }
 
 
-    private BasicDBObject toDBObjectToJava(Coment c) {
+    private BasicDBObject toDBObjectFromJava(Coment c) {
 
         // Creamos una instancia BasicDBObject
         BasicDBObject dBObjectComent = new BasicDBObject();
@@ -94,6 +109,18 @@ public class ComentarioDao {
 
 
         return dBObjectComent;
+    }
+
+
+    //Transformo un objecto que me da MongoDB a un Objecto Java
+    private Coment deMongoaJava(BasicDBObject toDBObjectLibro) {
+
+        Coment c = new Coment();
+        c.set_id(toDBObjectLibro.getString("_id"));
+        c.setComentarioId(toDBObjectLibro.getInt("comentarioId"));
+        c.setTexto(toDBObjectLibro.getString("texto"));
+
+        return c;
     }
 
 
@@ -108,7 +135,7 @@ public class ComentarioDao {
         long numDocumentos = collection.getCount();
         c.setComentarioId((int) (numDocumentos + 1));
         c.toString();
-        dBObjectFamily = toDBObjectToJava(c);
+        dBObjectFamily = toDBObjectFromJava(c);
         //JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
         WriteResult wr = collection.insert(dBObjectFamily);
         //org.mongojack.WriteResult<Person,String> test =  coll.insert(p);
@@ -138,7 +165,7 @@ public class ComentarioDao {
         BasicDBObject query = new BasicDBObject();
         query.put("comentarioId", id);
         c.setComentarioId(id);
-        BasicDBObject datosNuevos = toDBObjectToJava(c);
+        BasicDBObject datosNuevos = toDBObjectFromJava(c);
 
         WriteResult wr = collection.update(query,datosNuevos);
         if(wr.isUpdateOfExisting()){
