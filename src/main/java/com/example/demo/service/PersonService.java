@@ -55,7 +55,7 @@ public class PersonService {
         p.add(selfLink);
         Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Familia");
         p.add(familyLink);
-        Link listAllLink = linkTo(FamilyController.class).withRel("Listar personas");
+        Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
         p.add(listAllLink);
 
         return p;

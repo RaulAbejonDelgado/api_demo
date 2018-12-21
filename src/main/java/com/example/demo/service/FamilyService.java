@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.controller.FamilyController;
+import com.example.demo.controller.PersonController;
 import com.example.demo.dao.FamilyDao;
 import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Family;
+import com.example.demo.pojo.Person;
 import org.springframework.hateoas.Link;
 
 import java.net.UnknownHostException;
@@ -36,6 +38,7 @@ public class FamilyService {
         ArrayList<Family> familias = new ArrayList<Family>();
 
         familias = familiasDao.listarTodos();
+        Person[] personasFamilia ;
 
         if (familias.size() > 0) {
             System.out.println("*************Pasamos por FamilyController-get*************");
@@ -44,6 +47,21 @@ public class FamilyService {
                 f.add(selfLink);
                 Link detailLink = linkTo(FamilyController.class).slash(f.getFamilyId()).withRel("Detalle familia");
                 f.add(detailLink);
+                personasFamilia = f.getPersonas();
+                if (personasFamilia.length > 0){
+                    for(Person p : personasFamilia){
+
+                        //Aqui añadimos el enlace en el objeto anidado
+                        Link childLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+                        p.add(childLink);
+
+                        //Aqui añadimos el enlace en la seccion de enlaces del propio objeto
+                        Link childElemetLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("hijos");
+                        f.add(childElemetLink);
+
+                    }
+                }
+
 
             }
         }
@@ -59,6 +77,21 @@ public class FamilyService {
         f.add(selfLink);
         Link detailLink = linkTo(FamilyController.class).withRel("Listar familias");
         f.add(detailLink);
+        Person[] personasFamilia ;
+
+        personasFamilia = f.getPersonas();
+        for(Person p : personasFamilia){
+
+            //Aqui añadimos el enlace en el objeto anidado
+            Link childLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+            p.add(childLink);
+
+            //Aqui añadimos el enlace en la seccion de enlaces del propio objeto
+            Link childElemetLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("hijos");
+            f.add(childElemetLink);
+        }
+
+
 
         return f;
     }
