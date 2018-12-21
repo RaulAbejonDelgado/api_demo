@@ -38,9 +38,9 @@ public class PersonService {
         for (Person p : persons) {
             Link selfLink = linkTo(PersonController.class).withSelfRel();
             p.add(selfLink);
-            Link detailLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("Detalle");
+            Link detailLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("Detalle persona");
             p.add(detailLink);
-            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Familia");
+            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle familia");
             p.add(familyLink);
         }
 
@@ -53,7 +53,7 @@ public class PersonService {
 
         Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
         p.add(selfLink);
-        Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Familia");
+        Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
         p.add(familyLink);
         Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
         p.add(listAllLink);

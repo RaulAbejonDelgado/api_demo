@@ -56,7 +56,7 @@ public class FamilyService {
                         p.add(childLink);
 
                         //Aqui añadimos el enlace en la seccion de enlaces del propio objeto
-                        Link childElemetLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("hijos");
+                        Link childElemetLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("Detalle hijos");
                         f.add(childElemetLink);
 
                     }

@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.PersonController;
 import com.example.demo.controller.PublicacionController;
 import com.example.demo.dao.ComentarioDao;
+import com.example.demo.dao.FamilyDao;
 import com.example.demo.dao.PersonDao;
+import com.example.demo.dao.PersonaDao;
 import com.example.demo.pojo.Coment;
 import com.example.demo.pojo.Person;
 import org.springframework.hateoas.Link;
@@ -17,12 +20,16 @@ public class ComentService {
     private static ComentService INSTANCE = null;
 
     private static ComentarioDao comentarioDao = null;
+    private static PersonDao personaDao = null;
+    private static FamilyDao familyDao = null;
 
 
     public ComentService() {
 
         super();
         comentarioDao = ComentarioDao.getInstance();
+        personaDao = PersonDao.getInstance();
+        familyDao = FamilyDao.getInstance();
     }
 
     public static synchronized ComentService getInstance() {
@@ -43,10 +50,30 @@ public class ComentService {
 
         if (comentarios.size() > 0) {
             System.out.println("*************Pasamos por PersonController-get*************");
-            //self
+
+
+
+
+
             for (Coment c : comentarios) {
-                Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
+
+                //completamos el objeto
+
+                c.setPersona(personaDao.obtenerPorId(c.getPersona().getselfId())); // persona comentario
+                c.setFamilia(familyDao.obtenerPorId(c.getFamilia().getFamilyId()));// familia comentario
+
+
+                //hateoas
+                Link selfLink = linkTo(PublicacionController.class).withSelfRel();
                 c.add(selfLink);
+
+                Link detailLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Detalle comentario");
+                c.add(detailLink);
+
+                Link authorLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Detalle Author");
+                c.add(authorLink);
+
+
             }
         }
 

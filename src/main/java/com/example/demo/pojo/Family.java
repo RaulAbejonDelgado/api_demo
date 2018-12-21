@@ -11,6 +11,9 @@ public class Family extends ResourceSupport {
 
 
     public Family() {
+        this.familyId = 0;
+        this.nombre = "";
+
     }
 
     public Family(String _id, int familyId, String nombre, Person[] personas) {

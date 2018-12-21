@@ -1,6 +1,8 @@
 package com.example.demo.dao;
 
 import com.example.demo.pojo.Coment;
+import com.example.demo.pojo.Family;
+import com.example.demo.pojo.Person;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -113,12 +115,31 @@ public class ComentarioDao {
 
 
     //Transformo un objecto que me da MongoDB a un Objecto Java
-    private Coment deMongoaJava(BasicDBObject toDBObjectLibro) {
-
+    private Coment deMongoaJava(BasicDBObject toDBObjectComentario) {
+        Family familia = new Family();
+        Person persona = new Person();
         Coment c = new Coment();
-        c.set_id(toDBObjectLibro.getString("_id"));
-        c.setComentarioId(toDBObjectLibro.getInt("comentarioId"));
-        c.setTexto(toDBObjectLibro.getString("texto"));
+        c.set_id(toDBObjectComentario.getString("_id"));
+        c.setComentarioId(toDBObjectComentario.getInt("comentarioId"));
+        c.setTexto(toDBObjectComentario.getString("texto"));
+
+        BasicDBObject familiObject = new BasicDBObject();
+        BasicDBObject personObject = new BasicDBObject();
+        familiObject = (BasicDBObject) toDBObjectComentario.get("familia");
+
+        personObject = (BasicDBObject) toDBObjectComentario.get("persona");
+
+        familia.setFamilyId((familiObject.getInt("familyId")));
+        familia.setNombre(familiObject.getString("nombre"));
+        familia.set_id(familiObject.getString("_id"));
+
+        System.out.println(familiObject.getString("_id"));
+
+        persona.set_id(personObject.getString("_id"));
+        persona.setPersonId(personObject.getInt("personaId"));
+
+        c.setFamilia(familia);
+        c.setPersona(persona);
 
         return c;
     }
