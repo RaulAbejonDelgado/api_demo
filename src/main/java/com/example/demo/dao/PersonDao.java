@@ -101,11 +101,13 @@ public class PersonDao {
         // Creamos una instancia BasicDBObject
         BasicDBObject dBObjectPerson = new BasicDBObject();
 
+
+
         dBObjectPerson.append("personId", p.getselfId());
 
         dBObjectPerson.append("nombre", p.getNombre());
 
-        dBObjectPerson.append("familyId", p.getFamilyId());
+        dBObjectPerson.append("familyId", p.getFamilyId() );
 
         return dBObjectPerson;
     }
@@ -152,9 +154,17 @@ public class PersonDao {
         BasicDBObject query = new BasicDBObject();
         query.put("personId", id);
         p.setPersonId(id);
-        BasicDBObject datosNuevos = toDBObjectPerson(p);
+        Person po = obtenerPorId(id);
+        //BasicDBObject datosNuevos = toDBObjectPerson(p);
+        BasicDBObject dBObjectPerson = new BasicDBObject();
 
-        WriteResult wr = collection.update(query,datosNuevos);
+        dBObjectPerson.append("personId", p.getselfId() == 0 ? po.getselfId() : p.getselfId());
+
+        dBObjectPerson.append("nombre", p.getNombre() != null || !p.getNombre().contains("") ? p.getNombre() : po.getNombre());
+
+        dBObjectPerson.append("familyId", p.getFamilyId() == 0 ? po.getFamilyId() : p.getFamilyId() );
+
+        WriteResult wr = collection.update(query,dBObjectPerson);
         if(wr.isUpdateOfExisting()){
             resul = true;
             pe = obtenerPorId(p.getselfId());
