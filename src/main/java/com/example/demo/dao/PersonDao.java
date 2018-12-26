@@ -80,6 +80,7 @@ public class PersonDao {
     }
 
     public boolean eliminar(int id) throws UnknownHostException {
+
         boolean resul = false;
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
         JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
@@ -87,6 +88,7 @@ public class PersonDao {
 
         DBObject findDoc = new BasicDBObject("personId", id);
         collection.remove(findDoc);
+
         if (collection.getCount() < numDocumentos) {
             resul = true;
         }
@@ -114,27 +116,27 @@ public class PersonDao {
 
 
     public boolean crear(Person p) throws UnknownHostException {
+
         boolean resul = false;
         Person pe = new Person();
-       // WriteResult wr = new WriteResult();
+
         BasicDBObject dBObjectPerson;
 
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
 
         long numDocumentos = collection.getCount();
         p.setPersonId((int) (numDocumentos + 1));
-        p.toString();
+
         dBObjectPerson = toDBObjectPerson(p);
-        //JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
+
         WriteResult wr = collection.insert(dBObjectPerson);
-        //org.mongojack.WriteResult<Person,String> test =  coll.insert(p);
 
         pe = obtenerPorId(p.getselfId());
         p.set_id(pe.get_id());
 
 
         if(numDocumentos < collection.getCount()){
-            //registro insertado
+
             resul = true;
 
         }
@@ -155,7 +157,7 @@ public class PersonDao {
         query.put("personId", id);
         p.setPersonId(id);
         Person po = obtenerPorId(id);
-        //BasicDBObject datosNuevos = toDBObjectPerson(p);
+
         BasicDBObject dBObjectPerson = new BasicDBObject();
 
         dBObjectPerson.append("personId", p.getselfId() == 0 ? po.getselfId() : p.getselfId());
@@ -173,24 +175,7 @@ public class PersonDao {
 
         return resul;
 
-
-
-
-
-
-
     }
-
-    //Transformo un objecto que me da MongoDB a un Objecto Java
-//    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
-//
-//        Persona p = new Persona();
-//        p.setId(toDBObjectLibro.getLong("id"));
-//        p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));
-//
-//
-//        return p;
-//    }
 
 
 }
