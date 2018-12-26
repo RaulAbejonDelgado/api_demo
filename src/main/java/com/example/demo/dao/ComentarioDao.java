@@ -6,11 +6,13 @@ import com.example.demo.pojo.Person;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import com.mongodb.WriteResult;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
+import org.mongojack.WriteResult;
+
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static com.example.demo.dao.MongoConector.getConnectionDbAndCollection;
 
@@ -20,6 +22,8 @@ public class ComentarioDao {
 
     private static final String DB = "publicaciones";
     private static final String COLLECTION = "comentarios";
+    private static PersonDao personDao = null ;
+    private static FamilyDao familyDao = null;
 
     public static synchronized ComentarioDao getInstance() {
         if (INSTANCE == null) {
@@ -109,6 +113,13 @@ public class ComentarioDao {
 
         dBObjectComent.append("texto", c.getTexto());
 
+        BasicDBObject p = new BasicDBObject();
+
+        p.append("persona", c.getPersona());
+
+        dBObjectComent.append("persona", p);
+        //dBObjectComent.append("sona", c.getPersona());
+
 
         return dBObjectComent;
     }
@@ -136,7 +147,7 @@ public class ComentarioDao {
         System.out.println(familiObject.getString("_id"));
 
         persona.set_id(personObject.getString("_id"));
-        persona.setPersonId(personObject.getInt("personaId"));
+        persona.setPersonId(personObject.getInt("selfId"));
 
         c.setFamilia(familia);
         c.setPersona(persona);
@@ -146,58 +157,109 @@ public class ComentarioDao {
 
 
     public boolean crear(Coment c) throws UnknownHostException {
-        boolean resul = false;
-        Coment ce = new Coment();
-        // WriteResult wr = new WriteResult();
-        BasicDBObject dBObjectFamily;
 
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+        boolean result = false;
+        DBCollection collection = null;
+        try {
+            collection = getConnectionDbAndCollection(DB, COLLECTION);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
 
-        long numDocumentos = collection.getCount();
-        c.setComentarioId((int) (numDocumentos + 1));
-        c.toString();
-        dBObjectFamily = toDBObjectFromJava(c);
-        //JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
-        WriteResult wr = collection.insert(dBObjectFamily);
-        //org.mongojack.WriteResult<Person,String> test =  coll.insert(p);
-
-        ce = obtenerPorId(c.getComentarioId());
-        c.set_id(ce.get_id());
+        long numDoc = collection.getCount() + 1;
+        c.setComentarioId((int) numDoc);
 
 
-        if(numDocumentos < collection.getCount()){
-            //registro insertado
-            resul = true;
+        org.mongojack.WriteResult<Coment, String> res = coll.insert(c);
+        Coment dObj = res.getSavedObject();
+        c.set_id(dObj.get_id());
 
+        System.out.println(dObj.toString());
+
+        if (dObj != null) {
+
+            result = true;
         }
 
-        return resul;
 
+        return result;
     }
+
+
 
 
     public boolean modificar(int id, Coment c) throws  UnknownHostException{
-        boolean resul = false;
-        Coment ce = new Coment();
+//        boolean resul = false;
+//        Coment ce = new Coment();
+//
+//        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
+//        JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
+//
+//        BasicDBObject query = new BasicDBObject();
+//        query.put("comentarioId", id);
+//        c.setComentarioId(id);
+//        BasicDBObject datosNuevos = toDBObjectFromJava(c);
+//
+//        WriteResult<Coment, String> wr = coll.update(query,datosNuevos);
+//        if(wr.isUpdateOfExisting()){
+//            resul = true;
+//            ce = obtenerPorId(c.getComentarioId());
+//            c.set_id(ce.get_id());
+//        }
+//
+//        return resul;
+//
+//    }
 
+        boolean result = false;
         DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
         JacksonDBCollection<Coment, String> coll = JacksonDBCollection.wrap(collection, Coment.class, String.class);
-
         BasicDBObject query = new BasicDBObject();
+        BasicDBObject obj= new BasicDBObject();
+        BasicDBObject fam= new BasicDBObject();
+        BasicDBObject per= new BasicDBObject();
+
+        Coment co = obtenerPorId(id);
+        //Person po =
+
+        co.toString();
+
+
+
+
+        obj.append("comentarioId",id);
+        obj.append("texto",c.getTexto() != null ? c.getTexto() : co.getTexto());
+
+        per.append("_id",c.getPersona().get_id().contains("") ? co.get_id() : "" );
+        per.append("selfId",c.getPersona().getselfId() == 0 ? co.getPersona().getselfId() : 0);
+        per.append("nombre",c.getPersona().getNombre() == null ? co.getPersona().getNombre() : "");
+        per.append("familyId",c.getPersona().getFamilyId() == 0 ? co.getFamilia().getFamilyId() :  0);
+
+
+        fam.append("_id",c.getFamilia().get_id() == null ? co.getFamilia().get_id() : "");
+        fam.append("familyId",c.getFamilia().getFamilyId() == 0 ? co.getFamilia().getFamilyId() : 0 );
+        fam.append("nombre",c.getFamilia().getNombre() == null ? co.getFamilia().getNombre() : "");
+
+
+
+        obj.append("familia",fam);
+        obj.append("persona",per);
+
+
+
         query.put("comentarioId", id);
-        c.setComentarioId(id);
-        BasicDBObject datosNuevos = toDBObjectFromJava(c);
+        WriteResult<Coment,String> res = coll.update(query,obj);
 
-        WriteResult wr = collection.update(query,datosNuevos);
-        if(wr.isUpdateOfExisting()){
-            resul = true;
-            ce = obtenerPorId(c.getComentarioId());
-            c.set_id(ce.get_id());
+
+        if (res.getN()==1) {
+
+            result = true;
         }
-
-        return resul;
-
+        return result;
     }
+
+
 
     public ArrayList<Coment> comentariosPorPersona(int id) throws UnknownHostException {
 //        DBCursor<Coment> comentarios;

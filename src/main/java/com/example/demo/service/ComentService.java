@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
 import com.example.demo.controller.PublicacionController;
 import com.example.demo.dao.ComentarioDao;
@@ -105,6 +106,10 @@ public class ComentService {
             resul = true;
             Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
             c.add(selfLink);
+            Link familyLink = linkTo(FamilyController.class).slash(c.getFamilia().getFamilyId()).withRel("Familia");
+            c.add(familyLink);
+            Link userLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Autor");
+            c.add(userLink);
         }
 
         return resul;

@@ -12,7 +12,6 @@ public class Coment extends ResourceSupport {
 
 
     public Coment() {
-        this._id="";
         this.familia = new Family();
         this.texto = "";
         this.persona = new Person();
