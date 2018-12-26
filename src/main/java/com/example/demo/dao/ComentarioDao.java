@@ -231,15 +231,15 @@ public class ComentarioDao {
         obj.append("comentarioId",id);
         obj.append("texto",c.getTexto() != null || !c.getTexto().contains("") ? c.getTexto() : co.getTexto());
 
-        per.append("_id",c.getPersona().get_id().contains("") ? co.get_id() : "" );
-        per.append("selfId",c.getPersona().getselfId() == 0 ? co.getPersona().getselfId() : 0);
-        per.append("nombre",c.getPersona().getNombre() == null ? co.getPersona().getNombre() : "");
+        per.append("_id",c.getPersona().get_id().contains("") ? co.get_id() : c.getPersona().get_id() );
+        per.append("selfId",c.getPersona().getselfId() == 0 ? co.getPersona().getselfId() :c.getPersona().getselfId());
+        per.append("nombre",c.getPersona().getNombre() == null ? co.getPersona().getNombre() : c.getPersona().getNombre());
         per.append("familyId",c.getPersona().getFamilyId() == 0 ? co.getFamilia().getFamilyId() :  c.getFamilia().getFamilyId());
 
 
-        fam.append("_id",c.getFamilia().get_id() == null ? co.getFamilia().get_id() : "");
-        fam.append("familyId",c.getFamilia().getFamilyId() != 0 ? c.getFamilia().getFamilyId() : co.getFamilia().getFamilyId() );
-        fam.append("nombre",c.getFamilia().getNombre() == null ? co.getFamilia().getNombre() : "");
+        fam.append("_id",c.getFamilia().get_id() == null ? co.getFamilia().get_id() : c.getFamilia().get_id());
+        fam.append("familyId",c.getFamilia().getFamilyId() == 0 ? co.getFamilia().getFamilyId()  : c.getFamilia().getFamilyId() );
+        fam.append("nombre",c.getFamilia().getNombre().contains("") ? co.getFamilia().getNombre() : c.getFamilia().getNombre());
 
 
 
