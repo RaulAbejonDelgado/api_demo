@@ -1,18 +1,15 @@
 package com.example.demo.dao;
 
-import com.example.demo.pojo.Hypermedia;
 import com.example.demo.pojo.Persona;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-
-
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import static com.example.demo.dao.MongoConector.*;
+import static com.example.demo.dao.MongoConector.getConnectionDbAndCollection;
 
 public class PersonaDao {
 
@@ -76,7 +73,7 @@ public class PersonaDao {
 
     // Transformo un objecto que me da MongoDB a un Objecto Java
 //    private Persona deMongoaJava(BasicDBObject toDBObjectLibro) {
-//        Hypermedia[] links;
+//
 //        Persona p = new Persona();
 //        p.setId(toDBObjectLibro.getLong("id"));
 //        p.setNombre(((toDBObjectLibro.getString("nombre") == null) ? String.valueOf(' ') : toDBObjectLibro.getString("nombre")));
