@@ -105,7 +105,7 @@ public class PersonDao {
 
         dBObjectPerson.append("nombre", p.getNombre());
 
-        //dBObjectPerson.append("familyId", p.getFamilyId());
+        dBObjectPerson.append("familyId", p.getFamilyId());
 
         return dBObjectPerson;
     }
