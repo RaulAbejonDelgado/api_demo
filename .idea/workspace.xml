@@ -4,18 +4,6 @@
     <list default="true" id="c796620b-7bb6-4a09-ab14-0ba4d88c6fa3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/dao/ComentarioDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/dao/ComentarioDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/pojo/Coment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/pojo/Coment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ComentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ComentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/DemoApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/DemoApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/HelloControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/HelloControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/PersonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/dao/MongoConector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/dao/MongoConector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/dao/PersonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/dao/PersonDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/dao/PersonaDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/dao/PersonaDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/Persona.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/ResponseMensaje.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/pojo/ResponseMensaje.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/PersonService.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/dao/ComentarioDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="231" column="78" selection-start-line="231" selection-start-column="78" selection-end-line="231" selection-end-column="78" />
+            <state relative-caret-position="350">
+              <caret line="231" column="76" selection-start-line="231" selection-start-column="76" selection-end-line="231" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#992#1000#0" expanded="true" />
@@ -52,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/service/ComentService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1426">
+            <state relative-caret-position="202">
               <caret line="120" selection-start-line="120" selection-end-line="120" />
             </state>
           </provider>
@@ -249,7 +237,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545833699802" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545834530347" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -447,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545399495221</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Publicaciones edicion parcial">
+      <created>1545833743039</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1545833743039</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -542,7 +537,8 @@
     <MESSAGE value="hypermedia en familia y persona" />
     <MESSAGE value="Comentarios listar hypermedia" />
     <MESSAGE value="hypermedia comentarios desde detalle persona" />
-    <option name="LAST_COMMIT_MESSAGE" value="hypermedia comentarios desde detalle persona" />
+    <MESSAGE value="Publicaciones edicion parcial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Publicaciones edicion parcial" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -707,6 +703,16 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
+        <expression-string>c.getFamilia().getFamilyId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>c.getPersona().getFamilyId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>c.getPersona().getNombre().contains(&quot;&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -733,16 +739,6 @@
       </expression>
       <expression>
         <expression-string>familyDao.obtenerPorId(c.getFamilia().getFamilyId())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>c.getPersona().getselfId()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>coll</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1037,7 +1033,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/service/ComentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1426">
+        <state relative-caret-position="202">
           <caret line="120" selection-start-line="120" selection-end-line="120" />
         </state>
       </provider>
@@ -1054,8 +1050,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/dao/ComentarioDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="231" column="78" selection-start-line="231" selection-start-column="78" selection-end-line="231" selection-end-column="78" />
+        <state relative-caret-position="350">
+          <caret line="231" column="76" selection-start-line="231" selection-start-column="76" selection-end-line="231" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#992#1000#0" expanded="true" />
