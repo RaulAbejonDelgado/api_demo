@@ -1,17 +1,11 @@
 package com.example.demo.pojo;
 
 import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 
 
 @Entity(value = "videojuegos", noClassnameStored = true)
-public class Videojuego extends BaseEntity{
+public class Videojuego extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     private String titulo;
@@ -30,6 +24,7 @@ public class Videojuego extends BaseEntity{
         this.precio = precio;
         this.videoJuegoId = videoJuegoId;
     }
+
 
     public String getTitulo() {
         return titulo;
@@ -61,7 +56,8 @@ public class Videojuego extends BaseEntity{
                 "titulo='" + titulo + '\'' +
                 ", precio=" + precio +
                 ", videoJuegoId=" + videoJuegoId +
-                ", id=" + _id +
+                ", _id=" + _id +
                 '}';
     }
+
 }

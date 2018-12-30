@@ -18,120 +18,120 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 public class ComentService {
 
-    private static ComentService INSTANCE = null;
-
-    private static ComentarioDao comentarioDao = null;
-    private static PersonDao personaDao = null;
-    private static FamilyDao familyDao = null;
-
-
-    public ComentService() {
-
-        super();
-        comentarioDao = ComentarioDao.getInstance();
-        personaDao = PersonDao.getInstance();
-        familyDao = FamilyDao.getInstance();
-    }
-
-    public static synchronized ComentService getInstance() {
-
-        if (INSTANCE == null) {
-            INSTANCE = new ComentService();
-        }
-
-        return INSTANCE;
-    }
-
-
-    public ArrayList<Coment> listar() throws UnknownHostException {
-
-        ArrayList<Coment> comentarios = new ArrayList<Coment>();
-
-        comentarios = comentarioDao.listarTodos();
-
-        if (comentarios.size() > 0) {
-            System.out.println("*************Pasamos por PersonController-get*************");
-
-            for (Coment c : comentarios) {
-
-                //completamos el objeto
-
-                c.setPersona(personaDao.obtenerPorId(c.getPersona().getselfId())); // persona comentario
-                c.setFamilia(familyDao.obtenerPorId(c.getFamilia().getFamilyId()));// familia comentario
-
-
-                //hateoas
-                Link selfLink = linkTo(PublicacionController.class).withSelfRel();
-                c.add(selfLink);
-
-                Link detailLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Detalle comentario");
-                c.add(detailLink);
-
-                Link authorLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Detalle Author");
-                c.add(authorLink);
-
-
-
-
-            }
-        }
-
-        return comentarios;
-    }
-
-    public Coment obtenerPorId(int id) throws UnknownHostException {
-
-        Coment c = comentarioDao.obtenerPorId(id);
-
-        Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
-        c.add(selfLink);
-
-        return c ;
-    }
-
-    public boolean eliminar(int id) throws  UnknownHostException {
-
-        boolean resul = false;
-
-        if(comentarioDao.eliminar(id)){
-            resul = true;
-        }
-
-        return resul;
-    }
-
-    public boolean crear(Coment c) throws  UnknownHostException {
-        boolean resul  = false;
-        if(comentarioDao.crear(c)){
-            resul = true;
-            Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
-            c.add(selfLink);
-            Link familyLink = linkTo(FamilyController.class).slash(c.getFamilia().getFamilyId()).withRel("Familia");
-            c.add(familyLink);
-            Link userLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Autor");
-            c.add(userLink);
-        }
-
-        return resul;
-    }
-
-    public boolean modficar(int id, Coment c) throws  UnknownHostException{
-        boolean resul = false;
-
-        if(comentarioDao.modificar(id, c)){
-            resul = true;
-            Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
-            c.add(selfLink);
-        }
-
-        return resul;
-    }
-
-    public ArrayList<Coment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
-        ArrayList<Coment> comentarios = new ArrayList<Coment>();
-
-        comentarios = comentarioDao.comentariosPorPersona(id);
-
-        return comentarios;
-    }
+//    private static ComentService INSTANCE = null;
+//
+//    private static ComentarioDao comentarioDao = null;
+//    private static PersonDao personaDao = null;
+//    private static FamilyDao familyDao = null;
+//
+//
+//    public ComentService() {
+//
+//        super();
+//        comentarioDao = ComentarioDao.getInstance();
+//        personaDao = PersonDao.getInstance();
+//        familyDao = FamilyDao.getInstance();
+//    }
+//
+//    public static synchronized ComentService getInstance() {
+//
+//        if (INSTANCE == null) {
+//            INSTANCE = new ComentService();
+//        }
+//
+//        return INSTANCE;
+//    }
+//
+//
+//    public ArrayList<Coment> listar() throws UnknownHostException {
+//
+//        ArrayList<Coment> comentarios = new ArrayList<Coment>();
+//
+//        comentarios = comentarioDao.listarTodos();
+//
+//        if (comentarios.size() > 0) {
+//            System.out.println("*************Pasamos por PersonController-get*************");
+//
+//            for (Coment c : comentarios) {
+//
+//                //completamos el objeto
+//
+//                c.setPersona(personaDao.obtenerPorId(c.getPersona().getselfId())); // persona comentario
+//                c.setFamilia(familyDao.obtenerPorId(c.getFamilia().getFamilyId()));// familia comentario
+//
+//
+//                //hateoas
+//                Link selfLink = linkTo(PublicacionController.class).withSelfRel();
+//                c.add(selfLink);
+//
+//                Link detailLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Detalle comentario");
+//                c.add(detailLink);
+//
+//                Link authorLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Detalle Author");
+//                c.add(authorLink);
+//
+//
+//
+//
+//            }
+//        }
+//
+//        return comentarios;
+//    }
+//
+//    public Coment obtenerPorId(int id) throws UnknownHostException {
+//
+//        Coment c = comentarioDao.obtenerPorId(id);
+//
+//        Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
+//        c.add(selfLink);
+//
+//        return c ;
+//    }
+//
+//    public boolean eliminar(int id) throws  UnknownHostException {
+//
+//        boolean resul = false;
+//
+//        if(comentarioDao.eliminar(id)){
+//            resul = true;
+//        }
+//
+//        return resul;
+//    }
+//
+//    public boolean crear(Coment c) throws  UnknownHostException {
+//        boolean resul  = false;
+//        if(comentarioDao.crear(c)){
+//            resul = true;
+//            Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
+//            c.add(selfLink);
+//            Link familyLink = linkTo(FamilyController.class).slash(c.getFamilia().getFamilyId()).withRel("Familia");
+//            c.add(familyLink);
+//            Link userLink = linkTo(PersonController.class).slash(c.getPersona().getselfId()).withRel("Autor");
+//            c.add(userLink);
+//        }
+//
+//        return resul;
+//    }
+//
+//    public boolean modficar(int id, Coment c) throws  UnknownHostException{
+//        boolean resul = false;
+//
+//        if(comentarioDao.modificar(id, c)){
+//            resul = true;
+//            Link selfLink = linkTo(PublicacionController.class).slash(c.getComentarioId()).withSelfRel();
+//            c.add(selfLink);
+//        }
+//
+//        return resul;
+//    }
+//
+//    public ArrayList<Coment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
+//        ArrayList<Coment> comentarios = new ArrayList<Coment>();
+//
+//        comentarios = comentarioDao.comentariosPorPersona(id);
+//
+//        return comentarios;
+//    }
 }

@@ -1,15 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.pojo.Coment;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.pojo.Videojuego;
-import com.example.demo.service.ComentService;
 import com.example.demo.service.VideoJuegoService;
-import com.mongodb.WriteResult;
-import com.mongodb.client.result.UpdateResult;
-import org.mongodb.morphia.query.Query;
-import org.mongodb.morphia.query.UpdateOperations;
-import org.mongodb.morphia.query.UpdateResults;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
+
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/publicaciones/videojuegos")
@@ -25,6 +23,7 @@ public class VideoJuegoController {
 
     private static ArrayList<Videojuego> videoJuegos = null;
     private static VideoJuegoService videoJuegoService = null;
+    //final String END_POINT = "http://localhost:8080/publicaciones/videojuegos/";
 
     public VideoJuegoController() throws UnknownHostException {
         super();
@@ -32,66 +31,98 @@ public class VideoJuegoController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> listAll() {
+    ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(videoJuegos, HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
+        Resource<Videojuego> resource = null;
+        ArrayList<Resource<Videojuego>> arrayResource = new ArrayList<Resource<Videojuego>>();
         try {
 
             videoJuegos = (ArrayList<Videojuego>) videoJuegoService.readAll();
+            if(videoJuegos != null ){
+                for (Videojuego v : videoJuegos) {
+                    Link selfLink = linkTo(VideoJuegoController.class).slash(v.getVideoJuegoId()).withSelfRel();
 
-            response = new ResponseEntity<>(videoJuegos, HttpStatus.OK);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return response;
-
-    }
-
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> detail(@PathVariable int id) {
-        Videojuego v = new Videojuego();
-
-        ResponseEntity<Object> response = new ResponseEntity<>(videoJuegos, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        try {
-
-            v = videoJuegoService.read(id);
-            if (v != null) {
-
-                response = new ResponseEntity<>(v, HttpStatus.OK);
-            } else {
+                    resource = new Resource<Videojuego>(v, selfLink);
+                    arrayResource.add(resource);
+                }
+                response = new ResponseEntity<>(arrayResource,HttpStatus.OK);
+            }else{
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println(id);
 
         return response;
 
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    ResponseEntity<Object> detail(@PathVariable int id){
+
+        Videojuego v = videoJuegoService.read(id);
+        Resource<Videojuego> resource = null;
+        ArrayList<Resource<Videojuego>> arrayResource = new ArrayList<Resource<Videojuego>>();
+        ResponseEntity response = new ResponseEntity<>(v,HttpStatus.BAD_REQUEST);
+
+        try {
+
+            if(v != null){
+                resource = new Resource<Videojuego>(v);
+
+                //creacion de enlaces hateoas
+                Link selfLink = linkTo(VideoJuegoController.class).slash(v.getVideoJuegoId()).withSelfRel();
+                Link testLink = linkTo(VideoJuegoController.class).withRel("Todos los video juegos");
+
+                //añadimos los enlaces al recurso
+                resource.add(selfLink);
+                resource.add(testLink);
+
+                //añadimos el rescurso a un arrayList ya que si no, no se forma correctamente, la estructura json
+                arrayResource.add(resource);
+
+                response = new ResponseEntity<>(arrayResource,HttpStatus.OK);
+
+
+            }else{
+
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable int id) {
-
+        boolean resul = false;
         ResponseEntity<Object> response = new ResponseEntity<>(videoJuegos, HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         try {
-            Videojuego v = new Videojuego();
-            v = videoJuegoService.read(id);
-            WriteResult wr = videoJuegoService.delete(v);
-            if (wr.getN() == 1) {
-                response = new ResponseEntity<>(HttpStatus.OK);
-            } else {
+
+            Videojuego v = videoJuegoService.read(id);
+
+            if (v != null){
+                resul = videoJuegoService.delete(v);
+
+                if (resul = true){
+                    response = new ResponseEntity<>(HttpStatus.OK);
+
+                } else {
+                    response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                }
+            }else{
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+
             }
 
 
@@ -126,47 +157,20 @@ public class VideoJuegoController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> modificar(@RequestBody Videojuego v, @PathVariable int id) {
 
+        boolean resul = false;
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
 
         try {
-            Videojuego vn = new Videojuego();
-            vn = videoJuegoService.read(id);
-            UpdateOperations up = videoJuegoService.createOperations();
-            //titulo
-            if (v.getTitulo() == null) {
-                up.set("titulo", vn.getTitulo());
-            } else {
-                up.set("titulo", v.getTitulo());
-            }
 
-            //precio
-            if (v.getPrecio() == 0) {
-                up.set("precio", vn.getPrecio());
-            } else {
-                up.set("precio", v.getPrecio());
-            }
+            resul = videoJuegoService.update(v, id);
+            if(resul){
 
-            //videoJuegoId
-            if (v.getVideoJuegoId() == 0) {
-                up.set("videoJuegoId", vn.getVideoJuegoId());
-            } else {
-                up.set("videoJuegoId", v.getVideoJuegoId());
-            }
-
-            if (v.getId() == null) {
-                up.set("_id", vn.getId());
-            } else {
-                up.set("_id", v.getId());
-            }
-            UpdateResults ur = videoJuegoService.update(vn, up);
-            if(ur.getUpdatedCount() == 1){
                 response = new ResponseEntity<>(v, HttpStatus.OK);
+
             }else{
                 response = new ResponseEntity<>("Error", HttpStatus.CONFLICT);
             }
-
-
 
 
         } catch (Exception e) {

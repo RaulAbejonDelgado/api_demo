@@ -1,16 +1,17 @@
 package com.example.demo.controller;
 
 import com.example.demo.pojo.Person;
-import com.example.demo.pojo.ResponseMensaje;
+import com.example.demo.pojo.Videojuego;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Controller
@@ -18,28 +19,33 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RequestMapping("/publicaciones/person")
 public class PersonController {
 
-    private static ArrayList<Person> persons;
+    private static ArrayList<Person> persons = null;
     private static PersonService servicioPerson = null;
 
-    public PersonController() {
+    public PersonController()   {
         super();
-        servicioPerson = PersonService.getInstance();
+        try {
+
+            servicioPerson = PersonService.getInstance();
+
+        }catch (UnknownHostException e){
+
+            e.printStackTrace();
+        }
+
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+        ArrayList<Resource<Person>> personResources = new ArrayList<Resource<Person>>();
         try {
-            persons = servicioPerson.listar();
-            Person person = new Person();
-            if (persons.size() > 0) {
-                System.out.println("*************Pasamos por PersonController-get*************");
-                //self
-            }
+            personResources = servicioPerson.listar();
 
-            response = new ResponseEntity<>(persons, HttpStatus.OK);
+                System.out.println("*************Pasamos por PersonController-get*************");
+                response = new ResponseEntity<>(personResources, HttpStatus.OK);
 
 
         } catch (Exception e) {
@@ -54,16 +60,15 @@ public class PersonController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> detail(@PathVariable int id) {
         Person p = new Person();
-
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+
         try {
 
-            p = servicioPerson.obtenerPorId(id);
-            if (p != null) {
+            resoucesPerson = servicioPerson.obtenerPorId(id);
+            if (resoucesPerson.size() > 0) {
 
-
-                response = new ResponseEntity<>(p, HttpStatus.OK);
+                response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
@@ -85,7 +90,7 @@ public class PersonController {
     public ResponseEntity<Object> delete(@PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+
         try {
 
             if (servicioPerson.eliminar(id)) {
@@ -93,7 +98,6 @@ public class PersonController {
                 response = new ResponseEntity<>(HttpStatus.OK);
 
             } else {
-                rm.setMensaje("Error Eliminando persona");
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
@@ -108,16 +112,16 @@ public class PersonController {
 
     @RequestMapping( method = RequestMethod.POST)
     public ResponseEntity<Object> crear(@RequestBody Person persona) {
+
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
 
         try {
+            resoucesPerson = servicioPerson.crear(persona);
 
-            if (servicioPerson.crear(persona)) {
-                Link selfLink = linkTo(PersonController.class).slash(persona.getselfId()).withSelfRel();
-                persona.add(selfLink);
+            if (resoucesPerson.size() == 1) {
 
-                response = new ResponseEntity<>(persona, HttpStatus.CREATED);
+                response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
             } else {
 
                 response = new ResponseEntity<>( HttpStatus.CONFLICT);
@@ -133,13 +137,16 @@ public class PersonController {
     public ResponseEntity<Object> modificar(@RequestBody Person persona, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
         try {
+            resoucesPerson = servicioPerson.modficar(id, persona);
+            if(resoucesPerson.size() == 1){
 
-            if(servicioPerson.modficar(id, persona)){
+                response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
 
-                response = new ResponseEntity<>(persona, HttpStatus.OK);
+            }else{
+
+                response = new ResponseEntity<>( HttpStatus.CONFLICT);
             }
 
         }catch (Exception e) {

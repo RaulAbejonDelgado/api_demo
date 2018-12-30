@@ -1,17 +1,15 @@
 package com.example.demo.dao;
 
+import com.example.demo.DataSourceConfiguration;
 import com.example.demo.pojo.Person;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
-import org.mongojack.DBCursor;
-import org.mongojack.JacksonDBCollection;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
-import static com.example.demo.dao.MongoConector.getConnectionDbAndCollection;
+import java.util.List;
 
 public class PersonDao {
 
@@ -20,17 +18,22 @@ public class PersonDao {
     private static PersonDao personaDao = null;
 
 
+    @Autowired
+    private Datastore datastore;
+
+
     private static final String DB = "publicaciones";
     private static final String COLLECTION = "persons";
 
 
-    public PersonDao() {
+    public PersonDao() throws UnknownHostException {
         super();
+        datastore = DataSourceConfiguration.getConnection();
 
 
     }
 
-    public static synchronized PersonDao getInstance() {
+    public static synchronized PersonDao getInstance() throws UnknownHostException {
         if (INSTANCE == null) {
             INSTANCE = new PersonDao();
         }
@@ -38,22 +41,9 @@ public class PersonDao {
     }
 
 
-    public ArrayList<Person> listar() throws UnknownHostException {
+    public List listar() throws UnknownHostException {
 
-        personas = new ArrayList<Person>();
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-
-        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
-        // Busco todos los documentos de la colección y los imprimo
-        try (DBCursor<Person> cursor = coll.find()) {
-            while (cursor.hasNext()) {
-                personas.add(cursor.next());
-
-            }
-        }
-        System.out.println(personas);
-
-        return personas;
+        return datastore.createQuery(Person.class).asList();
 
 
     }
@@ -61,119 +51,41 @@ public class PersonDao {
     public Person obtenerPorId(int id) throws UnknownHostException {
         Person p = new Person();
 
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
+        return datastore.find(Person.class).field("selfId").equal(id).get();
 
-        BasicDBObject query = new BasicDBObject();
-        query.put("personId", id);
-
-        try (DBCursor<Person> cursor = coll.find(query)) {
-            while (cursor.hasNext()) {
-
-                p = cursor.next();
-
-            }
-        }
-        p.toString();
-
-        return p;
     }
 
-    public boolean eliminar(int id) throws UnknownHostException {
+    public WriteResult delete(Person p) {
 
-        boolean resul = false;
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
-        long numDocumentos = collection.getCount();
-
-        DBObject findDoc = new BasicDBObject("personId", id);
-        collection.remove(findDoc);
-
-        if (collection.getCount() < numDocumentos) {
-            resul = true;
-        }
-
-        return resul;
+        return datastore.delete(p);
 
     }
 
 
-    private BasicDBObject toDBObjectPerson(Person p) {
-
-        // Creamos una instancia BasicDBObject
-        BasicDBObject dBObjectPerson = new BasicDBObject();
 
 
 
-        dBObjectPerson.append("personId", p.getselfId());
+    public Key<Person> crear(Person p) throws UnknownHostException {
 
-        dBObjectPerson.append("nombre", p.getNombre());
+        p.setSelfId(listar().size() + 1);
 
-        dBObjectPerson.append("familyId", p.getFamilyId() );
-
-        return dBObjectPerson;
-    }
+        return datastore.save(p);
 
 
-    public boolean crear(Person p) throws UnknownHostException {
-
-        boolean resul = false;
-        Person pe = new Person();
-
-        BasicDBObject dBObjectPerson;
-
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-
-        long numDocumentos = collection.getCount();
-        p.setPersonId((int) (numDocumentos + 1));
-
-        dBObjectPerson = toDBObjectPerson(p);
-
-        WriteResult wr = collection.insert(dBObjectPerson);
-
-        pe = obtenerPorId(p.getselfId());
-        p.set_id(pe.get_id());
-
-
-        if(numDocumentos < collection.getCount()){
-
-            resul = true;
-
-        }
-
-        return resul;
 
     }
 
 
-    public boolean modificar(int id, Person p) throws  UnknownHostException{
-        boolean resul = false;
-        Person pe = new Person();
-
-        DBCollection collection = getConnectionDbAndCollection(DB, COLLECTION);
-        JacksonDBCollection<Person, String> coll = JacksonDBCollection.wrap(collection, Person.class, String.class);
-
-        BasicDBObject query = new BasicDBObject();
-        query.put("personId", id);
-        p.setPersonId(id);
-        Person po = obtenerPorId(id);
-
-        BasicDBObject dBObjectPerson = new BasicDBObject();
-
-        dBObjectPerson.append("personId", p.getselfId() == 0 ? po.getselfId() : p.getselfId());
-
-        dBObjectPerson.append("nombre", p.getNombre() != null || !p.getNombre().contains("") ? p.getNombre() : po.getNombre());
-
-        dBObjectPerson.append("familyId", p.getFamilyId() == 0 ? po.getFamilyId() : p.getFamilyId() );
-
-        WriteResult wr = collection.update(query,dBObjectPerson);
-        if(wr.isUpdateOfExisting()){
-            resul = true;
-            pe = obtenerPorId(p.getselfId());
-            p.set_id(pe.get_id());
+    public Key<Person> modificar(int id, Person p) throws  UnknownHostException{
+        Key<Person> personUpdate = null ;
+        Person pe = obtenerPorId(id);
+        if (pe != null){
+            p.setId(pe.getId());
+            personUpdate =  datastore.merge(p);
         }
 
-        return resul;
+        return personUpdate;
+
 
     }
 

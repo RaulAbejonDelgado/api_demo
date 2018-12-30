@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @RequestMapping("/publicaciones/coments")
 public class PublicacionController {
 
-    private static ArrayList<Coment> comentarios;
+  /*  private static ArrayList<Coment> comentarios;
     private static ComentService servicioComent = null;
 
     public PublicacionController() {
@@ -145,7 +145,7 @@ public class PublicacionController {
         return response;
 
     }
-
+*/
 
 }
 

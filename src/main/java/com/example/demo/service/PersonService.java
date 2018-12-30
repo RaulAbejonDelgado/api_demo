@@ -7,7 +7,11 @@ import com.example.demo.dao.ComentarioDao;
 import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Coment;
 import com.example.demo.pojo.Person;
+import com.example.demo.pojo.Videojuego;
+import com.mongodb.WriteResult;
+import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -22,14 +26,14 @@ public class PersonService {
     private static PersonDao personDao = null;
 
 
-    public PersonService() {
+    public PersonService() throws UnknownHostException {
         super();
         personDao = PersonDao.getInstance();
-        comentService = ComentService.getInstance();
+        //comentService = ComentService.getInstance();
 
     }
 
-    public static synchronized PersonService getInstance() {
+    public static synchronized PersonService getInstance() throws UnknownHostException {
         if (INSTANCE == null) {
             INSTANCE = new PersonService();
         }
@@ -37,86 +41,105 @@ public class PersonService {
     }
 
 
-    public ArrayList<Person> listar() throws UnknownHostException {
+    public ArrayList<Resource<Person>> listar() throws UnknownHostException {
+
         ArrayList<Person> persons = new ArrayList<Person>();
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
+        Resource<Person> resource = null;
+
         ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
 
-        persons = personDao.listar();
 
+        persons = (ArrayList<Person>) personDao.listar();
+        for (Person p : persons){
+            Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+            resource = new Resource<Person>(p);
 
+            resource.add(selfLink);
+            resoucesPerson.add(resource);
+        }
 
-        for (Person p : persons) {
-            Link selfLink = linkTo(PersonController.class).withSelfRel();
-            p.add(selfLink);
-            Link detailLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("Detalle persona");
-            p.add(detailLink);
-            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle familia");
-            p.add(familyLink);
-            comentariosUsuario = comentService.obtenerComentPorUsuario(p.getselfId());
-
-            for(Coment c : comentariosUsuario){
-                Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
-                p.add(listComents);
-            }
-
-
+        return resoucesPerson;
 
 
         }
 
-        return persons;
-    }
-
-    public Person obtenerPorId(int id) throws UnknownHostException {
+    public ArrayList<Resource<Person>> obtenerPorId(int id) throws UnknownHostException {
 
         Person p = personDao.obtenerPorId(id);
         ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
-        comentariosUsuario = comentService.obtenerComentPorUsuario(id);
-        //traer todos los comentarios de un usuario
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
+        Resource<Person> resource = null;
 
-        Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
-        p.add(selfLink);
-        Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
-        p.add(familyLink);
-        Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
-        p.add(listAllLink);
-
-        for(Coment c : comentariosUsuario){
-            Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
-            p.add(listComents);
+        if(p != null){
+            resource = new Resource<Person>(p);
+            Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+            resource.add(selfLink);
+            resoucesPerson.add(resource);
         }
 
+//        Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
+//        p.add(familyLink);
+//        Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
+//        p.add(listAllLink);
+//
+//        for(Coment c : comentariosUsuario){
+//            Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
+//            p.add(listComents);
+//        }
 
-        return p;
+
+        return resoucesPerson;
     }
 
     public boolean eliminar(int id) throws  UnknownHostException {
         boolean resul = false;
-        if(personDao.eliminar(id)){
+
+        WriteResult wr = personDao.delete(personDao.obtenerPorId(id));
+
+        if(wr.getN() == 1){
             resul = true;
         }
 
         return resul;
     }
 
-    public boolean crear(Person p) throws  UnknownHostException {
+    public ArrayList<Resource<Person>> crear(Person p) throws  UnknownHostException {
+
         boolean resul  = false;
-        if(personDao.crear(p)){
+
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
+        Resource<Person> resource = null;
+
+        if(personDao.crear(p).getId() != null && !personDao.crear(p).getId().equals("") ){
+
+            System.out.println(p);
             resul = true;
+            resource = new Resource<Person>(p);
+            Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+            resource.add(selfLink);
+            resoucesPerson.add(resource);
+
         }
 
-        return resul;
+        return resoucesPerson;
     }
 
-    public boolean modficar(int id, Person p) throws  UnknownHostException{
+    public ArrayList<Resource<Person>> modficar(int id, Person p) throws  UnknownHostException{
         boolean resul = false;
+        ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
+        Resource<Person> resource = null;
 
-        if(personDao.modificar(id, p)){
+        Key<Person> personUpdate = personDao.modificar(id, p);
+        System.out.println( personUpdate);
+        if(personUpdate != null){
             resul = true;
+            resource = new Resource<Person>(p);
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
-            p.add(selfLink);
+            resource.add(selfLink);
+            resoucesPerson.add(resource);
         }
 
-        return resul;
+        return resoucesPerson;
     }
 }

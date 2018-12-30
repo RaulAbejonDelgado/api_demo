@@ -12,6 +12,8 @@ import java.net.UnknownHostException;
 @Configuration
 public class DataSourceConfiguration {
 
+    static final String DB_LOCATION = "mongodb://localhost:27017";
+    static final String DB_NAME = "publicaciones";
     private Morphia morphia() {
         final Morphia morphia = new Morphia();
 
@@ -26,7 +28,7 @@ public class DataSourceConfiguration {
     public static Datastore getConnection() throws UnknownHostException {
         final Morphia morphia = new Morphia();
         morphia.mapPackage("pojo");
-        final Datastore datastore = morphia.createDatastore(new MongoClient(new MongoClientURI("mongodb://localhost:27017")), "publicaciones");
+        final Datastore datastore = morphia.createDatastore(new MongoClient(new MongoClientURI(DB_LOCATION)), DB_NAME);
         datastore.ensureIndexes();
         return datastore;
     }

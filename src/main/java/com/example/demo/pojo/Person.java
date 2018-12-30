@@ -1,18 +1,21 @@
 package com.example.demo.pojo;
 
-import org.springframework.hateoas.ResourceSupport;
+import org.mongodb.morphia.annotations.Entity;
 
-public class Person extends ResourceSupport {
+@Entity(value = "persons", noClassnameStored = true)
+public class Person extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
-    private String _id;
+
     private int selfId;
     private int familyId;
     private String nombre;
 
     public Person() {
-        this._id="";
+
         this.selfId = 0 ;
         this.familyId = 0;
+        this.nombre = "";
 
     }
 
@@ -31,19 +34,11 @@ public class Person extends ResourceSupport {
         this.familyId = familyId;
     }
 
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
     public int getselfId() {
         return selfId;
     }
 
-    public void setPersonId(int personId) {
+    public void setSelfId(int personId) {
         this.selfId = personId;
     }
 
@@ -58,9 +53,10 @@ public class Person extends ResourceSupport {
     @Override
     public String toString() {
         return "Person{" +
-                "_id='" + _id + '\'' +
-                ", selfId=" + selfId +
+                "selfId=" + selfId +
+                ", familyId=" + familyId +
                 ", nombre='" + nombre + '\'' +
+                ", _id=" + _id +
                 '}';
     }
 }
