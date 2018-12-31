@@ -1,13 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
-import com.example.demo.controller.PublicacionController;
-import com.example.demo.dao.ComentarioDao;
 import com.example.demo.dao.PersonDao;
-import com.example.demo.pojo.Coment;
+import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.Person;
-import com.example.demo.pojo.Videojuego;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
@@ -21,7 +17,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class PersonService {
 
     private static PersonService INSTANCE = null;
-    private static ComentService comentService = null;
+    private static CommentService comentService = null;
 
     private static PersonDao personDao = null;
 
@@ -47,7 +43,7 @@ public class PersonService {
         ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
         Resource<Person> resource = null;
 
-        ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
+        ArrayList<Comment> comentariosUsuario = new ArrayList<Comment>();
 
 
         persons = (ArrayList<Person>) personDao.listar();
@@ -67,7 +63,7 @@ public class PersonService {
     public ArrayList<Resource<Person>> obtenerPorId(int id) throws UnknownHostException {
 
         Person p = personDao.obtenerPorId(id);
-        ArrayList<Coment> comentariosUsuario = new ArrayList<Coment>();
+        ArrayList<Comment> comentariosUsuario = new ArrayList<Comment>();
         ArrayList<Resource<Person>> resoucesPerson =new ArrayList<Resource<Person>>();
         Resource<Person> resource = null;
 

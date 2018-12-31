@@ -70,10 +70,7 @@ public class PersonDao {
 
         return datastore.save(p);
 
-
-
     }
-
 
     public Key<Person> modificar(int id, Person p) throws  UnknownHostException{
         Key<Person> personUpdate = null ;
@@ -84,7 +81,6 @@ public class PersonDao {
         }
 
         return personUpdate;
-
 
     }
 

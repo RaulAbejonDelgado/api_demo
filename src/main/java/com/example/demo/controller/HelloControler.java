@@ -40,7 +40,7 @@ public class HelloControler {
                 //creamos los enlaces hateoas
                 Link publicacionesLink = linkTo(PersonController.class).withSelfRel();
                 Link familiasLink = linkTo(FamilyController.class).withSelfRel();
-                Link comentariosLink = linkTo(PublicacionController.class).withSelfRel();
+                Link comentariosLink = linkTo(CommentsController.class).withSelfRel();
 
                 //Creanis 3 objetos index
                 Index publi = new Index("Personas");
