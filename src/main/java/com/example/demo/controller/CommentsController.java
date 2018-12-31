@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.pojo.Comment;
+import com.example.demo.pojo.Family;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.CommentService;
 import org.springframework.hateoas.Resource;
@@ -9,8 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -18,11 +24,15 @@ import java.util.ArrayList;
 public class CommentsController {
 
     private static CommentService servicioComent = null;
+    private static Validator validator ;
 
     public CommentsController() throws UnknownHostException {
 
         super();
+
         servicioComent = CommentService.getInstance();
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
 
     }
 
@@ -116,19 +126,40 @@ public class CommentsController {
     public ResponseEntity<Object> crear(@RequestBody Comment comentario) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseMensaje rm = new ResponseMensaje();
 
         ArrayList<Resource<Comment>> resoucesPerson;
 
         try {
 
-            resoucesPerson = servicioComent.crear(comentario);
-            if (resoucesPerson.size() > 0) {
+            Set<ConstraintViolation<Comment>> violations = validator.validate(comentario);
+            String[] errores = new String[violations.size()];
 
-                response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
+            if (violations.size() > 0) {
 
-            } else {
+                int contador = 0;
 
-                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                for (ConstraintViolation<Comment> violation : violations) {
+
+                    errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
+                    contador++;
+                }
+
+                rm.setErrores(errores);
+                rm.setMensaje("error de validación");
+                response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+
+            }else{
+
+                resoucesPerson = servicioComent.crear(comentario);
+                if (resoucesPerson.size() > 0) {
+
+                    response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
+
+                } else {
+
+                    response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                }
             }
 
         } catch (Exception e) {
@@ -145,19 +176,40 @@ public class CommentsController {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ArrayList<Resource<Comment>> resoucesPerson;
+        ResponseMensaje rm = new ResponseMensaje();
 
         try {
 
-            resoucesPerson = servicioComent.modficar(id, comentario);
+            Set<ConstraintViolation<Comment>> violations = validator.validate(comentario);
+            String[] errores = new String[violations.size()];
 
-            if (resoucesPerson.size() > 0) {
+            if (violations.size() > 0) {
 
-                response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+                int contador = 0;
 
-            } else {
+                for (ConstraintViolation<Comment> violation : violations) {
 
-                response = new ResponseEntity<>(resoucesPerson, HttpStatus.CONFLICT);
+                    errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
+                    contador++;
+                }
 
+                rm.setErrores(errores);
+                rm.setMensaje("error de validación");
+                response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+
+            }else{
+
+                resoucesPerson = servicioComent.modficar(id, comentario);
+
+                if (resoucesPerson.size() > 0) {
+
+                    response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+
+                } else {
+
+                    response = new ResponseEntity<>(resoucesPerson, HttpStatus.CONFLICT);
+
+                }
             }
 
         } catch (Exception e) {

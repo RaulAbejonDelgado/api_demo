@@ -3,11 +3,21 @@ package com.example.demo.pojo;
 
 import org.mongodb.morphia.annotations.Entity;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity(value = "familias", noClassnameStored = true)
 public class Family extends BaseEntity {
 
+
     private int selfId;
+
+    @NotNull(message = "Name cannot be null")
+    @Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")
     private String nombre;
+
+    @NotNull(message = "Name cannot be null")
     private Person[] personas;
 
 

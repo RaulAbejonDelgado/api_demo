@@ -108,7 +108,6 @@ public class PersonController {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }

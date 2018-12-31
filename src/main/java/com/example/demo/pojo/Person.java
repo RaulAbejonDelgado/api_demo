@@ -10,14 +10,14 @@ import javax.validation.constraints.Size;
 public class Person extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @Min(value = 1, message = "Must have valid id")
+    @Min(value = 1, message = "The id must be valid")
     private int selfId;
 
-    @Min(value = 1, message = "Must have valid id")
+    @Min(value = 1, message = "The id must be valid")
     private int familyId;
 
     @NotNull(message = "Name cannot be null")
-    @Size(min = 5, max = 150, message= "About Me must be between 5and 150 characters")
+    @Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")
     private String nombre;
 
     public Person() {
@@ -26,13 +26,6 @@ public class Person extends BaseEntity {
         this.familyId = 0;
         this.nombre = "";
 
-    }
-
-
-    public Person(int personId, int familyId, String nombre) {
-        this.selfId = personId;
-        this.familyId = familyId;
-        this.nombre = nombre;
     }
 
     public int getFamilyId() {
