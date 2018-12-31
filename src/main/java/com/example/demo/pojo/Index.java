@@ -1,14 +1,10 @@
 package com.example.demo.pojo;
 
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.ResourceSupport;
 
-public class Index extends ResourceSupport {
+
+public class Index {
 
     private String descripcion;
-
-    public Index(Link link) {
-    }
 
     public Index(String descripcion) {
         this.descripcion = descripcion;

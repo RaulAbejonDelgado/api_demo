@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.pojo.Person;
 import com.example.demo.pojo.Videojuego;
 import com.example.demo.service.PersonService;
+import io.swagger.annotations.Api;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/publicaciones/person")
+@RestController
+@Api(tags = { "Servicio /curso" }, description = "Listado de cursos", consumes = "application/json")
 public class PersonController {
 
     private static ArrayList<Person> persons = null;

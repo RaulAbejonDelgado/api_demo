@@ -1,19 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.FamilyController;
-import com.example.demo.controller.PersonController;
-import com.example.demo.controller.PublicacionController;
-import com.example.demo.dao.ComentarioDao;
-import com.example.demo.dao.FamilyDao;
-import com.example.demo.dao.PersonDao;
-import com.example.demo.dao.PersonaDao;
-import com.example.demo.pojo.Coment;
-import com.example.demo.pojo.Person;
-import org.springframework.hateoas.Link;
-
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 public class ComentService {

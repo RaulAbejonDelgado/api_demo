@@ -49,7 +49,6 @@ public class PersonDao {
     }
 
     public Person obtenerPorId(int id) throws UnknownHostException {
-        Person p = new Person();
 
         return datastore.find(Person.class).field("selfId").equal(id).get();
 

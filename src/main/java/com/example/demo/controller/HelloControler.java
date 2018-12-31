@@ -20,13 +20,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RequestMapping("/")
 public class HelloControler {
 
-    //private static ArrayList<Index> resources = null;
     private static ArrayList<Resource<Index>> resources = new ArrayList<>();
 
-
-    public HelloControler(){
+    public HelloControler() {
         super();
-        //resources = new ArrayList<Index>();
         resources = new ArrayList<>();
 
     }
@@ -36,10 +33,9 @@ public class HelloControler {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
-
         System.out.println("*************Pasamos por get*************");
         try {
-            if(resources.isEmpty()){
+            if (resources.isEmpty()) {
 
                 //creamos los enlaces hateoas
                 Link publicacionesLink = linkTo(PersonController.class).withSelfRel();
@@ -47,7 +43,7 @@ public class HelloControler {
                 Link comentariosLink = linkTo(PublicacionController.class).withSelfRel();
 
                 //Creanis 3 objetos index
-                Index publi = new Index ("Personas");
+                Index publi = new Index("Personas");
                 Index comment = new Index("Comentarios");
                 Index familias = new Index("Familias");
 
@@ -68,13 +64,12 @@ public class HelloControler {
 
             }
 
-                response = new ResponseEntity<>(resources, HttpStatus.OK);
+            response = new ResponseEntity<>(resources, HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-
 
         return response;
 

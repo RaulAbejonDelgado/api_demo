@@ -1,24 +1,25 @@
 package com.example.demo.pojo;
 
-import org.springframework.hateoas.ResourceSupport;
 
-public class Family extends ResourceSupport {
+import org.mongodb.morphia.annotations.Entity;
 
-    private String _id;
-    private int familyId;
+@Entity(value = "familias", noClassnameStored = true)
+public class Family extends BaseEntity {
+
+    private int selfId;
     private String nombre;
     private Person[] personas;
 
 
     public Family() {
-        this.familyId = 0;
+        this.selfId = 0;
         this.nombre = "";
 
     }
 
-    public Family(String _id, int familyId, String nombre, Person[] personas) {
-        this._id = _id;
-        this.familyId = familyId;
+    public Family(int selfId, String nombre, Person[] personas) {
+
+        this.selfId = selfId;
         this.nombre = nombre;
         this.personas = personas;
     }
@@ -31,20 +32,12 @@ public class Family extends ResourceSupport {
         this.personas = personas;
     }
 
-    public String get_id() {
-        return _id;
+    public int getSelfId() {
+        return selfId;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
-    public int getFamilyId() {
-        return familyId;
-    }
-
-    public void setFamilyId(int familyId) {
-        this.familyId = familyId;
+    public void setSelfId(int selfId) {
+        this.selfId = selfId;
     }
 
     public String getNombre() {
