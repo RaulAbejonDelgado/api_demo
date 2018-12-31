@@ -20,19 +20,22 @@ public class CommentsController {
     private static CommentService servicioComent = null;
 
     public CommentsController() throws UnknownHostException {
+
         super();
         servicioComent = CommentService.getInstance();
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listAll() {
-        ArrayList<Resource<Comment>> resourcesComentariosArray;
 
+        ArrayList<Resource<Comment>> resourcesComentariosArray;
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
         try {
 
             resourcesComentariosArray = servicioComent.listar();
+
             if (resourcesComentariosArray.size() > 0) {
 
                 response = new ResponseEntity<>(resourcesComentariosArray, HttpStatus.OK);
@@ -43,6 +46,7 @@ public class CommentsController {
             }
 
         } catch (Exception e) {
+
             e.printStackTrace();
         }
 
@@ -72,6 +76,7 @@ public class CommentsController {
 
 
         } catch (Exception e) {
+
             e.printStackTrace();
         }
 
@@ -94,7 +99,6 @@ public class CommentsController {
             } else {
 
                 rm.setMensaje("Error Eliminando Comentario");
-
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
@@ -165,8 +169,4 @@ public class CommentsController {
 
     }
 
-
 }
-
-
-
