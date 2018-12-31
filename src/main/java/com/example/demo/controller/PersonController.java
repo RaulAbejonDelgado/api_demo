@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.pojo.Person;
+import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
@@ -8,8 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -20,11 +26,17 @@ public class PersonController {
     private static ArrayList<Person> persons = null;
     private static PersonService servicioPerson = null;
 
+    ValidatorFactory factory = null;
+    Validator validator = null;
+
     public PersonController()   {
         super();
         try {
 
             servicioPerson = PersonService.getInstance();
+            factory = Validation.buildDefaultValidatorFactory();
+            validator = (Validator) factory.getValidator();
+
 
         }catch (UnknownHostException e){
 
@@ -113,16 +125,38 @@ public class PersonController {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ArrayList<Resource<Person>> resoucesPerson;
+        ResponseMensaje rm = new ResponseMensaje();
 
         try {
-            resoucesPerson = servicioPerson.crear(persona);
 
-            if (resoucesPerson.size() == 1) {
+            Set<ConstraintViolation<Person>> violations = validator.validate(persona);
+            String[] errores = new String[violations.size()];
 
-                response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
-            } else {
+            if (violations.size() > 0) {
 
-                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                int contador = 0;
+
+                for (ConstraintViolation<Person> violation : violations) {
+
+                    errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
+                    contador++;
+                }
+
+                rm.setErrores(errores);
+                rm.setMensaje("error de validación");
+                response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+
+            }else{
+
+                resoucesPerson = servicioPerson.crear(persona);
+
+                if (resoucesPerson.size() == 1) {
+
+                    response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
+                } else {
+
+                    response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                }
             }
 
         }catch (Exception e){
@@ -136,16 +170,39 @@ public class PersonController {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ArrayList<Resource<Person>> resoucesPerson;
-        try {
-            resoucesPerson = servicioPerson.modficar(id, persona);
-            if(resoucesPerson.size() == 1){
+        ResponseMensaje rm = new ResponseMensaje();
 
-                response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+        try {
+            Set<ConstraintViolation<Person>> violations = validator.validate(persona);
+            String[] errores = new String[violations.size()];
+
+            if (violations.size() > 0) {
+
+                int contador = 0;
+
+                for (ConstraintViolation<Person> violation : violations) {
+
+                    errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
+                    contador++;
+                }
+
+                rm.setErrores(errores);
+                rm.setMensaje("error de validación");
+                response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
             }else{
+                resoucesPerson = servicioPerson.modficar(id, persona);
+                if(resoucesPerson.size() == 1){
 
-                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                    response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+
+                }else{
+
+                    response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                }
             }
+
+
 
         }catch (Exception e) {
 

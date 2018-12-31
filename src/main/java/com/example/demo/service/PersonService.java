@@ -18,7 +18,6 @@ public class PersonService {
     private static PersonService INSTANCE = null;
     private static PersonDao personDao = null;
 
-
     private PersonService() throws UnknownHostException {
 
         super();

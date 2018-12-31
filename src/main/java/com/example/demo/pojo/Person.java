@@ -1,14 +1,26 @@
 package com.example.demo.pojo;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.mongodb.morphia.annotations.Entity;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(value = "persons", noClassnameStored = true)
 public class Person extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-
+    @Min(value = 1, message = "Must have valid id")
     private int selfId;
+
+    @Min(value = 1, message = "Must have valid id")
     private int familyId;
+
+    @NotBlank
+    @NotNull(message = "Name cannot be null")
+    @Size(min = 5, max = 150, message= "About Me must be between 5and 150 characters")
     private String nombre;
 
     public Person() {
