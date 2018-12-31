@@ -17,7 +17,6 @@ import java.util.ArrayList;
 @RequestMapping("/publicaciones/coments")
 public class CommentsController {
 
-    private static ArrayList<Comment> comentarios;
     private static CommentService servicioComent = null;
 
     public CommentsController() throws UnknownHostException {
@@ -27,19 +26,20 @@ public class CommentsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listAll() {
-        ArrayList<Resource<Comment>> resourcesComentariosArray =new ArrayList<Resource<Comment>>();
+        ArrayList<Resource<Comment>> resourcesComentariosArray;
 
-        ResponseEntity<Object> response = new ResponseEntity<>(comentarios, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
         try {
+
             resourcesComentariosArray = servicioComent.listar();
-            if(resourcesComentariosArray.size() > 0){
+            if (resourcesComentariosArray.size() > 0) {
 
                 response = new ResponseEntity<>(resourcesComentariosArray, HttpStatus.OK);
 
-            }else{
+            } else {
 
-                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
         } catch (Exception e) {
@@ -53,11 +53,9 @@ public class CommentsController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> detail(@PathVariable int id) {
-        Comment c = new Comment();
 
-        ResponseEntity<Object> response = new ResponseEntity<>(comentarios, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        ArrayList<Resource<Comment>> resoucesComent =new ArrayList<Resource<Comment>>();
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ArrayList<Resource<Comment>> resoucesComent;
 
         try {
 
@@ -77,10 +75,6 @@ public class CommentsController {
             e.printStackTrace();
         }
 
-
-        System.out.println(id);
-
-
         return response;
 
     }
@@ -88,7 +82,7 @@ public class CommentsController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable int id) {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(comentarios, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
 
         try {
@@ -114,12 +108,12 @@ public class CommentsController {
         return response;
     }
 
-    @RequestMapping( method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> crear(@RequestBody Comment comentario) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        ArrayList<Resource<Comment>> resoucesPerson =new ArrayList<Resource<Comment>>();
+
+        ArrayList<Resource<Comment>> resoucesPerson;
 
         try {
 
@@ -130,10 +124,10 @@ public class CommentsController {
 
             } else {
 
-                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
 
@@ -146,24 +140,23 @@ public class CommentsController {
     public ResponseEntity<Object> modificar(@RequestBody Comment comentario, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        ArrayList<Resource<Comment>> resoucesPerson =new ArrayList<Resource<Comment>>();
+        ArrayList<Resource<Comment>> resoucesPerson;
 
         try {
 
-            resoucesPerson = servicioComent.modficar(id, comentario );
+            resoucesPerson = servicioComent.modficar(id, comentario);
 
-            if(resoucesPerson.size() > 0){
+            if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
 
-            }else{
+            } else {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.CONFLICT);
 
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
