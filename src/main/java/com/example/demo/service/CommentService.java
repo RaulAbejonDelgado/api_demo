@@ -4,17 +4,14 @@ import com.example.demo.controller.CommentsController;
 import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
 import com.example.demo.dao.CommentsDao;
-import com.example.demo.dao.FamilyDao;
-import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Comment;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Key;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
-import org.springframework.hateoas.Link;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
@@ -24,16 +21,12 @@ public class CommentService {
     private static CommentService INSTANCE = null;
 
     private static CommentsDao comentarioDao = null;
-    private static PersonDao personaDao = null;
-    private static FamilyDao familyDao = null;
-
 
     public CommentService() throws UnknownHostException {
 
         super();
         comentarioDao = CommentsDao.getInstance();
-        personaDao = PersonDao.getInstance();
-        familyDao = FamilyDao.getInstance();
+
     }
 
     public static synchronized CommentService getInstance() throws UnknownHostException {
@@ -48,16 +41,19 @@ public class CommentService {
 
     public ArrayList<Resource<Comment>> listar() throws UnknownHostException {
 
-        ArrayList<Comment> comentarios = new ArrayList<Comment>();
-        ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<Resource<Comment>>();
-        Resource<Comment> resourceComment = null;
+        ArrayList<Comment> comentarios;
+        ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
+        Resource<Comment> resourceComment;
+
         comentarios = (ArrayList<Comment>) comentarioDao.listarTodos();
 
         if (comentarios.size() > 0) {
+
             System.out.println("*************Pasamos por PersonController-get*************");
 
             for (Comment c : comentarios) {
-                resourceComment = new Resource(c);
+
+                resourceComment = new Resource<>(c);
                 //completamos el objeto
 
                 //hateoas
@@ -84,10 +80,10 @@ public class CommentService {
     public ArrayList<Resource<Comment>> obtenerPorId(int id) throws UnknownHostException {
 
         Comment c = comentarioDao.obtenerPorId(id);
-        ArrayList<Resource<Comment>> resoucesPerson =new ArrayList<Resource<Comment>>();
-        Resource<Comment> resource = null;
+        ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
+        Resource<Comment> resource ;
         if(c != null){
-            resource = new Resource<Comment>(c);
+            resource = new Resource<>(c);
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
             resource.add(selfLink);
             resoucesPerson.add(resource);
@@ -110,14 +106,14 @@ public class CommentService {
     }
 
     public ArrayList<Resource<Comment>> crear(Comment c) throws  UnknownHostException {
-        boolean resul  = false;
-        Key<Comment> commentKey = comentarioDao.crear(c);
-        ArrayList<Resource<Comment>> resoucesPerson =new ArrayList<Resource<Comment>>();
-        Resource<Comment> resource = null;
 
-        if(commentKey.getId() != null && !commentKey.equals("")){
-            resource = new Resource(c);
-            resul = true;
+        Key<Comment> commentKey = comentarioDao.crear(c);
+        ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
+        Resource<Comment> resource ;
+
+        if(commentKey.getId() != null ){
+
+            resource = new Resource<>(c);
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
             resource.add(selfLink);
             Link familyLink = linkTo(FamilyController.class).slash(c.getSelfId()).withRel("Familia");
@@ -131,29 +127,25 @@ public class CommentService {
         return resoucesPerson;
     }
 
-    public ArrayList<Resource<Comment>> modficar(int id, Comment c) throws  UnknownHostException{
-        boolean resul = false;
-        ArrayList<Resource<Comment>> resoucesPerson =new ArrayList<Resource<Comment>>();
-        Resource<Comment> resource = null;
+    public ArrayList<Resource<Comment>> modficar(int id, Comment c) throws  Exception{
+
+        ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
+        Resource<Comment> resource;
 
         Key<Comment> commentKey = comentarioDao.modificar(id, c);
 
         if(commentKey.getId() != null && !commentKey.getId().equals("")){
-            resource = new Resource(c);
-            resul = true;
+
+            resource = new Resource<>(c);
+
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
+
             resource.add(selfLink);
+
             resoucesPerson.add(resource);
         }
 
         return resoucesPerson;
+
     }
-//
-//    public ArrayList<Coment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
-//        ArrayList<Coment> comentarios = new ArrayList<Coment>();
-//
-//        comentarios = comentarioDao.comentariosPorPersona(id);
-//
-//        return comentarios;
-//    }
 }
