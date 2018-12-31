@@ -26,23 +26,20 @@ public class PersonController {
     private static ArrayList<Person> persons = null;
     private static PersonService servicioPerson = null;
 
-    ValidatorFactory factory = null;
-    Validator validator = null;
+    private static Validator validator ;
 
     public PersonController()   {
         super();
         try {
 
             servicioPerson = PersonService.getInstance();
-            factory = Validation.buildDefaultValidatorFactory();
-            validator = (Validator) factory.getValidator();
-
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            validator = factory.getValidator();
 
         }catch (UnknownHostException e){
 
             e.printStackTrace();
         }
-
 
     }
 
@@ -65,7 +62,6 @@ public class PersonController {
         return response;
 
     }
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> detail(@PathVariable int id) {
@@ -202,8 +198,6 @@ public class PersonController {
                 }
             }
 
-
-
         }catch (Exception e) {
 
             e.printStackTrace();
@@ -212,7 +206,6 @@ public class PersonController {
         return response;
 
     }
-
 
 }
 
