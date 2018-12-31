@@ -8,47 +8,40 @@ import org.mongodb.morphia.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDao {
 
     private static PersonDao INSTANCE = null;
-    ArrayList<Person> personas = null;
-    private static PersonDao personaDao = null;
-
 
     @Autowired
     private Datastore datastore;
 
+    private PersonDao() throws UnknownHostException {
 
-    private static final String DB = "publicaciones";
-    private static final String COLLECTION = "persons";
-
-
-    public PersonDao() throws UnknownHostException {
         super();
         datastore = DataSourceConfiguration.getConnection();
-
 
     }
 
     public static synchronized PersonDao getInstance() throws UnknownHostException {
+
         if (INSTANCE == null) {
+
             INSTANCE = new PersonDao();
+
         }
+
         return INSTANCE;
     }
 
-
-    public List listar() throws UnknownHostException {
+    public List listar() {
 
         return datastore.createQuery(Person.class).asList();
 
-
     }
 
-    public Person obtenerPorId(int id) throws UnknownHostException {
+    public Person obtenerPorId(int id) {
 
         return datastore.find(Person.class).field("selfId").equal(id).get();
 
@@ -60,11 +53,7 @@ public class PersonDao {
 
     }
 
-
-
-
-
-    public Key<Person> crear(Person p) throws UnknownHostException {
+    public Key<Person> crear(Person p) {
 
         p.setSelfId(listar().size() + 1);
 
@@ -72,17 +61,21 @@ public class PersonDao {
 
     }
 
-    public Key<Person> modificar(int id, Person p) throws  UnknownHostException{
+    public Key<Person> modificar(int id, Person p) {
+
         Key<Person> personUpdate = null ;
         Person pe = obtenerPorId(id);
+
         if (pe != null){
+
             p.setId(pe.getId());
+
             personUpdate =  datastore.merge(p);
+
         }
 
         return personUpdate;
 
     }
-
 
 }
