@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.pojo.Family;
-import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.FamilyService;
 import org.springframework.hateoas.Resource;
@@ -19,17 +18,15 @@ import java.util.ArrayList;
 @RequestMapping("/publicaciones/family")
 public class FamilyController {
 
-    private static ArrayList<Family> familias;
     private static FamilyService familyService = null;
 
-
-    public FamilyController()  {
+    public FamilyController() {
         super();
         try {
 
             familyService = FamilyService.getInstance();
 
-        }catch (UnknownHostException ue){
+        } catch (UnknownHostException ue) {
 
             ue.printStackTrace();
         }
@@ -40,9 +37,9 @@ public class FamilyController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> listAll() {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(familias, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        ArrayList<Resource<Family>> resourcesFamilyArray =new ArrayList<Resource<Family>>();
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        ArrayList<Resource<Family>> resourcesFamilyArray;
         try {
             resourcesFamilyArray = familyService.listar();
 
@@ -62,10 +59,10 @@ public class FamilyController {
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
         Family f = new Family();
-        ArrayList<Resource<Family>> resoucesPerson =new ArrayList<Resource<Family>>();
+        ArrayList<Resource<Family>> resoucesPerson;
 
         ResponseEntity<Object> response = new ResponseEntity<>(f, HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+
         try {
 
             resoucesPerson = familyService.obtenerPorId(id);
@@ -94,7 +91,7 @@ public class FamilyController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable int id) {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(familias, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
         try {
 
@@ -105,7 +102,7 @@ public class FamilyController {
             } else {
                 rm.setMensaje("Error Eliminando familia");
 
-                response = new ResponseEntity<>(rm,HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
             }
 
 
@@ -119,8 +116,8 @@ public class FamilyController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> crear(@RequestBody Family familia) {
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
-        ArrayList<Resource<Family>> resoucesPerson =new ArrayList<Resource<Family>>();
+
+        ArrayList<Resource<Family>> resoucesPerson;
 
 
         try {
@@ -144,7 +141,7 @@ public class FamilyController {
     public ResponseEntity<Object> modificar(@RequestBody Family familia, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        ResponseMensaje rm = new ResponseMensaje();
+
         ArrayList<Resource<Family>> resoucesFamily;
 
         try {
@@ -153,9 +150,9 @@ public class FamilyController {
 
                 response = new ResponseEntity<>(resoucesFamily, HttpStatus.OK);
 
-            }else{
+            } else {
 
-                response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
 
