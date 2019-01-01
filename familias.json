@@ -1,4 +1,0 @@
-{"_id":{"$oid":"5c18a850717287d1e233db7b"},"id":{"$numberInt":"1"},"nombre":"familia AsierRaul","familyId":{"$numberInt":"1"}}
-{"_id":{"$oid":"5c18ac56717287d1e233db82"},"id":{"$numberInt":"2"},"nombre":"Familia ValeriaLuis","familyId":{"$numberInt":"2"}}
-{"_id":{"$oid":"5c18ac56717287d1e233db83"},"id":{"$numberInt":"3"},"nombre":"Familia AdrianAdriana","familyId":{"$numberInt":"3"}}
-{"_id":{"$oid":"5c1ba2c4df132c04c40acf75"},"familyId":{"$numberInt":"4"},"nombre":"Luis contra "}

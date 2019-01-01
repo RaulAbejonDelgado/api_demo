@@ -1,7 +1,0 @@
-{"_id":{"$oid":"5c18a545717287d1e233db77"},"id":{"$numberInt":"1"},"nombre":"asier","personaId":{"$numberInt":"1"}}
-{"_id":{"$oid":"5c18a59b717287d1e233db78"},"id":{"$numberInt":"2"},"nombre":"raul","links":[{"rel":"self","href":"http://localhost:8080/personas/2"}],"personaId":{"$numberInt":"2"}}
-{"_id":{"$oid":"5c18aac9717287d1e233db7d"},"id":{"$numberInt":"3"},"nombre":"Luis","links":[{"rel":"self","href":"http://localhost:8080/personas/3"}],"personaId":{"$numberInt":"3"}}
-{"_id":{"$oid":"5c18ab01717287d1e233db7e"},"id":{"$numberInt":"5"},"nombre":"Adrian","links":[{"rel":"self","href":"http://localhost:8080/personas/5"}],"personaId":{"$numberInt":"5"}}
-{"_id":{"$oid":"5c18ab01717287d1e233db7f"},"id":{"$numberInt":"6"},"nombre":"Adrian","links":[{"rel":"self","href":"http://localhost:8080/personas/6"}],"personaId":{"$numberInt":"6"}}
-{"_id":{"$oid":"5c18ab01717287d1e233db80"},"id":{"$numberInt":"4"},"nombre":"valeria","links":[{"rel":"self","href":"http://localhost:8080/personas/4"}],"personaId":{"$numberInt":"4"}}
-{"_id":{"$oid":"5c18ab01717287d1e233db81"},"id":{"$numberInt":"7"},"nombre":"Andrea","links":[{"rel":"self","href":"http://localhost:8080/personas/7"}],"personaId":{"$numberInt":"7"}}
