@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
+import com.example.demo.dao.DataFlowDao;
 import com.example.demo.dao.FamilyDao;
 import com.example.demo.pojo.Family;
 import com.example.demo.pojo.Person;
@@ -10,6 +11,7 @@ import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class FamilyService {
 
     private static FamilyService INSTANCE = null;
     private static FamilyDao familiasDao = null;
+    private static DataFlowDao dataFlowDao = null;
 
     public static synchronized FamilyService getInstance() throws UnknownHostException {
 
@@ -36,6 +39,7 @@ public class FamilyService {
         super();
 
         familiasDao = FamilyDao.getInstance();
+        dataFlowDao = DataFlowDao.getInstance();
 
     }
 
@@ -170,6 +174,11 @@ public class FamilyService {
         }
 
         return resoucesFamily;
+    }
+
+    public void exportar(String collection) throws Exception {
+
+        dataFlowDao.objectExport(collection);
     }
 
 }

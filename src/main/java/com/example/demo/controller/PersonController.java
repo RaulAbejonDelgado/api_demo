@@ -23,8 +23,13 @@ import java.util.Set;
 @RestController
 public class PersonController {
 
+    private static final int IMPORT_DATA = 1;
+    private static final int EXPORT_DATA = 2;
+    private static final String COLLECTION_NAME = "personas";
+
     private static ArrayList<Person> persons = null;
     private static PersonService servicioPerson = null;
+
 
     private static Validator validator ;
 
@@ -205,6 +210,40 @@ public class PersonController {
         return response;
 
     }
+
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public ResponseEntity<Object> importExport(
+            @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        try {
+
+            switch (action){
+                case IMPORT_DATA:
+
+                    break;
+                case EXPORT_DATA:
+
+                    servicioPerson.exportar(COLLECTION_NAME);
+                    response = new ResponseEntity<>( HttpStatus.OK);
+
+                    break;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
+        }
+
+        return response;
+
+
+
+
+    }
+
+
 
 }
 

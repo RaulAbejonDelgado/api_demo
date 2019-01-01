@@ -4,12 +4,14 @@ import com.example.demo.controller.CommentsController;
 import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
 import com.example.demo.dao.CommentsDao;
+import com.example.demo.dao.DataFlowDao;
 import com.example.demo.pojo.Comment;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
@@ -21,11 +23,13 @@ public class CommentService {
     private static CommentService INSTANCE = null;
 
     private static CommentsDao comentarioDao = null;
+    private static DataFlowDao dataFlowDao = null;
 
     public CommentService() throws UnknownHostException {
 
         super();
         comentarioDao = CommentsDao.getInstance();
+        dataFlowDao = DataFlowDao.getInstance();
 
     }
 
@@ -147,5 +151,10 @@ public class CommentService {
 
         return resoucesPerson;
 
+    }
+
+    public void exportar(String collection) throws Exception {
+
+        dataFlowDao.objectExport(collection);
     }
 }

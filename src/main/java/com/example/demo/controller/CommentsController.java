@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.pojo.Comment;
-import com.example.demo.pojo.Family;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.CommentService;
 import org.springframework.hateoas.Resource;
@@ -25,6 +24,9 @@ public class CommentsController {
 
     private static CommentService servicioComent = null;
     private static Validator validator ;
+    private static final int IMPORT_DATA = 1;
+    private static final int EXPORT_DATA = 2;
+    private static final String COLLECTION_NAME = "comentarios";
 
     public CommentsController() throws UnknownHostException {
 
@@ -215,6 +217,36 @@ public class CommentsController {
         } catch (Exception e) {
 
             e.printStackTrace();
+        }
+
+        return response;
+
+    }
+
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public ResponseEntity<Object> importExport(
+            @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        try {
+
+            switch (action){
+                case IMPORT_DATA:
+
+                    break;
+                case EXPORT_DATA:
+
+                    servicioComent.exportar(COLLECTION_NAME);
+                    response = new ResponseEntity<>(HttpStatus.OK);
+
+                    break;
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
         }
 
         return response;

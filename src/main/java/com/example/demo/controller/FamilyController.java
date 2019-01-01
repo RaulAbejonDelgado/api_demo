@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.pojo.Family;
-import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.FamilyService;
 import org.springframework.hateoas.Resource;
@@ -23,6 +22,10 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 @RequestMapping("/publicaciones/family")
 public class FamilyController {
+
+    private static final int IMPORT_DATA = 1;
+    private static final int EXPORT_DATA = 2;
+    private static final String COLLECTION_NAME = "familias";
 
     private static FamilyService familyService = null;
 
@@ -216,6 +219,36 @@ public class FamilyController {
             e.printStackTrace();
         }
 
+
+        return response;
+
+    }
+
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
+    public ResponseEntity<Object> importExport(
+            @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        try {
+
+            switch (action){
+                case IMPORT_DATA:
+
+                    break;
+                case EXPORT_DATA:
+
+                    familyService.exportar(COLLECTION_NAME);
+                    response = new ResponseEntity<>(HttpStatus.OK);
+                    break;
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
+        }
 
         return response;
 

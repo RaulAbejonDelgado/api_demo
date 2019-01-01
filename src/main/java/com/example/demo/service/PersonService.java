@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.controller.PersonController;
+import com.example.demo.dao.DataFlowDao;
 import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
@@ -17,11 +18,13 @@ public class PersonService {
 
     private static PersonService INSTANCE = null;
     private static PersonDao personDao = null;
+    private static DataFlowDao dataFlow = null;
 
     private PersonService() throws UnknownHostException {
 
         super();
         personDao = PersonDao.getInstance();
+        dataFlow = DataFlowDao.getInstance();
 
     }
 
@@ -138,5 +141,10 @@ public class PersonService {
         }
 
         return resoucesPerson;
+    }
+
+    public void exportar(String collection) throws Exception {
+
+        dataFlow.objectExport(collection);
     }
 }
