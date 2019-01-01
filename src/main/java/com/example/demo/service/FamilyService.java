@@ -181,4 +181,9 @@ public class FamilyService {
         dataFlowDao.objectExport(collection);
     }
 
+    public void importar(String collectionName) throws Exception {
+
+        dataFlowDao.objectImport(collectionName);
+
+    }
 }

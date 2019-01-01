@@ -6,11 +6,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class BaseEntity implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
     @JsonSerialize(using = NoObjectiIdSerializer.class)
+    @XmlElement(name="_id")
     protected ObjectId _id;
 
     public ObjectId getId() {

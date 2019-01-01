@@ -220,16 +220,20 @@ public class PersonController {
         try {
 
             switch (action){
+
                 case IMPORT_DATA:
 
+                    servicioPerson.importar(COLLECTION_NAME);
                     break;
+
                 case EXPORT_DATA:
 
                     servicioPerson.exportar(COLLECTION_NAME);
-                    response = new ResponseEntity<>( HttpStatus.OK);
-
                     break;
+
             }
+
+            response = new ResponseEntity<>( HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();

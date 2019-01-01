@@ -156,5 +156,12 @@ public class CommentService {
     public void exportar(String collection) throws Exception {
 
         dataFlowDao.objectExport(collection);
+
+    }
+
+    public void importar(String collectionName) throws Exception {
+
+        dataFlowDao.objectImport(collectionName);
+
     }
 }

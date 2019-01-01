@@ -147,4 +147,10 @@ public class PersonService {
 
         dataFlow.objectExport(collection);
     }
+
+    public void importar(String collectionName) throws Exception {
+
+        dataFlow.objectImport(collectionName);
+
+    }
 }

@@ -27,6 +27,7 @@
             <version>2.9.4</version>
         </dependency>
 
+        <!--Para operaciones con archivos xml-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
