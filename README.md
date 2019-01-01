@@ -8,6 +8,12 @@
             
 ## Tareas
 ### BackEnd
+- [x] Conexion de api con db mongoDB
+- [x] Integracion de Morphia ODM
+- [x] Validaciones
+- [x] Importacion de documentos xml a mongoDB usando la api
+- [x] Exportacion de Colecciones mongodb y creacion de archivos xml
+- [x] Integracion de Hateoas
 - [ ] Documentar con javaDoc
 - [ ] Añadir campos al objeto person para registro/ingreso
 - [ ] Agregar objeto familias al objeto person
