@@ -41,7 +41,7 @@ public class CommentsDao {
 
     }
 
-    public Comment obtenerPorId(int id)  {
+    public Comment obtenerPorId(int id) {
 
         return datastore.find(Comment.class).field("selfId").equal(id).get();
 
@@ -53,7 +53,7 @@ public class CommentsDao {
 
     }
 
-    public Key<Comment> crear(Comment c)  {
+    public Key<Comment> crear(Comment c) {
 
         c.setSelfId(listarTodos().size() + 1);
 

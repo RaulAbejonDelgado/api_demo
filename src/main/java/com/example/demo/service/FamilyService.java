@@ -11,7 +11,6 @@ import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 
-import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 

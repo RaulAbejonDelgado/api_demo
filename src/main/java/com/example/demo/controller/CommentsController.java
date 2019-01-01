@@ -23,7 +23,7 @@ import java.util.Set;
 public class CommentsController {
 
     private static CommentService servicioComent = null;
-    private static Validator validator ;
+    private static Validator validator;
     private static final int IMPORT_DATA = 1;
     private static final int EXPORT_DATA = 2;
     private static final String COLLECTION_NAME = "comentarios";
@@ -151,7 +151,7 @@ public class CommentsController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
 
                 resoucesPerson = servicioComent.crear(comentario);
                 if (resoucesPerson.size() > 0) {
@@ -199,7 +199,7 @@ public class CommentsController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
 
                 resoucesPerson = servicioComent.modficar(id, comentario);
 
@@ -231,7 +231,7 @@ public class CommentsController {
 
         try {
 
-            switch (action){
+            switch (action) {
                 case IMPORT_DATA:
                     servicioComent.importar(COLLECTION_NAME);
                     break;
@@ -247,7 +247,7 @@ public class CommentsController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
+            response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
         }
 
         return response;

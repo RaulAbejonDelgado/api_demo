@@ -29,7 +29,7 @@ public class FamilyController {
 
     private static FamilyService familyService = null;
 
-    private static Validator validator ;
+    private static Validator validator;
 
 
     public FamilyController() {
@@ -154,7 +154,7 @@ public class FamilyController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
 
                 resoucesPerson = familyService.crear(familia);
                 if (resoucesPerson.size() > 0) {
@@ -200,7 +200,7 @@ public class FamilyController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
 
                 resoucesFamily = familyService.modficar(id, familia);
                 if (resoucesFamily.size() > 0) {
@@ -232,7 +232,7 @@ public class FamilyController {
 
         try {
 
-            switch (action){
+            switch (action) {
                 case IMPORT_DATA:
 
                     familyService.importar(COLLECTION_NAME);
@@ -250,7 +250,7 @@ public class FamilyController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
+            response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
         }
 
         return response;

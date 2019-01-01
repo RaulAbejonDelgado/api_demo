@@ -31,9 +31,9 @@ public class PersonController {
     private static PersonService servicioPerson = null;
 
 
-    private static Validator validator ;
+    private static Validator validator;
 
-    public PersonController()   {
+    public PersonController() {
         super();
         try {
 
@@ -41,7 +41,7 @@ public class PersonController {
             ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
             validator = factory.getValidator();
 
-        }catch (UnknownHostException e){
+        } catch (UnknownHostException e) {
 
             e.printStackTrace();
         }
@@ -56,8 +56,8 @@ public class PersonController {
         try {
             personResources = servicioPerson.listar();
 
-                System.out.println("*************Pasamos por PersonController-get*************");
-                response = new ResponseEntity<>(personResources, HttpStatus.OK);
+            System.out.println("*************Pasamos por PersonController-get*************");
+            response = new ResponseEntity<>(personResources, HttpStatus.OK);
 
 
         } catch (Exception e) {
@@ -120,7 +120,7 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping( method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> crear(@RequestBody Person persona) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -146,7 +146,7 @@ public class PersonController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
 
                 resoucesPerson = servicioPerson.crear(persona);
 
@@ -155,11 +155,11 @@ public class PersonController {
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
                 } else {
 
-                    response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                    response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return response;
@@ -190,19 +190,19 @@ public class PersonController {
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
 
-            }else{
+            } else {
                 resoucesPerson = servicioPerson.modficar(id, persona);
-                if(resoucesPerson.size() == 1){
+                if (resoucesPerson.size() == 1) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
 
-                }else{
+                } else {
 
-                    response = new ResponseEntity<>( HttpStatus.CONFLICT);
+                    response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 }
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
@@ -219,7 +219,7 @@ public class PersonController {
 
         try {
 
-            switch (action){
+            switch (action) {
 
                 case IMPORT_DATA:
 
@@ -233,20 +233,17 @@ public class PersonController {
 
             }
 
-            response = new ResponseEntity<>( HttpStatus.OK);
+            response = new ResponseEntity<>(HttpStatus.OK);
 
         } catch (Exception e) {
             e.printStackTrace();
-            response = new ResponseEntity<>("[{Mensaje:"+e.getMessage()+"}]", HttpStatus.CONFLICT);
+            response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
         }
 
         return response;
 
 
-
-
     }
-
 
 
 }

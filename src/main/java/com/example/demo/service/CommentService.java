@@ -11,7 +11,6 @@ import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 
-import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class CommentService {
     private static CommentsDao comentarioDao = null;
     private static DataFlowDao dataFlowDao = null;
 
-    public CommentService() throws UnknownHostException {
+    private CommentService() throws UnknownHostException {
 
         super();
         comentarioDao = CommentsDao.getInstance();
@@ -43,7 +42,7 @@ public class CommentService {
     }
 
 
-    public ArrayList<Resource<Comment>> listar() throws UnknownHostException {
+    public ArrayList<Resource<Comment>> listar() {
 
         ArrayList<Comment> comentarios;
         ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
@@ -81,41 +80,41 @@ public class CommentService {
         return resourcesComentariosArray;
     }
 
-    public ArrayList<Resource<Comment>> obtenerPorId(int id) throws UnknownHostException {
+    public ArrayList<Resource<Comment>> obtenerPorId(int id) {
 
         Comment c = comentarioDao.obtenerPorId(id);
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
-        Resource<Comment> resource ;
-        if(c != null){
+        Resource<Comment> resource;
+        if (c != null) {
             resource = new Resource<>(c);
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
             resource.add(selfLink);
             resoucesPerson.add(resource);
         }
 
-        return resoucesPerson ;
+        return resoucesPerson;
     }
 
-    public boolean eliminar(int id) throws  UnknownHostException {
+    public boolean eliminar(int id) {
 
         boolean resul = false;
         Comment c = comentarioDao.obtenerPorId(id);
         WriteResult wr = comentarioDao.delete(c);
 
-        if(wr.getN() == 1){
+        if (wr.getN() == 1) {
             resul = true;
         }
 
         return resul;
     }
 
-    public ArrayList<Resource<Comment>> crear(Comment c) throws  UnknownHostException {
+    public ArrayList<Resource<Comment>> crear(Comment c) {
 
         Key<Comment> commentKey = comentarioDao.crear(c);
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
-        Resource<Comment> resource ;
+        Resource<Comment> resource;
 
-        if(commentKey.getId() != null ){
+        if (commentKey.getId() != null) {
 
             resource = new Resource<>(c);
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
@@ -131,14 +130,14 @@ public class CommentService {
         return resoucesPerson;
     }
 
-    public ArrayList<Resource<Comment>> modficar(int id, Comment c) throws  Exception{
+    public ArrayList<Resource<Comment>> modficar(int id, Comment c) {
 
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
         Resource<Comment> resource;
 
         Key<Comment> commentKey = comentarioDao.modificar(id, c);
 
-        if(commentKey.getId() != null && !commentKey.getId().equals("")){
+        if (commentKey.getId() != null && !commentKey.getId().equals("")) {
 
             resource = new Resource<>(c);
 
