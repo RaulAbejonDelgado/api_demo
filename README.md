@@ -5,6 +5,27 @@
             *Persons 
             *Familys
             *Comments
+            
+## Tareas
+### BackEnd
+- [ ] Documentar con javaDoc
+- [ ] Añadir campos al objeto person para registro/ingreso
+- [ ] Agregar objeto familias al objeto person
+- [ ] Implementar LOGGER
+### FrontEnd
+- [ ] Cliente angular
+    - [ ] Crear Tema para cliente angular
+    - [ ] Crear registro
+    - [ ] Implementacion de seguridad(Guards)
+    - [ ] Crear Estancia usuario 
+        - [ ] Lectura de comentarios
+        - [ ] Creacion de comentarios           
+    - [ ] Crear Zona administracion
+        - [ ] Crear Crud
+            - [ ] Crud personas
+            - [ ] Crud familias
+            - [ ] Crud comentarios
+    
 ## Notas
 
     Para el mapeo de objetos java a mongo se usa el ODM Morphia 
@@ -26,6 +47,10 @@
 **[jaxb-api](https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api)**
             
 ## Urls de la api
+
+**Index**
+
+    [GET] http://localhost:8080
 
 **Personas**
 
