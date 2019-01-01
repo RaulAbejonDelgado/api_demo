@@ -30,6 +30,23 @@
 **Personas**
 
     [GET] http://localhost:8080/publicaciones/persons
+    [GET]http://localhost:8080/publicaciones/persons/{id}
+    [DELETE]http://localhost:8080/publicaciones/persons/{id}
+    [POST] http://localhost:8080/publicaciones/persons
+    objeto esperado:
+    
+    {
+        "nombre": "enhord",
+        "familyId":1 
+    }
+    [PUT] http://localhost:8080/publicaciones/persons/{id}
+    objeto esperado:
+    
+    {
+    	"nombre":"drohne",
+    	"selfId":9,
+    	"familyId":1
+    }
     
 **Importar coleccion personas**
 
@@ -41,7 +58,36 @@
 
 **Familias** 
        
-    http://localhost:8080/publicaciones/familys
+    [GET] http://localhost:8080/publicaciones/familys
+    [GET]http://localhost:8080/publicaciones/familys/{id}
+    [DELETE]http://localhost:8080/publicaciones/familys/{id}
+    [POST] http://localhost:8080/publicaciones/familys
+    objeto esperado:
+    {
+    	"nombre":"familia drohne5",
+    	"personas":[
+    		{
+    			"nombre":"drohne",
+    			"selfId":9
+    		}
+    	]
+    }
+    [PUT] http://localhost:8080/publicaciones/familys
+    objeto esperado:
+    {
+        "_id": "5c29f97fa4033c513f32bf0f",
+        "selfId": 11,
+        "nombre": "familia Morphia Modificada",
+        "personas": [
+            {
+                "_id": null,
+                "selfId": 12,
+                "familyId": 11,
+                "nombre": "enhord y mi cipote2",
+                "id": null
+            }
+        ]
+    }
     
 **Importar coleccion familias**
    
@@ -53,7 +99,48 @@
         
 **Comentarios** 
 
-    http://localhost:8080/publicaciones/comments
+    [GET]http://localhost:8080/publicaciones/comments
+    [GET]http://localhost:8080/publicaciones/comments/{id}
+    [DELETE]http://localhost:8080/publicaciones/comments/{id}
+    [POST] http://localhost:8080/publicaciones/comments
+    Objeto:Esperado:
+    
+    {
+    "familia": [{
+        "_id": "5c23ad0ffae44e51fe620f2b",
+        "selfId": 1,
+        "nombre": "familia AsierRaul"
+       
+    }],
+    "texto": "asier",
+    "persona": [{
+        "_id": "5c1a48f34d1fe28adf723f69",
+        "selfId": 1,
+        "familyId": 1,
+        "nombre": "Raul"
+
+    }]
+    
+    [PUT] http://localhost:8080/publicaciones/comments/{id}
+        Objeto:Esperado:
+        
+        {
+        "familia": [{
+            "_id": "5c23ad0ffae44e51fe620f2b",
+            "selfId": 1,
+            "nombre": "familia AsierRaul"
+           
+        }],
+        "texto": "asier",
+        "persona": [{
+            "_id": "5c1a48f34d1fe28adf723f69",
+            "selfId": 1,
+            "familyId": 1,
+            "nombre": "Raul"
+    
+        }]
+    
+
     
 **Importar coleccion familias**
 
