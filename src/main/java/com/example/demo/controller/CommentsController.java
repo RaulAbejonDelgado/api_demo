@@ -38,7 +38,7 @@ public class CommentsController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET ,produces={"application/x-resource+json"})
     public ResponseEntity<Object> listAll() {
 
         ArrayList<Resource<Comment>> resourcesComentariosArray;
@@ -67,7 +67,7 @@ public class CommentsController {
     }
 
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -124,7 +124,7 @@ public class CommentsController {
         return response;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Comment comentario) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -173,7 +173,7 @@ public class CommentsController {
         return response;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Comment comentario, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

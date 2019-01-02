@@ -4,6 +4,7 @@ import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,7 @@ public class PersonController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);

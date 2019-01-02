@@ -28,7 +28,7 @@ public class HelloControler {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> resourcesList() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

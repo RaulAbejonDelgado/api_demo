@@ -23,14 +23,13 @@ public class VideoJuegoController {
 
     private static ArrayList<Videojuego> videoJuegos = null;
     private static VideoJuegoService videoJuegoService = null;
-    //final String END_POINT = "http://localhost:8080/publicaciones/videojuegos/";
 
     public VideoJuegoController() throws UnknownHostException {
         super();
         videoJuegoService = VideoJuegoService.getInstance();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
     ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(videoJuegos, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,7 +61,7 @@ public class VideoJuegoController {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     ResponseEntity<Object> detail(@PathVariable int id){
 
         Videojuego v = videoJuegoService.read(id);
@@ -133,7 +132,7 @@ public class VideoJuegoController {
         return response;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Videojuego v) {
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ResponseMensaje rm = new ResponseMensaje();
@@ -154,7 +153,7 @@ public class VideoJuegoController {
         return response;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Videojuego v, @PathVariable int id) {
 
         boolean resul = false;
