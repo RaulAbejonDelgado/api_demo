@@ -13,6 +13,8 @@
 - [x] Validaciones
 - [x] Importacion de documentos xml a mongoDB usando la api
 - [x] Exportacion de Colecciones mongodb y creacion de archivos xml
+- [ ] Importacion de documentos xml a mongoDB usando spring batch
+- [ ] Exportacion de Colecciones mongodb y creacion de archivos xml usando spring batch
 - [x] Integracion de Hateoas
 - [ ] Documentar con javaDoc
 - [ ] Añadir campos al objeto person para registro/ingreso
