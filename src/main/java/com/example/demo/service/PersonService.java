@@ -56,6 +56,7 @@ public class PersonService {
             resource.add(selfLink);
             resoucesPerson.add(resource);
 
+
         }
 
         return resoucesPerson;
