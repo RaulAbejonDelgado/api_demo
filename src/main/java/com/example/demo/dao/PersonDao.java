@@ -61,6 +61,13 @@ public class PersonDao {
 
     }
 
+    public Iterable<Key<Person>> crearPorLote(List<Person> personas){
+
+        return datastore.save(personas);
+
+
+    }
+
     public Key<Person> modificar(int id, Person p) {
 
         Key<Person> personUpdate = null ;

@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/coments")
+@RequestMapping("/API/publicaciones/coments")
 public class CommentsController {
 
     private static CommentService servicioComent = null;

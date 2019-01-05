@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/videojuegos")
+@RequestMapping("/API/publicaciones/videojuegos")
 public class VideoJuegoController {
 
     private static ArrayList<Videojuego> videoJuegos = null;

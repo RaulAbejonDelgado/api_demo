@@ -185,7 +185,6 @@ public class DataFlowDao {
         for (Person p : personas) {
             // 1. Write Object to XML String
             String xmlPerson = write2XMLString(p);
-            //String pathFilePerson = System.getProperty("user.dir") +"\\personas\\"+ p.getNombre()+".xml";
             String pathFilePerson = directorio + dinamicSlash + p.getNombre() + ".xml";
 
             write2XMLFile(p, pathFilePerson);
@@ -208,7 +207,6 @@ public class DataFlowDao {
         for (Family f : familias) {
             // 1. Write Object to XML String
             String xmlPerson = write2XMLString(f);
-            //String pathFilePerson = System.getProperty("user.dir") +"\\personas\\"+ p.getNombre()+".xml";
             String pathFilePerson = directorio + dinamicSlash + f.getNombre() + ".xml";
 
             write2XMLFile(f, pathFilePerson);
@@ -231,7 +229,6 @@ public class DataFlowDao {
         for (Comment c : familias) {
             // 1. Write Object to XML String
             String xmlPerson = write2XMLString(c);
-            //String pathFilePerson = System.getProperty("user.dir") +"\\personas\\"+ p.getNombre()+".xml";
             String pathFilePerson = directorio + dinamicSlash + "comentario_" + c.getSelfId() + ".xml";
 
             write2XMLFile(c, pathFilePerson);
@@ -295,6 +292,42 @@ public class DataFlowDao {
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         xmlMapper.writeValue(new File(pathFile), object);
+    }
+
+
+    /**
+     * Usado para apoyarme en la practica de spring batch
+     * El CustomItemReader sacara los datos de esta funcion
+     * @return Array de archivos
+     */
+    public File[] readPathFiles(){
+
+        ArrayList<File> directorios = new ArrayList<>();
+
+
+        directorios.add(new File(System.getProperty("user.dir") + dinamicSlash + "personas" + dinamicSlash));
+        directorios.add(new File(System.getProperty("user.dir") + dinamicSlash + "familias" + dinamicSlash));
+        directorios.add(new File(System.getProperty("user.dir") + dinamicSlash + "comentarios" + dinamicSlash));
+
+        int cantidadFicheros = directorios.stream().mapToInt(d -> d.listFiles().length).sum();
+
+        File[] dataToImport = new File[cantidadFicheros];
+
+        //dataToImport = listarFicherosPorCarpeta(dataToImport);
+        int contador = 0;
+        for(File d : directorios){
+
+            File [] filesPath = listarFicherosPorCarpeta(d);
+            for(File fu: filesPath){
+
+                dataToImport[contador++] = fu;
+            }
+        }
+
+
+
+        return  dataToImport;
+
     }
 
 }

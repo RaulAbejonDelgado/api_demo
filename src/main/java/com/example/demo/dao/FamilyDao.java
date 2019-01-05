@@ -9,6 +9,7 @@ import org.mongodb.morphia.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyDao {
@@ -73,6 +74,12 @@ public class FamilyDao {
         }
 
         return datastore.save(f);
+
+    }
+
+    public Iterable<Key<Family>> crearPorLote(ArrayList<Family> familias) {
+
+        return datastore.save(familias);
 
     }
 

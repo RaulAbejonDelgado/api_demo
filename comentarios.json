@@ -1,0 +1,56 @@
+{
+  "_id": "5c2a125588be6e2a12d625a0",
+  "familia": [
+    {
+      "nombre": "familia AsierRaul",
+      "selfId": "1",
+      "_id": "5c23ad0ffae44e51fe620f2b"
+    }
+  ],
+  "persona": [
+    {
+      "nombre": "Asier",
+      "selfId": 21,
+      "familyId": 1,
+      "_id": "5c24fb0463807b075537a8b4"
+    }
+  ],
+  "selfId": 1,
+  "texto": "Reformulando la extructura"
+},
+{
+  "_id": "5c2a2cfaa4033c6e2f0ba7a0",
+  "familia": [
+    {
+      "selfId": 1,
+      "nombre": "familia AsierRaul"
+    }
+  ],
+  "persona": [
+    {
+      "selfId": 1,
+      "familyId": 1,
+      "nombre": "Raul"
+    }
+  ],
+  "selfId": 0,
+  "texto": "Editando el comentario"
+},
+{
+  "_id": "5c2a58d7a4033c11bd0babb7",
+  "familia": [
+    {
+      "selfId": 1,
+      "nombre": "familia AsierRaul"
+    }
+  ],
+  "persona": [
+    {
+      "selfId": 1,
+      "familyId": 1,
+      "nombre": "Raul"
+    }
+  ],
+  "selfId": 3,
+  "texto": "as"
+},

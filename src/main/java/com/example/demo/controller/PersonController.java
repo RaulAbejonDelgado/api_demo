@@ -4,7 +4,6 @@ import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,7 @@ import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/person")
+@RequestMapping("/API/publicaciones/person")
 @RestController
 public class PersonController {
 
