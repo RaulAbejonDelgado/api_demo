@@ -110,11 +110,15 @@ public class PersonController {
 
             } else {
 
-                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            if(e.getMessage().contains("Not found, imposible delete it")){
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
         }
 
         return response;

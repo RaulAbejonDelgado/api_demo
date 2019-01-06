@@ -47,9 +47,16 @@ public class PersonDao {
 
     }
 
-    public WriteResult delete(Person p) {
+    public WriteResult delete(Person p) throws Exception {
 
-        return datastore.delete(p);
+        if(p != null){
+
+            return datastore.delete(p);
+
+        }else{
+            throw new Exception("Not found, imposible delete it");
+        }
+
 
     }
 
