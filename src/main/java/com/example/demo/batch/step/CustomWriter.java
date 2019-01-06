@@ -8,62 +8,64 @@ import com.example.demo.pojo.Family;
 import com.example.demo.pojo.Person;
 import org.springframework.batch.item.ItemWriter;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomWriter implements ItemWriter<File> {
-
+public class CustomWriter implements ItemWriter<Object> {
+	/**
+	 *
+	 * @param list Lista de objetos de colecciones distintas
+	 *             Por lo que aun hay que hacer un minimo proceso
+	 *             para discriminar por el tipo de clase
+	 *
+	 * @throws Exception
+	 */
 	@Override
-	public void write(List<? extends File> list) throws Exception {
+	public void write(List<?> list) throws Exception {
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(Comment.class);
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		ArrayList<Person> personas = new ArrayList<>();
 		ArrayList<Family> familias = new ArrayList<>();
 		ArrayList<Comment> comentarios = new ArrayList<>();
 		PersonDao personDao = PersonDao.getInstance();
 		FamilyDao familyDao = FamilyDao.getInstance();
 		CommentsDao commentsDao = CommentsDao.getInstance();
+ 		System.out.println("En este ciclo vamos a escribir "+ list.size()+ " elementos");
 
-		System.out.println("En este ciclo vamos a escribir "+ list.size()+ " elementos");
+		for(Object o : list){
 
-		for(File f : list){
+			if(((ArrayList) o).get(0).getClass().getName().contains("Person")){
 
-			if(f.getPath().contains("personas")){
-
-				personas.add((Person) jaxbUnmarshaller.unmarshal(f));
-
+				Person p =  (Person) ((ArrayList) o).get(0) ;
+				personas.add(p);
 			}
+			if(((ArrayList) o).get(0).getClass().getName().contains("Family")){
 
-			if(f.getPath().contains("familias")){
-
-				familias.add((Family) jaxbUnmarshaller.unmarshal(f));
-
+				Family f = (Family) ((ArrayList) o).get(0);
+				familias.add(f);
 			}
+			if(((ArrayList) o).get(0).getClass().getName().contains("Comment")){
 
-			if(f.getPath().contains("comentarios")){
-
-				comentarios.add((Comment) jaxbUnmarshaller.unmarshal(f));
-
+				Comment c = (Comment) ((ArrayList) o).get(0);
+				comentarios.add(c);
 			}
 
 		}
 		if(personas.size() > 0){
 
+			System.out.println("Se cargan "+ personas.size()+" Personas");
 			personDao.crearPorLote(personas);
 
 		}
 
 		if(familias.size() > 0 ){
 
+			System.out.println("Se cargan "+ familias.size()+" Familias");
 			familyDao.crearPorLote(familias);
 
 		}
 		if(comentarios.size() > 0){
 
+			System.out.println("Se cargan "+ comentarios.size()+" Comentarios");
 			commentsDao.crearPorLote(comentarios);
 
 		}

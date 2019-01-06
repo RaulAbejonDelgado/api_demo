@@ -10,16 +10,39 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.ArrayList;
 
-public class CustomProcessor implements ItemProcessor<File, File> {
+public class CustomProcessor implements ItemProcessor<File, ArrayList<Object>> {
 	int contador = 0 ;
 
+
 	@Override
-	public File process(File f) throws Exception {
+	public ArrayList<Object> process(File f) throws Exception {
+        ArrayList<Object> objetos = new ArrayList<>();
+		JAXBContext jaxbContext = JAXBContext.newInstance(Comment.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
 		contador ++;
 		System.out.println("Procesando Fichero"+ f.getName()+" nº de archivo "+ contador);
 
-		return f;
+
+		if(f.getPath().contains("personas")){
+
+			objetos.add((Person) jaxbUnmarshaller.unmarshal(f));
+
+		}
+
+		if(f.getPath().contains("familias")){
+
+            objetos.add((Family) jaxbUnmarshaller.unmarshal(f));
+
+		}
+
+		if(f.getPath().contains("comentarios")){
+
+            objetos.add((Comment) jaxbUnmarshaller.unmarshal(f));
+
+		}
+
+		return objetos;
 	}
 
 }

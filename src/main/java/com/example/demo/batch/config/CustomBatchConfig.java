@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.File;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 @Configuration
 public class CustomBatchConfig {
@@ -37,7 +38,7 @@ public class CustomBatchConfig {
 	@Bean
 	public Step customOrderStep1()  {
 		return customstepBuilderFactory.get("customOrderStep1").
-				<File, File> chunk(10)
+				<File, ArrayList<Object>> chunk(10)
 				.reader(new CustomReader())
 				.processor(new CustomProcessor())
 				.writer(new CustomWriter())

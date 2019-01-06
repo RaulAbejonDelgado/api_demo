@@ -37,6 +37,7 @@ public class CustomBatch1Controller {
             JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis() )
                     .toJobParameters();
             jobLauncher.run(customProcessJob, jobParameters);
+
         return "Mongo Batch job executed !!";
 
     }
