@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.CommentsController;
+import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
+import com.example.demo.dao.CommentsDao;
 import com.example.demo.dao.DataFlowDao;
 import com.example.demo.dao.PersonDao;
+import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Key;
@@ -11,6 +15,7 @@ import org.springframework.hateoas.Resource;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
@@ -19,11 +24,13 @@ public class PersonService {
     private static PersonService INSTANCE = null;
     private static PersonDao personDao = null;
     private static DataFlowDao dataFlow = null;
+    private static CommentsDao commentsDao = null;
 
     private PersonService() throws UnknownHostException {
 
         super();
         personDao = PersonDao.getInstance();
+        commentsDao = CommentsDao.getInstance();
         dataFlow = DataFlowDao.getInstance();
 
     }
@@ -46,14 +53,29 @@ public class PersonService {
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
 
+
         persons = (ArrayList<Person>) personDao.listar();
 
         for (Person p : persons) {
 
-            Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+            //ArrayList<Comment> comentarios = (ArrayList<Comment>) commentsDao.obtenerByUser(p);
+            List<Comment> comentarios =  commentsDao.obtenerByUser(p);
+
             resource = new Resource<>(p);
+            Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
+
+            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Familia");
 
             resource.add(selfLink);
+            resource.add(familyLink);
+
+            if(comentarios != null){
+               for(Comment c : comentarios){
+                   Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
+                   resource.add(commentsLink);
+               }
+            }
+
             resoucesPerson.add(resource);
 
 

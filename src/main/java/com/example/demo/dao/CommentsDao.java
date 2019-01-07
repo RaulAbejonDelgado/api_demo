@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.DataSourceConfiguration;
 import com.example.demo.pojo.Comment;
+import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
@@ -45,6 +46,25 @@ public class CommentsDao {
 
         return datastore.find(Comment.class).field("selfId").equal(id).get();
 
+    }
+
+    public List<Comment> obtenerByUser(Person p) {
+
+        List<Comment> comentarios =  datastore.find(Comment.class).field("persona.selfId").equal(p.getselfId()).asList();
+
+//        List<Comment> comentariosRetorno = new ArrayList<>();
+//        ArrayList<Comment> comentarios = (ArrayList<Comment>) datastore.createQuery(Comment.class).asList();
+//        for (Comment c : comentarios) {
+//
+//            for (Person pe : c.getPersona()) {
+//                if (pe.getselfId() == p.getselfId()) {
+//                    comentariosRetorno.add(c);
+//                }
+//            }
+//
+//        }
+
+        return comentarios;
     }
 
     public WriteResult delete(Comment c) {

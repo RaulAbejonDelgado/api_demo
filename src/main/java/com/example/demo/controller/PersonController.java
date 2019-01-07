@@ -69,7 +69,7 @@ public class PersonController {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
         ArrayList<Resource<Person>> resoucesPerson;
@@ -121,7 +121,7 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Person persona) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -166,7 +166,7 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Person persona, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -163,4 +163,12 @@ public class CommentService {
         dataFlowDao.objectImport(collectionName);
 
     }
+
+    public ArrayList<Comment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
+        ArrayList<Comment> comentarios = new ArrayList<Comment>();
+
+        //comentarios = comentarioDao.);
+
+        return comentarios;
+    }
 }
