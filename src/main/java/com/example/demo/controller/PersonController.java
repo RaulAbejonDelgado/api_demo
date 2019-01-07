@@ -20,7 +20,7 @@ import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/person")
+@RequestMapping("/API/publicaciones/person")
 @RestController
 public class PersonController {
 
@@ -111,7 +111,7 @@ public class PersonController {
 
             } else {
 
-                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
         } catch (Exception e) {
