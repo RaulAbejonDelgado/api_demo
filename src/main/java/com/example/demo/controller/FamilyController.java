@@ -20,7 +20,7 @@ import java.util.Set;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/publicaciones/family")
+@RequestMapping("/API/publicaciones/family")
 public class FamilyController {
 
     private static final int IMPORT_DATA = 1;

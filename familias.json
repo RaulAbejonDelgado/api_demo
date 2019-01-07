@@ -1,0 +1,359 @@
+{
+  "_id": "5c18ac56717287d1e233db82",
+  "id": 2,
+  "nombre": "Familia ValeriaLuis",
+  "personas": [
+    {
+      "nombre": "valeria",
+      "familyId": 2,
+      "selfId": 4,
+      "_id": "5c1a50b14d1fe28adf723f6d"
+    }
+  ],
+  "selfId": 2
+},
+{
+  "_id": "5c18ac56717287d1e233db83",
+  "id": 3,
+  "nombre": "Familia AdrianAdriana",
+  "personas": [
+    {
+      "nombre": "adrian",
+      "familyId": 3,
+      "selfId": 6
+    }
+  ],
+  "selfId": 3
+},
+{
+  "_id": "5c23aa1963807b4b5c61c3f1",
+  "nombre": "familia Luis contra el mundo",
+  "personas": [
+    {
+      "nombre": "luis",
+      "familyId": 3,
+      "selfId": 8
+    }
+  ],
+  "selfId": 4
+},
+{
+  "_id": "5c23ad0ffae44e51fe620f2b",
+  "id": 1,
+  "nombre": "Familia AsierRaul",
+  "personas": [
+    {
+      "nombre": "Raul",
+      "familyId": 1,
+      "selfId": 1
+    },
+    {
+      "nombre": "Asier",
+      "familyId": 1,
+      "selfId": 2
+    }
+  ],
+  "selfId": 1
+},
+{
+  "_id": "5c23ce0963807b6fe81c5451",
+  "nombre": "familia drohne2",
+  "personas": [
+    {
+      "nombre": "drohne",
+      "selfId": 9,
+      "familyId": 6
+    }
+  ],
+  "selfId": 6
+},
+{
+  "_id": "5c23e4a463807b071ba5d135",
+  "nombre": "familia editada parcial v2 Modificando solo el nombre",
+  "personas": [
+    {
+      "nombre": "drohne",
+      "selfId": 9,
+      "familyId": 7
+    },
+    {
+      "nombre": "Luis",
+      "selfId": 8,
+      "familyId": 7
+    }
+  ],
+  "selfId": 7
+},
+{
+  "_id": "5c251bce63807b1fda584588",
+  "nombre": "familia AdrianAdriana",
+  "personas": [
+    {
+      "nombre": "Adrian",
+      "selfId": 5,
+      "familyId": 3
+    },
+    {
+      "nombre": "Adiana",
+      "selfId": 6,
+      "familyId": 3
+    }
+  ],
+  "selfId": 3
+},
+{
+  "_id": "5c251bd063807b1fda58458a",
+  "nombre": "familia AsierRaul",
+  "personas": [
+    {
+      "nombre": "Asier",
+      "selfId": 1,
+      "familyId": 1
+    },
+    {
+      "nombre": "Raul",
+      "selfId": 2,
+      "familyId": 1
+    }
+  ],
+  "selfId": 1
+},
+{
+  "_id": "5c251bd263807b1fda58458c",
+  "nombre": "familia ValeriaLuis",
+  "personas": [
+    {
+      "nombre": "valeria",
+      "selfId": 4,
+      "familyId": 2
+    },
+    {
+      "nombre": "Luis",
+      "selfId": 3,
+      "familyId": 2
+    }
+  ],
+  "selfId": 2
+},
+{
+  "_id": "5c29f97fa4033c513f32bf0f",
+  "nombre": "familia Morphia Modificada",
+  "personas": [
+    {
+      "selfId": 12,
+      "familyId": 11,
+      "nombre": "enhord y mi cipote2"
+    }
+  ],
+  "selfId": 11
+},
+{
+  "_id": "5c2a572ca4033c10d5970410",
+  "nombre": "familia drohne4",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 12,
+      "nombre": "drohne"
+    }
+  ],
+  "selfId": 12
+},
+{
+  "_id": "5c2a576da4033c10d5970411",
+  "nombre": "familia drohne5",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 13,
+      "nombre": "drohne"
+    }
+  ],
+  "selfId": 13
+},
+{
+  "_id": "5c2b8629a4033c7bf617caa1",
+  "nombre": "familia drohne5",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 13,
+      "nombre": "drohne",
+      "_id": "5c2b8629a4033c7bf617caa2"
+    }
+  ],
+  "selfId": 13
+},
+{
+  "_id": "5c2b8629a4033c7bf617caa3",
+  "nombre": "familia editada parcial v2 Modificando solo el nombre",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 14,
+      "nombre": "drohne",
+      "_id": "5c2b8629a4033c7bf617caa4"
+    },
+    {
+      "selfId": 8,
+      "familyId": 14,
+      "nombre": "Luis",
+      "_id": "5c2b8629a4033c7bf617caa5"
+    }
+  ],
+  "selfId": 14
+},
+{
+  "_id": "5c2b8629a4033c7bf617caa6",
+  "nombre": "familia drohne4",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 15,
+      "nombre": "drohne",
+      "_id": "5c2b8629a4033c7bf617caa7"
+    }
+  ],
+  "selfId": 15
+},
+{
+  "_id": "5c2b8629a4033c7bf617caa8",
+  "nombre": "familia AdrianAdriana",
+  "personas": [
+    {
+      "selfId": 5,
+      "familyId": 16,
+      "nombre": "Adrian",
+      "_id": "5c2b8629a4033c7bf617caa9"
+    },
+    {
+      "selfId": 6,
+      "familyId": 16,
+      "nombre": "Adiana",
+      "_id": "5c2b8629a4033c7bf617caaa"
+    }
+  ],
+  "selfId": 16
+},
+{
+  "_id": "5c2b8629a4033c7bf617caab",
+  "nombre": "familia drohne2",
+  "personas": [
+    {
+      "selfId": 9,
+      "familyId": 17,
+      "nombre": "drohne",
+      "_id": "5c2b8629a4033c7bf617caac"
+    }
+  ],
+  "selfId": 17
+},
+{
+  "_id": "5c2b8629a4033c7bf617caad",
+  "nombre": "familia Luis contra el mundo",
+  "personas": [
+    {
+      "selfId": 8,
+      "familyId": 18,
+      "nombre": "luis",
+      "_id": "5c2b8629a4033c7bf617caae"
+    }
+  ],
+  "selfId": 18
+},
+{
+  "_id": "5c2b8629a4033c7bf617caaf",
+  "nombre": "familia AsierRaul",
+  "personas": [
+    {
+      "selfId": 1,
+      "familyId": 19,
+      "nombre": "Asier",
+      "_id": "5c2b8629a4033c7bf617cab0"
+    },
+    {
+      "selfId": 2,
+      "familyId": 19,
+      "nombre": "Raul",
+      "_id": "5c2b8629a4033c7bf617cab1"
+    }
+  ],
+  "selfId": 19
+},
+{
+  "_id": "5c2b8629a4033c7bf617cab2",
+  "nombre": "Familia AsierRaul",
+  "personas": [
+    {
+      "selfId": 1,
+      "familyId": 20,
+      "nombre": "Raul",
+      "_id": "5c2b8629a4033c7bf617cab3"
+    },
+    {
+      "selfId": 2,
+      "familyId": 20,
+      "nombre": "Asier",
+      "_id": "5c2b8629a4033c7bf617cab4"
+    }
+  ],
+  "selfId": 20
+},
+{
+  "_id": "5c2b8629a4033c7bf617cab5",
+  "nombre": "Familia ValeriaLuis",
+  "personas": [
+    {
+      "selfId": 4,
+      "familyId": 21,
+      "nombre": "valeria",
+      "_id": "5c2b8629a4033c7bf617cab6"
+    }
+  ],
+  "selfId": 21
+},
+{
+  "_id": "5c2b8629a4033c7bf617cab7",
+  "nombre": "Familia AdrianAdriana",
+  "personas": [
+    {
+      "selfId": 6,
+      "familyId": 22,
+      "nombre": "adrian",
+      "_id": "5c2b8629a4033c7bf617cab8"
+    }
+  ],
+  "selfId": 22
+},
+{
+  "_id": "5c2b8629a4033c7bf617cab9",
+  "nombre": "familia Morphia Modificada",
+  "personas": [
+    {
+      "selfId": 12,
+      "familyId": 23,
+      "nombre": "enhord y mi cipote2",
+      "_id": "5c2b8629a4033c7bf617caba"
+    }
+  ],
+  "selfId": 23
+},
+{
+  "_id": "5c2b8629a4033c7bf617cabb",
+  "nombre": "familia ValeriaLuis",
+  "personas": [
+    {
+      "selfId": 4,
+      "familyId": 24,
+      "nombre": "valeria",
+      "_id": "5c2b8629a4033c7bf617cabc"
+    },
+    {
+      "selfId": 3,
+      "familyId": 24,
+      "nombre": "Luis",
+      "_id": "5c2b8629a4033c7bf617cabd"
+    }
+  ],
+  "selfId": 24
+},

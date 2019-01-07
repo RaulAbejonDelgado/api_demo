@@ -112,7 +112,7 @@ public class PersonService {
         return resoucesPerson;
     }
 
-    public boolean eliminar(int id) {
+    public boolean eliminar(int id) throws Exception {
 
         boolean resul = false;
 

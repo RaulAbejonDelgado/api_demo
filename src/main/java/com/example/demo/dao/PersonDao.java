@@ -47,9 +47,16 @@ public class PersonDao {
 
     }
 
-    public WriteResult delete(Person p) {
+    public WriteResult delete(Person p) throws Exception {
 
-        return datastore.delete(p);
+        if(p != null){
+
+            return datastore.delete(p);
+
+        }else{
+            throw new Exception("Not found, imposible delete it");
+        }
+
 
     }
 
@@ -58,6 +65,13 @@ public class PersonDao {
         p.setSelfId(listar().size() + 1);
 
         return datastore.save(p);
+
+    }
+
+    public Iterable<Key<Person>> crearPorLote(List<Person> personas){
+
+        return datastore.save(personas);
+
 
     }
 

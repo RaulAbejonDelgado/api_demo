@@ -9,6 +9,7 @@ import org.mongodb.morphia.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentsDao {
@@ -78,6 +79,12 @@ public class CommentsDao {
         c.setSelfId(listarTodos().size() + 1);
 
         return datastore.save(c);
+
+    }
+
+    public Iterable<Key<Comment>> crearPorLote(ArrayList<Comment> comentarios) {
+
+        return datastore.save(comentarios);
 
     }
 

@@ -13,14 +13,18 @@
 - [x] Validaciones
 - [x] Importacion de documentos xml a mongoDB usando la api
 - [x] Exportacion de Colecciones mongodb y creacion de archivos xml
-- [ ] Importacion de documentos xml a mongoDB usando spring batch
+- [x] Importacion de documentos xml a mongoDB usando spring batch
 - [ ] Exportacion de Colecciones mongodb y creacion de archivos xml usando spring batch
-- [x] Integracion de Hateoas
-- [ ] Documentar con javaDoc
+- [ ] Integracion de Hateoas
+    - [ ] Migracion de enlaces de ResourceSupport a Resources en personas
+    - [ ] Migracion de enlaces de ResourceSupport a Resources en familias
+    - [ ] Migracion de enlaces de ResourceSupport a Resources en comentarios
+- [ ] Documentar con javaDoc 
 - [ ] Añadir campos al objeto person para registro/ingreso
 - [ ] Agregar objeto familias al objeto person
 - [ ] Implementar LOGGER
 ### FrontEnd
+- [x] Pagina inicio con documentacion API http://localhost:8080
 - [ ] Cliente angular
     - [ ] Crear Tema para cliente angular
     - [ ] Crear registro

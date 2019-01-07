@@ -4,7 +4,6 @@ import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -116,6 +115,10 @@ public class PersonController {
 
         } catch (Exception e) {
             e.printStackTrace();
+            if(e.getMessage().contains("Not found, imposible delete it")){
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
         }
 
         return response;

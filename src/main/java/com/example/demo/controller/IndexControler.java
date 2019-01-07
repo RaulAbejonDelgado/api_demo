@@ -17,12 +17,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping("/")
-public class HelloControler {
+@RequestMapping("/API")
+public class IndexControler {
 
     private static ArrayList<Resource<Index>> resources = new ArrayList<>();
 
-    public HelloControler() {
+    public IndexControler() {
         super();
         resources = new ArrayList<>();
 
@@ -41,26 +41,32 @@ public class HelloControler {
                 Link publicacionesLink = linkTo(PersonController.class).withSelfRel();
                 Link familiasLink = linkTo(FamilyController.class).withSelfRel();
                 Link comentariosLink = linkTo(CommentsController.class).withSelfRel();
+                Link batch1Link = linkTo(Batch1Controller.class).withSelfRel();
 
                 //Creanis 3 objetos index
                 Index publi = new Index("Personas");
                 Index comment = new Index("Comentarios");
                 Index familias = new Index("Familias");
+                Index batch1 = new Index("Proceso batch");
 
                 //Creamos los recursos existentes en la api
                 Resource<Index> pR = new Resource<>(publi);
                 Resource<Index> cR = new Resource<>(comment);
                 Resource<Index> fR = new Resource<>(familias);
+                Resource<Index> b1R = new Resource<>(batch1);
 
                 //Seteamos en el recurso el enlace
                 pR.add(publicacionesLink);
                 cR.add(comentariosLink);
                 fR.add(familiasLink);
+                b1R.add(batch1Link);
+
 
                 //añadimos los recursos con los enlacez hateoas en  el arrayList que devolveremos en la respuesta
                 resources.add(pR);
                 resources.add(cR);
                 resources.add(fR);
+                resources.add(b1R);
 
             }
 
