@@ -16,7 +16,7 @@
 - [x] Importacion de documentos xml a mongoDB usando spring batch
 - [ ] Exportacion de Colecciones mongodb y creacion de archivos xml usando spring batch
 - [ ] Integracion de Hateoas
-    - [ ] Migracion de enlaces de ResourceSupport a Resources en personas
+    - [x] Migracion de enlaces de ResourceSupport a Resources en personas
     - [ ] Migracion de enlaces de ResourceSupport a Resources en familias
     - [ ] Migracion de enlaces de ResourceSupport a Resources en comentarios
 - [ ] Documentar con javaDoc 

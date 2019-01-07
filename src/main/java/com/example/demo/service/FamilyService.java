@@ -168,6 +168,13 @@ public class FamilyService {
 
             resource.add(selfLink);
 
+            for (Person p : f.getPersonas()) {
+
+                Link familyPersonLink = linkTo(PersonController.class).slash(p.getselfId()).withRel("Miembros familia");
+                resource.add(familyPersonLink);
+
+            }
+
             resoucesFamily.add(resource);
 
         }

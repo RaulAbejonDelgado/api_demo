@@ -92,10 +92,12 @@ public class CommentsDao {
 
         Key<Comment> personUpdate = null;
         Comment cOrigin = obtenerPorId(id);
+        //c.setSelfId(listarTodos().size()+1);
 
         if (cOrigin != null) {
 
             c.setId(cOrigin.getId());
+            c.setSelfId(cOrigin.getSelfId());
             personUpdate = datastore.merge(c);
 
         }

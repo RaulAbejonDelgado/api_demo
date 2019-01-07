@@ -130,7 +130,7 @@ public class PersonController {
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ArrayList<Resource<Person>> resoucesPerson;
         ResponseMensaje rm = new ResponseMensaje();
-
+        persona.setSelfId(1);
         try {
 
             Set<ConstraintViolation<Person>> violations = validator.validate(persona);
@@ -141,6 +141,7 @@ public class PersonController {
                 int contador = 0;
 
                 for (ConstraintViolation<Person> violation : violations) {
+                    //En la creacion de una persona nueva debemos omitir esta validacion ya que aun no tiene selfId
 
                     errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
                     contador++;
@@ -154,7 +155,7 @@ public class PersonController {
 
                 resoucesPerson = servicioPerson.crear(persona);
 
-                if (resoucesPerson.size() == 1) {
+                if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
                 } else {
@@ -175,6 +176,9 @@ public class PersonController {
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         ArrayList<Resource<Person>> resoucesPerson;
         ResponseMensaje rm = new ResponseMensaje();
+        //Si queremos permitir que en la actualizacion la creacion de usuario sin el campo selfId
+        //se debe setear para que no de problemas las validaciones.
+        persona.setSelfId(id);
 
         try {
             Set<ConstraintViolation<Person>> violations = validator.validate(persona);

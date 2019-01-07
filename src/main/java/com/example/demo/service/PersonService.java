@@ -59,7 +59,7 @@ public class PersonService {
         for (Person p : persons) {
 
             //ArrayList<Comment> comentarios = (ArrayList<Comment>) commentsDao.obtenerByUser(p);
-            List<Comment> comentarios =  commentsDao.obtenerByUser(p);
+            List<Comment> comentarios = commentsDao.obtenerByUser(p);
 
             resource = new Resource<>(p);
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
@@ -69,11 +69,11 @@ public class PersonService {
             resource.add(selfLink);
             resource.add(familyLink);
 
-            if(comentarios != null){
-               for(Comment c : comentarios){
-                   Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
-                   resource.add(commentsLink);
-               }
+            if (comentarios != null) {
+                for (Comment c : comentarios) {
+                    Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
+                    resource.add(commentsLink);
+                }
             }
 
             resoucesPerson.add(resource);
@@ -90,24 +90,32 @@ public class PersonService {
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
 
+
         Person p = personDao.obtenerPorId(id);
+        List<Comment> comentarios = commentsDao.obtenerByUser(p);
 
         if (p != null) {
+
             resource = new Resource<>(p);
+
+            Link resourceLink = linkTo(PersonController.class).withRel("Listado personas");
+            resource.add(resourceLink);
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
             resource.add(selfLink);
             resoucesPerson.add(resource);
-        }
 
-//        Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
-//        p.add(familyLink);
-//        Link listAllLink = linkTo(PersonController.class).withRel("Listar personas");
-//        p.add(listAllLink);
-//
-//        for(Coment c : comentariosUsuario){
-//            Link listComents = linkTo(PublicacionController.class).slash(c.getComentarioId()).withRel("Comentarios");
-//            p.add(listComents);
-//        }
+            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
+            resource.add(familyLink);
+
+            //Seteamos los comentarios en el detalle de la persona
+            if (comentarios != null) {
+                for (Comment c : comentarios) {
+                    Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
+                    resource.add(commentsLink);
+                }
+            }
+
+        }
 
         return resoucesPerson;
     }
@@ -138,6 +146,13 @@ public class PersonService {
             resource = new Resource<>(p);
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
             resource.add(selfLink);
+
+            Link resourceLink = linkTo(PersonController.class).withRel("Listado personas");
+            resource.add(resourceLink);
+
+            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
+            resource.add(familyLink);
+
             resoucesPerson.add(resource);
 
         }
@@ -149,6 +164,7 @@ public class PersonService {
 
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
+        List<Comment> comentarios = commentsDao.obtenerByUser(p);
 
         Key<Person> personUpdate = personDao.modificar(id, p);
 
@@ -157,8 +173,21 @@ public class PersonService {
             resource = new Resource<>(p);
 
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
-
             resource.add(selfLink);
+
+            Link resourceLink = linkTo(PersonController.class).withRel("Listado personas");
+            resource.add(resourceLink);
+
+            Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
+            resource.add(familyLink);
+
+            //Seteamos los comentarios en el detalle de la persona
+            if (comentarios != null) {
+                for (Comment c : comentarios) {
+                    Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
+                    resource.add(commentsLink);
+                }
+            }
 
             resoucesPerson.add(resource);
         }

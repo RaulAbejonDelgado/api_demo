@@ -5,7 +5,11 @@ import com.example.demo.controller.FamilyController;
 import com.example.demo.controller.PersonController;
 import com.example.demo.dao.CommentsDao;
 import com.example.demo.dao.DataFlowDao;
+import com.example.demo.dao.FamilyDao;
+import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Comment;
+import com.example.demo.pojo.Family;
+import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
@@ -22,13 +26,17 @@ public class CommentService {
     private static CommentService INSTANCE = null;
 
     private static CommentsDao comentarioDao = null;
+    private static FamilyDao familyDao = null;
     private static DataFlowDao dataFlowDao = null;
+    private static PersonDao personaDao = null;
 
     private CommentService() throws UnknownHostException {
 
         super();
         comentarioDao = CommentsDao.getInstance();
         dataFlowDao = DataFlowDao.getInstance();
+        familyDao = FamilyDao.getInstance();
+        personaDao = PersonDao.getInstance();
 
     }
 
@@ -49,6 +57,16 @@ public class CommentService {
         Resource<Comment> resourceComment;
 
         comentarios = (ArrayList<Comment>) comentarioDao.listarTodos();
+
+        //seteamos las personas dentro de las familias
+        for (Comment c : comentarios){
+            Family[] f = c.getFamilia();
+            for(Family g : f){
+                Family f1 = familyDao.obtenerPorId(g.getSelfId());
+                c.setFamilia(new Family[]{f1});
+
+            }
+        }
 
         if (comentarios.size() > 0) {
 
@@ -85,6 +103,11 @@ public class CommentService {
         Comment c = comentarioDao.obtenerPorId(id);
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
         Resource<Comment> resource;
+
+        //seteamos las personas dentro de las familias
+        Family f1 = familyDao.obtenerPorId(c.getSelfId());
+        c.setFamilia(new Family[]{f1});
+
         if (c != null) {
             resource = new Resource<>(c);
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
@@ -114,6 +137,25 @@ public class CommentService {
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
         Resource<Comment> resource;
 
+        //seteamos las personas dentro de las familias
+        //Family f1 = familyDao.obtenerPorId(c.getSelfId());
+        Family[] f1 = c.getFamilia();
+        Family f2 = new Family();
+        Person p2 = new Person();
+
+        Person[] pArray = c.getPersona();
+
+        for(Person p : pArray){
+            p2 = personaDao.obtenerPorId(p.getselfId());
+        }
+        for(Family f : f1){
+
+             f2 = familyDao.obtenerPorId(f.getSelfId());
+
+        }
+        c.setPersona(new Person[]{p2});
+        c.setFamilia(new Family[]{f2});
+
         if (commentKey.getId() != null) {
 
             resource = new Resource<>(c);
@@ -136,14 +178,38 @@ public class CommentService {
         Resource<Comment> resource;
 
         Key<Comment> commentKey = comentarioDao.modificar(id, c);
+        //seteamos las personas dentro de las familias
+        //Family f1 = familyDao.obtenerPorId(c.getSelfId());
+        Family[] f1 = c.getFamilia();
+        Family f2 = new Family();
+        Person p2 = new Person();
+
+        Person[] pArray = c.getPersona();
+
+        for(Person p : pArray){
+            p2 = personaDao.obtenerPorId(p.getselfId());
+        }
+        for(Family f : f1){
+
+            f2 = familyDao.obtenerPorId(f.getSelfId());
+
+        }
+        c.setPersona(new Person[]{p2});
+        c.setFamilia(new Family[]{f2});
+
 
         if (commentKey.getId() != null && !commentKey.getId().equals("")) {
 
             resource = new Resource<>(c);
 
             Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
-
             resource.add(selfLink);
+
+            Link familyLink = linkTo(FamilyController.class).slash(c.getSelfId()).withRel("Familia");
+            resource.add(familyLink);
+
+            Link userLink = linkTo(PersonController.class).slash(c.getPersona()[0].getselfId()).withRel("Autor");
+            resource.add(userLink);
 
             resoucesPerson.add(resource);
         }

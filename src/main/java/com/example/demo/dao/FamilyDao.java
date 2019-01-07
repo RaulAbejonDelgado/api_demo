@@ -15,6 +15,7 @@ import java.util.List;
 public class FamilyDao {
 
     private static FamilyDao INSTANCE = null;
+    private static PersonDao personaDao = null ;
 
     @Autowired
     private Datastore datastore;
@@ -35,6 +36,7 @@ public class FamilyDao {
         super();
 
         datastore = DataSourceConfiguration.getConnection();
+        personaDao = PersonDao.getInstance();
 
     }
 
@@ -57,19 +59,32 @@ public class FamilyDao {
 
     }
 
+    /**
+     * Para la creacion de familias debemos setear correctamente los objetos anidados en este caso personas.
+     * por ello primero debemos recuperar las personas pertenecientes en caso de que existan si no existen habra que crearla
+     * @param f
+     * @return
+     */
     public Key<Family> crear(Family f) {
 
         //seteamos el self id
         f.setSelfId(listarTodos().size() + 1);
 
-        if (f.getPersonas().length != 0) {
+        /**
+         * Antes de crear una familia miramos si tiene personas,
+         * si tiene personas pero no nos dan el _id lo buscamos y lo seteamos antes de la creacion de la familia
+         */
+        Person[] personas = f.getPersonas();
+        if(personas.length > 0){
 
-            for (Person p : f.getPersonas()) {
+            for (Person p : personas){
 
-                //seteamos la familia en las persoans relacionadas
-                //todo setear el objectId de los miembros
-                p.setFamilyId(f.getSelfId());
+                Person pe = personaDao.obtenerPorId(p.getselfId());
 
+                if(pe != null) {
+                    p.setId(pe.getId());
+                    p.setFamilyId(f.getSelfId());
+                }
             }
         }
 
@@ -87,6 +102,19 @@ public class FamilyDao {
 
         Key<Family> familyUpdate = null;
         Family fOld = obtenerPorId(id);
+        Person[] personas = f.getPersonas();
+        if(personas.length > 0){
+
+            for (Person p : personas){
+
+                Person pe = personaDao.obtenerPorId(p.getselfId());
+
+                if(pe != null) {
+                    p.setId(pe.getId());
+                    p.setFamilyId(f.getSelfId());
+                }
+            }
+        }
 
         if (fOld != null) {
 
