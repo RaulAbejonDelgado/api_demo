@@ -25,12 +25,18 @@ public class MongoReader extends MongoItemReader<MongoItemReader<Person>> {
 		try {
 
 			mongoTemplate = mongoTemplate();
-
 			reader.setTemplate(mongoTemplate);
 			reader.setQuery("{}");
 			reader.setTargetType(Person.class);
 			reader.setCollection("persons");
-			reader.setSort(new HashMap<String, Sort.Direction>() );
+			reader.setSort(new HashMap<String, Sort.Direction>() {
+				{
+					put("selfId", Sort.Direction.DESC);
+				}
+			});
+
+			Person p = reader.read();
+
 
 		}catch (Exception e){
 
@@ -44,11 +50,13 @@ public class MongoReader extends MongoItemReader<MongoItemReader<Person>> {
 	@Override
 	public MongoItemReader<Person> read() throws Exception, UnexpectedInputException,
 			ParseException, NonTransientResourceException {
-
-		System.out.println("Pasamos por mongo reader");
-
 		count++;
-		return reader;
+		System.out.println("Pasamos por mongo reader");
+		if(reader.read() != null){
+			return reader;
+		}
+		System.out.println("La pasada nº"+ count +" ha sido nula");
+		return null;
 
 	}
 

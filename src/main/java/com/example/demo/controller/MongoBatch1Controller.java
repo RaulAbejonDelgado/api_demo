@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/API/MongobatchRead")
 public class MongoBatch1Controller {
 
-    private static Batch1Service batch1Service = null;
-
     @Autowired
     JobLauncher mongoProcessJob;
 
@@ -23,11 +21,7 @@ public class MongoBatch1Controller {
     Job customProcessJobMongo;
 
     public MongoBatch1Controller() {
-        try {
-            batch1Service = Batch1Service.getInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super();
 
     }
 
@@ -41,5 +35,6 @@ public class MongoBatch1Controller {
         return "Mongo Batch job executed !!";
 
     }
+
 
 }
