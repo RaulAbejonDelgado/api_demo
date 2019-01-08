@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.demo.dao.DataFlowDao.write2XMLFile;
-
 
 public class MongoWriter implements ItemWriter<ArrayList<Person>> {
 
@@ -60,22 +58,12 @@ public class MongoWriter implements ItemWriter<ArrayList<Person>> {
                             e.printStackTrace();
                         }
                     }
-                    System.out.println("Es nulo en el contenido de la lista en el ciclo "+ count);
 
                 });
             }
-            System.out.println("Es nulo en el ciclo  "+ count);
 
         });
         count++;
-//		for(ArrayList<Person> p : list){
-//
-//			// 1. Write Object to XML String
-//			String xmlPerson = write2XMLString(p);
-//			String pathFilePerson = directorio + dinamicSlash + p.getNombre() + ".xml";
-//
-//			write2XMLFile(p, pathFilePerson);
-//		}
     }
 
 

@@ -26,7 +26,7 @@ public class MongoBatchConfig {
 	public JobBuilderFactory mongojobBuilderFactory;
 
 	@Autowired
-	public StepBuilderFactory mongoBuilderFactory;
+	public StepBuilderFactory mongoBuilderFactory;;
 
 	@Bean
 	public Job customProcessJobMongo() throws UnknownHostException {
@@ -38,10 +38,11 @@ public class MongoBatchConfig {
 				.build();
 	}
 
+
 	@Bean
 	public Step mongoOrderStep()  {
 		return mongoBuilderFactory.get("mongoOrderStep").
-				<MongoItemReader<Person>,ArrayList<Person>> chunk(1)
+				<ArrayList<Person>,ArrayList<Person>> chunk(1)
 				.reader(new MongoReader())
 				.processor(new MongoProcessor())
 				.writer(new MongoWriter())
