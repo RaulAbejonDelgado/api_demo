@@ -25,7 +25,7 @@
 - [ ] Implementar LOGGER
 ### FrontEnd
 - [x] Pagina inicio con documentacion API http://localhost:8080
-- [ ] Cliente angular
+- [ ] Cliente angular https://github.com/RaulAbejonDelgado/cliente_api_demo
     - [x] Crear Tema para cliente angular
     - [ ] Crear registro
     - [ ] Implementacion de seguridad(Guards)
