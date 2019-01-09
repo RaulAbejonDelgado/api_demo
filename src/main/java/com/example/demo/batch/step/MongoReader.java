@@ -24,8 +24,8 @@ public class MongoReader extends MongoItemReader<ArrayList<Person>> {
 	MongoItemReader<Person> reader = new MongoItemReader<Person>();
 	ArrayList<MongoItemReader<Person>> test = null;
 	ArrayList<Person> personasTest = new ArrayList<>();
-	PersonDao personDao = null;
-	DataFlowDao dataFlowDao = null;
+	//PersonDao personDao = null;
+	//DataFlowDao dataFlowDao = null;
 	boolean flag = false;
 
 	public MongoReader()  {
@@ -47,8 +47,8 @@ public class MongoReader extends MongoItemReader<ArrayList<Person>> {
 				}
 			});
 
-			dataFlowDao = DataFlowDao.getInstance();
-			personDao = PersonDao.getInstance();
+			//dataFlowDao = DataFlowDao.getInstance();
+			//personDao = PersonDao.getInstance();
 
 
 		}catch (Exception e){
@@ -65,10 +65,11 @@ public class MongoReader extends MongoItemReader<ArrayList<Person>> {
 			ParseException, NonTransientResourceException {
 
 		System.out.println("Pasamos por mongo reader");
-		personasTest = (ArrayList<Person>) personDao.listar();
+		//personasTest = (ArrayList<Person>) personDao.listar();
 		if(reader.read() != null){
-			System.out.println(reader.read());
+
 			personasTest.add(reader.read());
+
 			return personasTest;
 		}
 		return null;

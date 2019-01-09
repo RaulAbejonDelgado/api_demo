@@ -16,8 +16,12 @@ public class MongoProcessor implements ItemProcessor<ArrayList<Person>, ArrayLis
     @Override
     public ArrayList<Person> process(ArrayList<Person> people) throws Exception {
 
+        if(people != null){
 
-        return people;
+            return people;
+        }
+        return null;
+
     }
 
 

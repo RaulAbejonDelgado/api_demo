@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
+import java.util.Date;
 
 @Entity(value = "comentarios", noClassnameStored = true)
 @XmlRootElement(name="Comment")
@@ -17,6 +18,11 @@ public class Comment extends BaseEntity {
     @XmlElementWrapper(name="familia")//para indicarle que es un array
     @XmlElement(name="familia")
     private Family[] familia;
+
+    @NotNull(message = "tittle cannot be null")
+    @Size(min = 5, max = 100, message= "tittle must be between 5 and 100 characters")
+    @XmlElement(name="titulo")
+    private String titulo;
 
     @NotNull(message = "Name cannot be null")
     @Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")
@@ -30,6 +36,12 @@ public class Comment extends BaseEntity {
 
     @XmlElement(name="selfId")
     private int selfId;
+
+    @NotNull(message = "Name cannot be null")
+    @XmlElement(name="fecha")
+    private Date fecha;
+
+
 
 
     public Comment() {
@@ -77,14 +89,31 @@ public class Comment extends BaseEntity {
     public void setSelfId(int selfId) {
         this.selfId = selfId;
     }
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
     @Override
     public String toString() {
         return "Comment{" +
                 "familia=" + Arrays.toString(familia) +
+                ", titulo='" + titulo + '\'' +
                 ", texto='" + texto + '\'' +
                 ", persona=" + Arrays.toString(persona) +
                 ", selfId=" + selfId +
+                ", fecha=" + fecha +
                 ", _id=" + _id +
                 '}';
     }
