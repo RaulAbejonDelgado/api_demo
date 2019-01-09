@@ -30,7 +30,9 @@
     - [ ] Crear registro
     - [ ] Implementacion de seguridad(Guards)
     - [x] Crear Estancia usuario
-        - [ ] Lectura de comentarios
+        - [x] Lectura de comentarios
+        - [x] Lectura de personas
+        - [x] Lectura de familias
         - [ ] Creacion de comentarios           
     - [ ] Crear Zona administracion
         - [ ] Crear Crud
