@@ -26,10 +26,10 @@
 ### FrontEnd
 - [x] Pagina inicio con documentacion API http://localhost:8080
 - [ ] Cliente angular
-    - [ ] Crear Tema para cliente angular
+    - [x] Crear Tema para cliente angular
     - [ ] Crear registro
     - [ ] Implementacion de seguridad(Guards)
-    - [ ] Crear Estancia usuario 
+    - [x] Crear Estancia usuario
         - [ ] Lectura de comentarios
         - [ ] Creacion de comentarios           
     - [ ] Crear Zona administracion

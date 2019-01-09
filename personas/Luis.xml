@@ -3,6 +3,8 @@
   <selfId>6</selfId>
   <familyId>3</familyId>
   <nombre>Luis</nombre>
+  <correo>luis@gmail.com</correo>
+  <password>luis</password>
   <id>
     <timestamp>1546414830</timestamp>
     <machineIdentifier>14619436</machineIdentifier>

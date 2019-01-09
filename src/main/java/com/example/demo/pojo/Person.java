@@ -29,6 +29,15 @@ public class Person extends BaseEntity {
     @XmlElement(name="nombre")
     private String nombre;
 
+    @NotNull(message = "Name cannot be null")
+    @XmlElement(name="correo")
+    private String correo;
+
+    @NotNull(message = "password cannot be null")
+    @Size(min = 5, max = 150, message= "Password must be between 5 and 150 characters")
+    @XmlElement(name="password")
+    private String password;
+
     public Person() {
 
 //        this.selfId = 0 ;
@@ -61,12 +70,31 @@ public class Person extends BaseEntity {
         this.nombre = nombre;
     }
 
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "selfId=" + selfId +
                 ", familyId=" + familyId +
                 ", nombre='" + nombre + '\'' +
+                ", email='" + correo + '\'' +
+                ", password='" + password + '\'' +
                 ", _id=" + _id +
                 '}';
     }

@@ -20,7 +20,6 @@ import java.util.Set;
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/API/publicaciones/person")
-@RestController
 public class PersonController {
 
     private static final int IMPORT_DATA = 1;

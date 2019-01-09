@@ -56,7 +56,11 @@ public class PersonService {
 
         persons = (ArrayList<Person>) personDao.listar();
 
+
         for (Person p : persons) {
+            //oculto el password
+
+            p.setPassword("****************");
 
             //ArrayList<Comment> comentarios = (ArrayList<Comment>) commentsDao.obtenerByUser(p);
             List<Comment> comentarios = commentsDao.obtenerByUser(p);
