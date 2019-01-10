@@ -5,6 +5,7 @@ import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
+import org.mongodb.morphia.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
@@ -92,4 +93,22 @@ public class PersonDao {
 
     }
 
+    public Person obtenerPorNombrePassword(Person p) {
+
+//        Query<Person> query = datastore.createQuery(Person.class);
+//        List<String> names = Arrays.asList("correo","password");
+//
+//        query.or(
+//                query.criteria("correo").hasAnyOf(names),
+//                query.criteria("password").hasAnyOf(names)
+//        );
+
+        return datastore.find(Person.class).field("correo").equal(p.getCorreo()).field("password").equal(p.getPassword()).get();
+    }
+
+    public Person obtenerPorNombre(String nombre) {
+
+        return datastore.find(Person.class).field("nombre").equal(nombre).get();
+
+    }
 }

@@ -37,8 +37,8 @@ public class Comment extends BaseEntity {
     @XmlElement(name="selfId")
     private int selfId;
 
-    @NotNull(message = "Name cannot be null")
-    @XmlElement(name="fecha")
+//    @NotNull(message = "Name cannot be null")
+//    @XmlElement(name="fecha")
     private Date fecha;
 
 

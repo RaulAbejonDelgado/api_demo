@@ -1,49 +1,49 @@
 <Comment>
-  <_id>5c2c6b64df132c28285f4e92</_id>
+  <_id>5c2c6b64df132c28285f4e95</_id>
   <familia>
     <familia>
-      <_id>5c2c6b64df132c28285f4e93</_id>
+      <_id>5c2c6b64df132c28285f4e96</_id>
       <selfId>1</selfId>
       <nombre>familia AsierRaul</nombre>
       <id>
         <timestamp>1546414948</timestamp>
         <machineIdentifier>14619436</machineIdentifier>
         <processIdentifier>10280</processIdentifier>
-        <counter>6246035</counter>
+        <counter>6246038</counter>
         <time>1546414948000</time>
         <date>1546414948000</date>
         <timeSecond>1546414948</timeSecond>
       </id>
     </familia>
   </familia>
-  <titulo>Probando</titulo>
-  <texto>Editando el comentario</texto>
+  <titulo>reformulando titulo</titulo>
+  <texto>Reformulando la extructura</texto>
   <persona>
     <persona>
-      <_id>5c2c6b64df132c28285f4e94</_id>
-      <selfId>1</selfId>
+      <_id>5c2c6b64df132c28285f4e97</_id>
+      <selfId>21</selfId>
       <familyId>1</familyId>
-      <nombre>Raul</nombre>
+      <nombre>Asier</nombre>
       <correo/>
       <password/>
       <id>
         <timestamp>1546414948</timestamp>
         <machineIdentifier>14619436</machineIdentifier>
         <processIdentifier>10280</processIdentifier>
-        <counter>6246036</counter>
+        <counter>6246039</counter>
         <time>1546414948000</time>
         <date>1546414948000</date>
         <timeSecond>1546414948</timeSecond>
       </id>
     </persona>
   </persona>
-  <selfId>1</selfId>
-  <fecha>1547029845000</fecha>
+  <selfId>2</selfId>
+  <fecha>1547029834000</fecha>
   <id>
     <timestamp>1546414948</timestamp>
     <machineIdentifier>14619436</machineIdentifier>
     <processIdentifier>10280</processIdentifier>
-    <counter>6246034</counter>
+    <counter>6246037</counter>
     <time>1546414948000</time>
     <date>1546414948000</date>
     <timeSecond>1546414948</timeSecond>

@@ -47,7 +47,7 @@ public class PersonController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
+    @RequestMapping(method = RequestMethod.GET, produces = {"application/x-resource+json"})
     public ResponseEntity<Object> listAll() {
 
         ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,7 +67,8 @@ public class PersonController {
 
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {"application/x-resource+json"})
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
         ArrayList<Resource<Person>> resoucesPerson;
@@ -114,7 +115,7 @@ public class PersonController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            if(e.getMessage().contains("Not found, imposible delete it")){
+            if (e.getMessage().contains("Not found, imposible delete it")) {
                 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
@@ -123,7 +124,7 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
+    @RequestMapping(method = RequestMethod.POST, produces = {"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Person persona) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -169,7 +170,30 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/x-resource+json"})
+    public ResponseEntity<Object> login(@RequestBody Person persona) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        Resource resoucesPerson;
+
+        try {
+            resoucesPerson = servicioPerson.loginTest(persona);
+            if (resoucesPerson != null) {
+
+                response = new ResponseEntity<>(resoucesPerson,HttpStatus.OK);
+
+            } else {
+
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Person persona, @PathVariable int id) {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -249,6 +273,30 @@ public class PersonController {
 
         return response;
 
+    }
+
+    @RequestMapping(value = "/nombre/{nombre}", method = RequestMethod.GET, produces = {"application/x-resource+json"})
+    public ResponseEntity<Object> detailByName(@PathVariable String nombre) {
+
+        ArrayList<Resource<Person>> resoucesPerson;
+        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        try {
+
+            resoucesPerson = servicioPerson.obtenerPorNombre(nombre);
+            if (resoucesPerson.size() > 0) {
+
+                response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
 
     }
 

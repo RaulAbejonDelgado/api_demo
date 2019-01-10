@@ -1,30 +1,50 @@
 <Family>
-  <_id>5c23e4a463807b071ba5d135</_id>
-  <selfId>7</selfId>
+  <_id>5c2c6b3bdf132c28285f4e88</_id>
+  <selfId>6</selfId>
   <nombre>familia editada parcial v2 Modificando solo el nombre</nombre>
   <personas>
     <personas>
-      <_id/>
+      <_id>5c2c6b3bdf132c28285f4e89</_id>
       <selfId>9</selfId>
-      <familyId>7</familyId>
+      <familyId>6</familyId>
       <nombre>drohne</nombre>
-      <id/>
+      <correo/>
+      <password/>
+      <id>
+        <timestamp>1546414907</timestamp>
+        <machineIdentifier>14619436</machineIdentifier>
+        <processIdentifier>10280</processIdentifier>
+        <counter>6246025</counter>
+        <time>1546414907000</time>
+        <date>1546414907000</date>
+        <timeSecond>1546414907</timeSecond>
+      </id>
     </personas>
     <personas>
-      <_id/>
+      <_id>5c2c6b3bdf132c28285f4e8a</_id>
       <selfId>8</selfId>
-      <familyId>7</familyId>
+      <familyId>6</familyId>
       <nombre>Luis</nombre>
-      <id/>
+      <correo/>
+      <password/>
+      <id>
+        <timestamp>1546414907</timestamp>
+        <machineIdentifier>14619436</machineIdentifier>
+        <processIdentifier>10280</processIdentifier>
+        <counter>6246026</counter>
+        <time>1546414907000</time>
+        <date>1546414907000</date>
+        <timeSecond>1546414907</timeSecond>
+      </id>
     </personas>
   </personas>
   <id>
-    <timestamp>1545856164</timestamp>
-    <machineIdentifier>6520955</machineIdentifier>
-    <processIdentifier>1819</processIdentifier>
-    <counter>10866997</counter>
-    <time>1545856164000</time>
-    <date>1545856164000</date>
-    <timeSecond>1545856164</timeSecond>
+    <timestamp>1546414907</timestamp>
+    <machineIdentifier>14619436</machineIdentifier>
+    <processIdentifier>10280</processIdentifier>
+    <counter>6246024</counter>
+    <time>1546414907000</time>
+    <date>1546414907000</date>
+    <timeSecond>1546414907</timeSecond>
   </id>
 </Family>

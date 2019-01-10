@@ -1,30 +1,50 @@
 <Family>
-  <_id>5c251bd063807b1fda58458a</_id>
-  <selfId>1</selfId>
+  <_id>5c2c6b3bdf132c28285f4e7f</_id>
+  <selfId>2</selfId>
   <nombre>familia AsierRaul</nombre>
   <personas>
     <personas>
-      <_id/>
+      <_id>5c2c6b3bdf132c28285f4e80</_id>
       <selfId>1</selfId>
-      <familyId>1</familyId>
+      <familyId>2</familyId>
       <nombre>Asier</nombre>
-      <id/>
+      <correo/>
+      <password/>
+      <id>
+        <timestamp>1546414907</timestamp>
+        <machineIdentifier>14619436</machineIdentifier>
+        <processIdentifier>10280</processIdentifier>
+        <counter>6246016</counter>
+        <time>1546414907000</time>
+        <date>1546414907000</date>
+        <timeSecond>1546414907</timeSecond>
+      </id>
     </personas>
     <personas>
-      <_id/>
+      <_id>5c2c6b3bdf132c28285f4e81</_id>
       <selfId>2</selfId>
-      <familyId>1</familyId>
+      <familyId>2</familyId>
       <nombre>Raul</nombre>
-      <id/>
+      <correo/>
+      <password/>
+      <id>
+        <timestamp>1546414907</timestamp>
+        <machineIdentifier>14619436</machineIdentifier>
+        <processIdentifier>10280</processIdentifier>
+        <counter>6246017</counter>
+        <time>1546414907000</time>
+        <date>1546414907000</date>
+        <timeSecond>1546414907</timeSecond>
+      </id>
     </personas>
   </personas>
   <id>
-    <timestamp>1545935824</timestamp>
-    <machineIdentifier>6520955</machineIdentifier>
-    <processIdentifier>8154</processIdentifier>
-    <counter>5784970</counter>
-    <time>1545935824000</time>
-    <date>1545935824000</date>
-    <timeSecond>1545935824</timeSecond>
+    <timestamp>1546414907</timestamp>
+    <machineIdentifier>14619436</machineIdentifier>
+    <processIdentifier>10280</processIdentifier>
+    <counter>6246015</counter>
+    <time>1546414907000</time>
+    <date>1546414907000</date>
+    <timeSecond>1546414907</timeSecond>
   </id>
 </Family>
