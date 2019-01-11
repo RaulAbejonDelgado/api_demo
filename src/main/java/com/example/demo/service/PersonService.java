@@ -26,12 +26,14 @@ public class PersonService {
     private static DataFlowDao dataFlow = null;
     private static CommentsDao commentsDao = null;
 
+
     private PersonService() throws UnknownHostException {
 
         super();
         personDao = PersonDao.getInstance();
         commentsDao = CommentsDao.getInstance();
         dataFlow = DataFlowDao.getInstance();
+
 
     }
 
@@ -274,6 +276,6 @@ public class PersonService {
 
         return resoucesPerson;
 
-
     }
+
 }
