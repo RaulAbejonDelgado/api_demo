@@ -230,11 +230,20 @@ public class CommentService {
 
     }
 
-    public ArrayList<Comment> obtenerComentPorUsuario(int id) throws  UnknownHostException {
-        ArrayList<Comment> comentarios = new ArrayList<Comment>();
+    public ArrayList<Resource<Comment>> byUserId(int id) {
+        Person p = personaDao.obtenerPorId(id);
+        ArrayList<Comment> comentariosPorPersona = new ArrayList<>();
+        ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
+        Resource<Comment> resourceComment;
+        comentariosPorPersona = (ArrayList<Comment>) comentarioDao.obtenerByUser(p);
 
-        //comentarios = comentarioDao.);
+        for(Comment c: comentariosPorPersona){
+            resourceComment = new Resource<>(c);
+            resourcesComentariosArray.add(resourceComment);
+        }
 
-        return comentarios;
+        return resourcesComentariosArray;
+
+
     }
 }

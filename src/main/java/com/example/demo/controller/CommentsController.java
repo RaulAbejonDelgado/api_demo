@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.CommentService;
+import com.example.demo.service.PersonService;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -248,6 +249,35 @@ public class CommentsController {
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
+        }
+
+        return response;
+
+    }
+
+    @RequestMapping(value = "/byUser/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
+    public ResponseEntity<Object> byUser(@PathVariable int id ) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ArrayList<Resource<Comment>> resoucesComent;
+
+        try {
+
+            resoucesComent = servicioComent.byUserId(id);
+
+            if (resoucesComent.size() > 0) {
+
+                response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
+
+            } else {
+
+                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
 
         return response;

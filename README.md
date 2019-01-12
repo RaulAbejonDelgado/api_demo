@@ -15,25 +15,20 @@
 - [x] Exportacion de Colecciones mongodb y creacion de archivos xml
 - [x] Importacion de documentos xml a mongoDB usando spring batch
 - [ ] Exportacion de Colecciones mongodb y creacion de archivos xml usando spring batch
-- [ ] Integracion de Hateoas
-    - [x] Migracion de enlaces de ResourceSupport a Resources en personas
-    - [ ] Migracion de enlaces de ResourceSupport a Resources en familias
-    - [ ] Migracion de enlaces de ResourceSupport a Resources en comentarios
+- [x] Integracion de Hateoas
 - [ ] Documentar con javaDoc 
-- [ ] Añadir campos al objeto person para registro/ingreso
-- [ ] Agregar objeto familias al objeto person
 - [ ] Implementar LOGGER
 ### FrontEnd
 - [x] Pagina inicio con documentacion API http://localhost:8080
 - [ ] Cliente angular https://github.com/RaulAbejonDelgado/cliente_api_demo
     - [x] Crear Tema para cliente angular
-    - [ ] Crear registro
+    - [x] Crear registro
     - [ ] Implementacion de seguridad(Guards)
     - [x] Crear Estancia usuario
         - [x] Lectura de comentarios
         - [x] Lectura de personas
         - [x] Lectura de familias
-        - [ ] Creacion de comentarios           
+        - [x] Creacion de comentarios           
     - [ ] Crear Zona administracion
         - [ ] Crear Crud
             - [ ] Crud personas

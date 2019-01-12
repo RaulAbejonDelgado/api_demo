@@ -51,21 +51,21 @@ public class CommentsDao {
 
     public List<Comment> obtenerByUser(Person p) {
 
-        List<Comment> comentarios =  datastore.find(Comment.class).field("persona.selfId").equal(p.getselfId()).asList();
+        //List<Comment> comentarios =  datastore.find(Comment.class).field("persona.selfId").equal(p.getselfId()).asList();
 
-//        List<Comment> comentariosRetorno = new ArrayList<>();
-//        ArrayList<Comment> comentarios = (ArrayList<Comment>) datastore.createQuery(Comment.class).asList();
-//        for (Comment c : comentarios) {
-//
-//            for (Person pe : c.getPersona()) {
-//                if (pe.getselfId() == p.getselfId()) {
-//                    comentariosRetorno.add(c);
-//                }
-//            }
-//
-//        }
+        List<Comment> comentariosRetorno = new ArrayList<>();
+        ArrayList<Comment> comentarios = (ArrayList<Comment>) datastore.createQuery(Comment.class).asList();
+        for (Comment c : comentarios) {
 
-        return comentarios;
+            for (Person pe : c.getPersona()) {
+                if (pe.getselfId() == p.getselfId()) {
+                    comentariosRetorno.add(c);
+                }
+            }
+
+        }
+
+        return comentariosRetorno;
     }
 
     public WriteResult delete(Comment c) {
