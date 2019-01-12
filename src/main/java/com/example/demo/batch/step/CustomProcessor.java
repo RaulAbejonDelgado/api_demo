@@ -9,6 +9,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CustomProcessor implements ItemProcessor<File, ArrayList<Object>> {
 	int contador = 0 ;
@@ -37,8 +38,10 @@ public class CustomProcessor implements ItemProcessor<File, ArrayList<Object>> {
 		}
 
 		if(f.getPath().contains("comentarios")){
-
-            objetos.add((Comment) jaxbUnmarshaller.unmarshal(f));
+			Comment comment = (Comment) jaxbUnmarshaller.unmarshal(f);
+			//Sete la fecha ya que si no me deja 1970-x-x y da problemas la fecha en la carga inicial
+			comment.setFecha(new Date());
+            objetos.add(comment);
 
 		}
 

@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/API/Mongobatch")
+@RequestMapping("/API/batch")
 public class CustomBatch1Controller {
 
     private static Batch1Service batch1Service = null;
+
+    private String msg = "<a href='http://localhost:8080'>http://localhost:8080</a>";
 
     @Autowired
     JobLauncher jobLauncher;
@@ -38,7 +40,7 @@ public class CustomBatch1Controller {
                     .toJobParameters();
             jobLauncher.run(customProcessJob, jobParameters);
 
-        return "Mongo Batch job executed !!";
+        return msg;
 
     }
 

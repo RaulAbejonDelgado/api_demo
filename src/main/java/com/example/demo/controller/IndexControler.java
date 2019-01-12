@@ -41,7 +41,7 @@ public class IndexControler {
                 Link publicacionesLink = linkTo(PersonController.class).withSelfRel();
                 Link familiasLink = linkTo(FamilyController.class).withSelfRel();
                 Link comentariosLink = linkTo(CommentsController.class).withSelfRel();
-                Link batch1Link = linkTo(Batch1Controller.class).withSelfRel();
+                Link batch1Link = linkTo(CustomBatch1Controller.class).withSelfRel();
 
                 //Creanis 3 objetos index
                 Index publi = new Index("Personas");

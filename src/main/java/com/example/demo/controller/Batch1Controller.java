@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/API/batch")
+@RequestMapping("/API/batchExample")
 public class Batch1Controller {
 
     private static Batch1Service batch1Service = null;
@@ -33,11 +33,7 @@ public class Batch1Controller {
  
     @RequestMapping( method = RequestMethod.GET)
     public String batch1() throws Exception {
-//        boolean resul = false;
-//        String msg = "Fail";
-//            if(batch1Service.launchBatch1(jobLauncher,processJob)){
-//                msg= "Batch job executed";
-//            };
+
             JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
                     .toJobParameters();
             jobLauncher.run(processJob, jobParameters);

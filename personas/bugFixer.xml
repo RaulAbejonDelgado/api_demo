@@ -1,0 +1,17 @@
+<Person>
+  <_id>5c390289a4f2277de84485ad</_id>
+  <selfId>16</selfId>
+  <familyId>12</familyId>
+  <nombre>bugFixer</nombre>
+  <correo>bugfixer@gmail.com</correo>
+  <password>bugfixer</password>
+  <id>
+    <timestamp>1547240073</timestamp>
+    <machineIdentifier>10809895</machineIdentifier>
+    <processIdentifier>32232</processIdentifier>
+    <counter>4490669</counter>
+    <time>1547240073000</time>
+    <date>1547240073000</date>
+    <timeSecond>1547240073</timeSecond>
+  </id>
+</Person>

@@ -1,51 +1,51 @@
 <Comment>
-  <_id>5c2c6b64df132c28285f4e95</_id>
+  <_id>5c3a3a15a4f2271887d85532</_id>
   <familia>
     <familia>
-      <_id>5c2c6b64df132c28285f4e96</_id>
+      <_id>5c3a3a15a4f2271887d85533</_id>
       <selfId>1</selfId>
       <nombre>familia AsierRaul</nombre>
       <id>
-        <timestamp>1546414948</timestamp>
-        <machineIdentifier>14619436</machineIdentifier>
-        <processIdentifier>10280</processIdentifier>
-        <counter>6246038</counter>
-        <time>1546414948000</time>
-        <date>1546414948000</date>
-        <timeSecond>1546414948</timeSecond>
+        <timestamp>1547319829</timestamp>
+        <machineIdentifier>10809895</machineIdentifier>
+        <processIdentifier>6279</processIdentifier>
+        <counter>14177587</counter>
+        <time>1547319829000</time>
+        <date>1547319829000</date>
+        <timeSecond>1547319829</timeSecond>
       </id>
     </familia>
   </familia>
-  <titulo>reformulando titulo</titulo>
+  <titulo>titulo comentario</titulo>
   <texto>Reformulando la extructura</texto>
   <persona>
     <persona>
-      <_id>5c2c6b64df132c28285f4e97</_id>
+      <_id>5c3a3a15a4f2271887d85534</_id>
       <selfId>21</selfId>
       <familyId>1</familyId>
       <nombre>Asier</nombre>
-      <correo/>
-      <password/>
+      <correo></correo>
+      <password></password>
       <id>
-        <timestamp>1546414948</timestamp>
-        <machineIdentifier>14619436</machineIdentifier>
-        <processIdentifier>10280</processIdentifier>
-        <counter>6246039</counter>
-        <time>1546414948000</time>
-        <date>1546414948000</date>
-        <timeSecond>1546414948</timeSecond>
+        <timestamp>1547319829</timestamp>
+        <machineIdentifier>10809895</machineIdentifier>
+        <processIdentifier>6279</processIdentifier>
+        <counter>14177588</counter>
+        <time>1547319829000</time>
+        <date>1547319829000</date>
+        <timeSecond>1547319829</timeSecond>
       </id>
     </persona>
   </persona>
   <selfId>2</selfId>
-  <fecha>1547029834000</fecha>
+  <fecha>1546300800000</fecha>
   <id>
-    <timestamp>1546414948</timestamp>
-    <machineIdentifier>14619436</machineIdentifier>
-    <processIdentifier>10280</processIdentifier>
-    <counter>6246037</counter>
-    <time>1546414948000</time>
-    <date>1546414948000</date>
-    <timeSecond>1546414948</timeSecond>
+    <timestamp>1547319829</timestamp>
+    <machineIdentifier>10809895</machineIdentifier>
+    <processIdentifier>6279</processIdentifier>
+    <counter>14177586</counter>
+    <time>1547319829000</time>
+    <date>1547319829000</date>
+    <timeSecond>1547319829</timeSecond>
   </id>
 </Comment>
