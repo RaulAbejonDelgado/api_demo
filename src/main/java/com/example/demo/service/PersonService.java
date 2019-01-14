@@ -9,7 +9,6 @@ import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
-import org.apache.log4j.Logger;
 import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
@@ -22,12 +21,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 public class PersonService {
 
-
     private static PersonService INSTANCE = null;
     private static PersonDao personDao = null;
     private static DataFlowDao dataFlow = null;
     private static CommentsDao commentsDao = null;
-
 
     private PersonService() throws UnknownHostException {
 
@@ -36,9 +33,7 @@ public class PersonService {
         commentsDao = CommentsDao.getInstance();
         dataFlow = DataFlowDao.getInstance();
 
-
     }
-
 
     public static synchronized PersonService getInstance() throws UnknownHostException {
 
@@ -64,9 +59,7 @@ public class PersonService {
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
 
-
         persons = (ArrayList<Person>) personDao.listar();
-
 
         for (Person p : persons) {
             //oculto el password
@@ -93,7 +86,6 @@ public class PersonService {
 
             resoucesPerson.add(resource);
 
-
         }
 
         return resoucesPerson;
@@ -109,7 +101,6 @@ public class PersonService {
 
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
-
 
         Person p = personDao.obtenerPorId(id);
         List<Comment> comentarios = commentsDao.obtenerByUser(p);
@@ -292,7 +283,6 @@ public class PersonService {
     public ArrayList<Resource<Person>> obtenerPorNombre(String nombre) {
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;
-
 
         Person p = personDao.obtenerPorNombre(nombre);
         List<Comment> comentarios = commentsDao.obtenerByUser(p);
