@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import com.example.demo.pojo.Family;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.FamilyService;
+import org.apache.log4j.Logger;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 @RequestMapping("/API/publicaciones/family")
 public class FamilyController {
+
+    private final static Logger LOG = Logger.getLogger(PersonController.class);
 
     /**
      * IMPORT_DATA - EXPORT_DATA -COLLECTION_NAME
@@ -45,6 +48,7 @@ public class FamilyController {
 
     public FamilyController() {
         super();
+        LOG.info("FamilyController -- Constructor");
         try {
 
             familyService = FamilyService.getInstance();
@@ -54,6 +58,7 @@ public class FamilyController {
         } catch (UnknownHostException ue) {
 
             ue.printStackTrace();
+            LOG.error(ue.getMessage());
         }
 
 
@@ -86,9 +91,10 @@ public class FamilyController {
 
 
             response = new ResponseEntity<>(resourcesFamilyArray, HttpStatus.OK);
-
+            LOG.info(response);
 
         } catch (Exception e) {
+            LOG.error(e.getMessage());
             e.printStackTrace();
         }
 
@@ -126,20 +132,17 @@ public class FamilyController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-
+                LOG.info(response);
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
-
         } catch (Exception e) {
+            LOG.error(e.getMessage());
             e.printStackTrace();
         }
-
-
-        System.out.println(id);
-
 
         return response;
 
@@ -162,15 +165,18 @@ public class FamilyController {
             if (familyService.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
+                LOG.info(response);
 
             } else {
                 rm.setMensaje("Error Eliminando familia");
 
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
+            LOG.error(e.getMessage());
             e.printStackTrace();
         }
 
@@ -222,6 +228,7 @@ public class FamilyController {
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+                LOG.warn(response);
 
             } else {
 
@@ -229,15 +236,18 @@ public class FamilyController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
+                    LOG.info(response);
 
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                    LOG.warn(response);
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         return response;
     }
@@ -282,6 +292,7 @@ public class FamilyController {
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+                LOG.warn(response);
 
             } else {
 
@@ -289,10 +300,12 @@ public class FamilyController {
                 if (resoucesFamily.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesFamily, HttpStatus.OK);
+                    LOG.info(response);
 
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                    LOG.warn(response);
                 }
             }
 
@@ -300,6 +313,7 @@ public class FamilyController {
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
 
@@ -341,11 +355,13 @@ public class FamilyController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
+            LOG.info(response);
 
 
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
+            LOG.error(response);
         }
 
         return response;

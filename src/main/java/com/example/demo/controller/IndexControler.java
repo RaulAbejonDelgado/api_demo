@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.pojo.Index;
+import org.apache.log4j.Logger;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 public class IndexControler {
 
     private static ArrayList<Resource<Index>> resources = new ArrayList<>();
+    private final static Logger LOG = Logger.getLogger(IndexControler.class);
+
 
     public IndexControler() {
         super();
@@ -79,9 +82,11 @@ public class IndexControler {
             }
 
             response = new ResponseEntity<>(resources, HttpStatus.OK);
+            LOG.info(response);
 
         } catch (Exception e) {
             e.printStackTrace();
+            LOG.error((e.getMessage()));
 
         }
 

@@ -4,6 +4,7 @@ import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.CommentService;
 import com.example.demo.service.PersonService;
+import org.apache.log4j.Logger;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class CommentsController {
 
     private static CommentService servicioComent = null;
     private static Validator validator;
+    private final static Logger LOG = Logger.getLogger(PersonController.class);
+
 
     /**
      * IMPORT_DATA - EXPORT_DATA -COLLECTION_NAME
@@ -44,7 +47,7 @@ public class CommentsController {
     public CommentsController() throws UnknownHostException {
 
         super();
-
+        LOG.info("CommentsController -- Constructor");
         servicioComent = CommentService.getInstance();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
@@ -82,15 +85,18 @@ public class CommentsController {
             if (resourcesComentariosArray.size() > 0) {
 
                 response = new ResponseEntity<>(resourcesComentariosArray, HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
         return response;
@@ -128,16 +134,19 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
         return response;
@@ -162,17 +171,20 @@ public class CommentsController {
             if (servicioComent.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 rm.setMensaje("Error Eliminando Comentario");
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
 
         }
 
@@ -225,23 +237,25 @@ public class CommentsController {
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
-
+                LOG.warn(response);
             } else {
 
                 resoucesPerson = servicioComent.crear(comentario);
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
-
+                    LOG.info(response);
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                    LOG.warn(response);
                 }
             }
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
 
         }
 
@@ -298,7 +312,7 @@ public class CommentsController {
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
-
+                LOG.warn(response);
             } else {
 
                 resoucesPerson = servicioComent.modficar(id, comentario);
@@ -306,10 +320,11 @@ public class CommentsController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-
+                    LOG.info(response);
                 } else {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CONFLICT);
+                    LOG.warn(response);
 
                 }
             }
@@ -317,6 +332,7 @@ public class CommentsController {
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
         return response;
@@ -356,10 +372,12 @@ public class CommentsController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
+            LOG.info(response);
 
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
+            LOG.error(response);
         }
 
         return response;
@@ -386,16 +404,19 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
         return response;
@@ -422,16 +443,19 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 response = new ResponseEntity<>(resoucesComent,HttpStatus.OK);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            LOG.error(e.getMessage());
         }
 
         return response;

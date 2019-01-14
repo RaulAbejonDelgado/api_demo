@@ -9,6 +9,7 @@ import com.example.demo.dao.PersonDao;
 import com.example.demo.pojo.Comment;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
+import org.apache.log4j.Logger;
 import org.mongodb.morphia.Key;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
@@ -20,6 +21,7 @@ import java.util.List;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 public class PersonService {
+
 
     private static PersonService INSTANCE = null;
     private static PersonDao personDao = null;
@@ -276,7 +278,7 @@ public class PersonService {
 
             Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
             resource.add(familyLink);
-            
+
        }
 
         return resource;

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.pojo.Person;
 import com.example.demo.pojo.ResponseMensaje;
 import com.example.demo.service.PersonService;
+import org.apache.log4j.Logger;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Set;
 
+
 /**
  * Controlador que gestiona las peticiones http
  */
@@ -24,6 +26,9 @@ import java.util.Set;
 @CrossOrigin(origins = "*")
 @RequestMapping("/API/publicaciones/person")
 public class PersonController {
+
+    private final static Logger LOG = Logger.getLogger(PersonController.class);
+
 
     /**
      * IMPORT_DATA - EXPORT_DATA -COLLECTION_NAME
@@ -50,6 +55,7 @@ public class PersonController {
 
     public PersonController() {
         super();
+        LOG.info("PersonController -- Constructor");
         try {
 
             servicioPerson = PersonService.getInstance();
@@ -57,8 +63,9 @@ public class PersonController {
             validator = factory.getValidator();
 
         } catch (UnknownHostException e) {
-
             e.printStackTrace();
+            LOG.error( e.getMessage());
+
         }
 
     }
@@ -116,10 +123,12 @@ public class PersonController {
 
             System.out.println("*************Pasamos por PersonController-get*************");
             response = new ResponseEntity<>(personResources, HttpStatus.OK);
-
+            LOG.info(response);
 
         } catch (Exception e) {
+
             e.printStackTrace();
+            LOG.error( e.getMessage());
         }
 
         return response;
@@ -183,20 +192,19 @@ public class PersonController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+                LOG.info(response);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
             e.printStackTrace();
+            LOG.error( e.getMessage());
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            //console.log
+
         }
-
-
-        System.out.println(id);
-
 
         return response;
 
@@ -219,16 +227,20 @@ public class PersonController {
             if (servicioPerson.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
+                LOG.info(response);
 
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                LOG.warn(response);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             if (e.getMessage().contains("Not found, imposible delete it")) {
                 response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                LOG.error( e.getMessage());
+
             }
 
         }
@@ -282,11 +294,13 @@ public class PersonController {
 
                     errores[contador] = violation.getPropertyPath() + ":" + violation.getMessage();
                     contador++;
+
                 }
 
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+                LOG.error(errores[contador]);
 
             } else {
 
@@ -295,13 +309,16 @@ public class PersonController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
+                    LOG.info(response);
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                    LOG.warn(response);
                 }
             }
 
         } catch (Exception e) {
+            LOG.error( e.getMessage());
             e.printStackTrace();
         }
         return response;
@@ -328,13 +345,17 @@ public class PersonController {
             if (resoucesPerson != null) {
 
                 response = new ResponseEntity<>(resoucesPerson,HttpStatus.OK);
+                LOG.info((response));
 
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
+
             }
 
         } catch (Exception e) {
+            LOG.error( e.getMessage());
             e.printStackTrace();
         }
         return response;
@@ -394,21 +415,24 @@ public class PersonController {
                 rm.setErrores(errores);
                 rm.setMensaje("error de validación");
                 response = new ResponseEntity<>(rm, HttpStatus.CONFLICT);
+                LOG.warn(rm);
 
             } else {
                 resoucesPerson = servicioPerson.modficar(id, persona);
                 if (resoucesPerson.size() == 1) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+                    LOG.info(response);
 
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                    LOG.warn(response);
                 }
             }
 
         } catch (Exception e) {
-
+            LOG.error( e.getMessage());
             e.printStackTrace();
         }
 
@@ -451,10 +475,11 @@ public class PersonController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
-
+            LOG.info(response);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
+            LOG.error( response);
         }
 
         return response;
@@ -482,12 +507,15 @@ public class PersonController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
+                LOG.info(response);
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                LOG.warn(response);
             }
 
 
         } catch (Exception e) {
+            LOG.fatal( e.getMessage());
             e.printStackTrace();
         }
 
