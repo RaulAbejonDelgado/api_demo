@@ -25,6 +25,18 @@ public class CommentsController {
 
     private static CommentService servicioComent = null;
     private static Validator validator;
+
+    /**
+     * IMPORT_DATA - EXPORT_DATA -COLLECTION_NAME
+     * Usados para la practica de exportacion importacion de datos en mongoDB
+     * endpoint /API/publicaciones/person/data
+     * esta practica es anterior a la practica spring batch
+     * IMPORT_DATA -> Usadas en el switch case del metodo importExport representa la accion de importar
+     * EXPORT_DATA -> Usadas en el switch case del metodo importExport representa la accion de exportacion
+     * COLLECTION_NAME -> representa la coleccion de mongo contra la que cargara las acciones http
+     *
+     *
+     */
     private static final int IMPORT_DATA = 1;
     private static final int EXPORT_DATA = 2;
     private static final String COLLECTION_NAME = "comentarios";
@@ -39,6 +51,24 @@ public class CommentsController {
 
     }
 
+    /**
+     *Metodo listAll : Peticion GET en la uri /API/publicaciones/family
+     * @return listado de todos los objetos personas en el siquiente formato
+     *objeto esperado:<br>
+     *   [{<br>
+     *   "familia": [{<br>
+     *   "selfId": 2,<br>
+     *   "nombre": "familia AsierRaul"<br>
+     *
+     *  }],<br>
+     *   "texto": "Creacion de comentario de prueba",<br>
+     *   "persona": [{<br>
+     *   "selfId": 1,<br>
+     *   "familyId": 2,<br>
+     *   "nombre": "Raul"<br>
+     *   }]<br>
+     *     produciendo {"application/x-resource+json"}
+     */
     @RequestMapping(method = RequestMethod.GET ,produces={"application/x-resource+json"})
     public ResponseEntity<Object> listAll() {
 
@@ -66,8 +96,25 @@ public class CommentsController {
         return response;
 
     }
-
-
+    /**
+     *
+     * @param id representa el campo selfId del objeto
+     * @return detalle del comentario  en el siquiente formato
+     *objeto esperado:<br>
+     *   [{<br>
+     *   "familia": [{<br>
+     *   "selfId": 2,<br>
+     *   "nombre": "familia AsierRaul"<br>
+     *
+     *  }],<br>
+     *   "texto": "Creacion de comentario de prueba",<br>
+     *   "persona": [{<br>
+     *   "selfId": 1,<br>
+     *   "familyId": 2,<br>
+     *   "nombre": "Raul"<br>
+     *   }]<br>
+     *     produciendo {"application/x-resource+json"}
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
@@ -97,6 +144,13 @@ public class CommentsController {
 
     }
 
+    /**
+     * endpoint /API/publicaciones/comments metodo DELETE
+     * delete: Elimina el registro por un id
+     * @param id parametro de entrada debe ser un entero representa al campo selfId del objeto
+     * @return devuelve respuesta de estado http 200 si se ha eliminado correctamente
+     * o NO_CONTENT si no ha habido coincidencia
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable int id) {
 
@@ -125,6 +179,26 @@ public class CommentsController {
         return response;
     }
 
+    /**
+     * endpoint /API/publicaciones/comments metodo POST
+     * *@param familia Objeto entrante transformado en la operacion POST
+     * @return resoucesPerson objeto tipo Resource con el objeto generado del tipo comment con enlaces hateos<br>
+     * Hay control de campos con javax.validation en caso de no cumplir las validaciones devolvemos en la respuesta<br>
+     *     NotNull(message = "Name cannot be null")<br>
+     *     private Family[] familia;<br>
+     *
+     *     NotNull(message = "tittle cannot be null")<br>
+     *     Size(min = 5, max = 100, message= "tittle must be between 5 and 100 characters")<br>>
+     *     private String titulo;<br>
+     *
+     *     NotNull(message = "Name cannot be null")<br>
+     *     Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")<br>
+     *     private String texto;<br>
+     *
+     *     NotNull(message = "Name cannot be null")<br>
+     *     private Person[] persona;<br>
+     *
+     */
     @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Comment comentario) {
 
@@ -174,6 +248,31 @@ public class CommentsController {
         return response;
     }
 
+    /**
+     *
+     * endpoint /API/publicaciones/comments metodo POST
+     * *@param comentario Objeto entrante transformado en la operacion PUT
+     * @return resoucesPerson objeto tipo Resource con el objeto generado del tipo comment con enlaces hateos<br>
+     * @param id representa a la propiedad selfId del objeto
+     * Objeto:Esperado:<br>
+     *
+     * [{<br>
+     *     "familia": [{<br>
+
+     *         "selfId": 1,<br>
+     *         "nombre": "familia AsierRaul"<br>
+     *
+     *     }],<br>
+     *     "texto": "asier",<br>
+     *     "persona": [{<br>
+
+     *         "selfId": 1,<br>
+     *         "familyId": 1,<br>
+     *         "nombre": "Raul"<br>
+     *
+     *     }]
+     *  }
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Comment comentario, @PathVariable int id) {
 
@@ -224,11 +323,23 @@ public class CommentsController {
 
     }
 
+    /**
+     * Para la practica de parseo de documentos xml a mongo y viceversa.
+     *
+     * COLLECTION_NAME : nombre de la coleccion de mongoDB
+     *
+     * endpoint /API/publicaciones/person/data -> Metodo GET
+     * @param action:
+     *              1: representa la accion de importar
+     *              2: representa la accion de exportar
+     * @return si el proceso se realiza correctamente respuesta de estado 200
+     * en caso contrario se devuelve un mensaje con el error que se ha generado
+     */
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     public ResponseEntity<Object> importExport(
             @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response;
 
         try {
 
@@ -255,6 +366,13 @@ public class CommentsController {
 
     }
 
+    /**
+     * Uri añadida para obtener los comentarios por usuario
+     * @param id hace referencia a la propiedad selfId del objeto persona que esta embebido
+     * @return :
+     *          Si hay coincidencia: devuelve el resoucesComent con los comentarios por usuario y respuesta http 200
+     *          Si no, respuesta http 404 ya que se intenta obtener un usuario inexistente
+     */
     @RequestMapping(value = "/byUser/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> byUser(@PathVariable int id ) {
 
@@ -271,7 +389,7 @@ public class CommentsController {
 
             } else {
 
-                response = new ResponseEntity<>(HttpStatus.CONFLICT);
+                response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
 
 
@@ -284,6 +402,13 @@ public class CommentsController {
 
     }
 
+    /**
+     * Uri añadida para obtener los comentarios por familia
+     * @param id hace referencia a la propiedad selfId del objeto id que esta embebido
+     * @return :
+     *          Si hay coincidencia: devuelve el resoucesComent con los comentarios por usuario y respuesta http 200
+     *          Si no, respuesta http 404 ya que se intenta obtener un usuario inexistente
+     */
     @RequestMapping(value = "/byFamily/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> byFamily(@PathVariable int id ) {
 

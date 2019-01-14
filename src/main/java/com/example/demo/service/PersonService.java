@@ -37,6 +37,7 @@ public class PersonService {
 
     }
 
+
     public static synchronized PersonService getInstance() throws UnknownHostException {
 
         if (INSTANCE == null) {
@@ -49,6 +50,12 @@ public class PersonService {
 
     }
 
+    /**
+     * funcion : listar<br>
+     * llama a la capa modelo y sobre su respuesta se agregan los enlaces hateoas<br>
+     * @return  ArrayList<Resource<Person>> listado de Resources en cada resource hay un objeto persona y sus enlaces hateoas<br>
+     *
+     */
     public ArrayList<Resource<Person>> listar() {
 
         ArrayList<Person> persons;
@@ -91,6 +98,11 @@ public class PersonService {
 
     }
 
+    /**
+     *
+     * @param id hace referencia al campo selfId del objeto persona, debe ser entero<br>
+     * @return ArrayList<Resource<Person>> listado de Resources en cada resource hay un objeto persona y sus enlaces hateoas<br>
+     */
     public ArrayList<Resource<Person>> obtenerPorId(int id) {
 
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
@@ -126,6 +138,13 @@ public class PersonService {
         return resoucesPerson;
     }
 
+    /**
+     *
+     * @param id hace referencia a la propiedad selfId del objeto persona<br>
+     * @return true : Si se ha eliminado el registro conrrectamente<br>
+     *          false: si no se ha eliminado el registro<br>
+     * @throws Exception cuando se intenta eliminar un registro no existente mandamos al controlador la excepcion<br>
+     */
     public boolean eliminar(int id) throws Exception {
 
         boolean resul = false;
@@ -141,6 +160,11 @@ public class PersonService {
         return resul;
     }
 
+    /**
+     *
+     * @param p objeto persona
+     * @return ArrayList<Resource<Person>> resoucesPerson objeto Person con enlaces hateoas
+     */
     public ArrayList<Resource<Person>> crear(Person p) {
 
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
@@ -166,6 +190,12 @@ public class PersonService {
         return resoucesPerson;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto Person<br>
+     * @param p objeto Person con los nuevos valores
+     * @return ArrayList<Resource<Person>> resoucesPerson objeto Person con enlaces hateoas
+     */
     public ArrayList<Resource<Person>> modficar(int id, Person p) {
 
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
@@ -201,20 +231,37 @@ public class PersonService {
         return resoucesPerson;
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la exportacion de una coleccion que entra como parametro de tipo String
+     * @param collection nombre de la coleccion sobre la que se hara la operacion de exportacion
+
+     */
     public void exportar(String collection) throws Exception {
 
         dataFlow.objectExport(collection);
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la importacion de documentos xml a mongoDB
+     * @param collectionName nombre de la coleccion sobre la que se hara la operacion de exportacion
+     */
     public void importar(String collectionName) throws Exception {
 
         dataFlow.objectImport(collectionName);
 
     }
 
-    public Resource loginTest(Person p) throws Exception{
-        Person x = null;
-        ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
+    /**
+     * Nombre metodo loginTest
+     * Este metodo solo sirve para la funcionamildad login del cliente
+     * @param p objeto persona
+     * @return resource con el objeto Person + enlaces hateoas, puede retornarse null en caso de no haber coincidencia
+     */
+    public Resource loginTest(Person p) {
+        Person x;
+
         Resource<Person> resource = null;
         x =  personDao.obtenerPorNombrePassword(p);
         if(x != null) {
@@ -225,24 +272,21 @@ public class PersonService {
             resource.add(resourceLink);
             Link selfLink = linkTo(PersonController.class).slash(p.getselfId()).withSelfRel();
             resource.add(selfLink);
-            resoucesPerson.add(resource);
+
 
             Link familyLink = linkTo(FamilyController.class).slash(p.getFamilyId()).withRel("Detalle Familia");
             resource.add(familyLink);
-
-                //Seteamos los comentarios en el detalle de la persona
-//                if (comentarios != null) {
-//                    for (Comment c : comentarios) {
-//                        Link commentsLink = linkTo(CommentsController.class).slash(c.getSelfId()).withRel("Comentarios");
-//                        resource.add(commentsLink);
-//                    }
-//                }
-
+            
        }
 
         return resource;
     }
 
+    /**
+     * Usada para una funcionalidad del cliente
+     * @param nombre tipo String donde hace referencia a la propiedad nombre del objeto person
+     * @return resource con el objeto Person + enlaces hateoas, puede retornarse null en caso de no haber coincidencia
+     */
     public ArrayList<Resource<Person>> obtenerPorNombre(String nombre) {
         ArrayList<Resource<Person>> resoucesPerson = new ArrayList<>();
         Resource<Person> resource;

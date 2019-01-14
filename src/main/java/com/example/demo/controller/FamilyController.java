@@ -23,6 +23,17 @@ import java.util.Set;
 @RequestMapping("/API/publicaciones/family")
 public class FamilyController {
 
+    /**
+     * IMPORT_DATA - EXPORT_DATA -COLLECTION_NAME
+     * Usados para la practica de exportacion importacion de datos en mongoDB
+     * endpoint /API/publicaciones/person/data
+     * esta practica es anterior a la practica spring batch
+     * IMPORT_DATA -> Usadas en el switch case del metodo importExport representa la accion de importar
+     * EXPORT_DATA -> Usadas en el switch case del metodo importExport representa la accion de exportacion
+     * COLLECTION_NAME -> representa la coleccion de mongo contra la que cargara las acciones http
+     *
+     *
+     */
     private static final int IMPORT_DATA = 1;
     private static final int EXPORT_DATA = 2;
     private static final String COLLECTION_NAME = "familias";
@@ -48,6 +59,22 @@ public class FamilyController {
 
     }
 
+    /**
+     *Metodo listAll : Peticion GET en la uri /API/publicaciones/family
+     * @return listado de todos los objetos personas en el siquiente formato
+     *objeto esperado:<br>
+     *{<br>
+     *"nombre":"familia drohne5",<br>
+     *"personas":[<br>
+     *{<br>
+     *"nombre":"drohne",<br>
+     *"selfId":9<br>
+     *}<br>
+     *]<br>
+     *}<br
+     *     produciendo {"application/x-resource+json"}
+     */
+
     @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> listAll() {
 
@@ -69,6 +96,22 @@ public class FamilyController {
 
     }
 
+    /**
+     *
+     * @param id representa el campo selfId del objeto
+     * @return listado del detalle de la personas en el siquiente formato
+     *objeto esperado:<br>
+     *{<br>
+     *"nombre":"familia drohne5",<br>
+     *"personas":[<br>
+     *{<br>
+     *"nombre":"drohne",<br>
+     *"selfId":9<br>
+     *}<br>
+     *]<br>
+     *}<br
+     *     produciendo {"application/x-resource+json"}
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
@@ -102,6 +145,13 @@ public class FamilyController {
 
     }
 
+    /**
+     * endpoint /API/publicaciones/family metodo DELETE
+     * delete: Elimina el registro por un id
+     * @param id parametro de entrada debe ser un entero representa al campo selfId del objeto
+     * @return devuelve respuesta de estado http 200 si se ha eliminado correctamente
+     * o NO_CONTENT si no ha habido coincidencia
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable int id) {
 
@@ -127,6 +177,25 @@ public class FamilyController {
         return response;
     }
 
+    /**
+     *endpoint /API/publicaciones/family : Metodo POST
+     * @param familia Objeto entrante transformado en la operacion POST
+     * @return resoucesPerson objeto tipo Resource con el objeto generado del tipo person con enlaces hateos<br>
+     * Hay control de campos con javax.validation en caso de no cumplir las validaciones devolvemos en la respuesta<br>
+     *     private int selfId;
+     *
+     *     NotNull(message = "Name cannot be null")<br>
+     *     Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")<br>
+     *     private String nombre;<br>
+     *
+     *     NotNull(message = "Name cannot be null")
+     *     private Person[] personas;
+     * un listado de los posibles motivos por los que no se acepta la peticion<br>
+     *     respuestas:<br>
+     *            409 -> En caso de fallos en las validaciones.<br>
+     *            201 -> Objeto creado<br>
+     *
+     */
     @RequestMapping(method = RequestMethod.POST, produces={"application/x-resource+json"})
     public ResponseEntity<Object> crear(@RequestBody Family familia) {
 
@@ -173,6 +242,20 @@ public class FamilyController {
         return response;
     }
 
+    /**
+     *
+     * @param familia familia con los nuevos valores a modificar
+     * @param id representa al campo selfId de la familia , valor por el cual actualizaramos el objeto
+     * @return resoucesFamily
+     *    requisitos de validaciones<br>
+     *
+     *     NotNull(message = "Name cannot be null")<br>
+     *     Size(min = 5, max = 150, message= "Name must be between 5 and 150 characters")<br>
+     *     private String nombre;<br>
+     *
+     *     NotNull(message = "Name cannot be null")<br>
+     *     private Person[] personas;<br>
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces={"application/x-resource+json"})
     public ResponseEntity<Object> modificar(@RequestBody Family familia, @PathVariable int id) {
 
@@ -224,6 +307,18 @@ public class FamilyController {
 
     }
 
+    /**
+     * Para la practica de parseo de documentos xml a mongo y viceversa.
+     *
+     * COLLECTION_NAME : nombre de la coleccion de mongoDB
+     *
+     * endpoint /API/publicaciones/person/data -> Metodo GET
+     * @param action:
+     *              1: representa la accion de importar
+     *              2: representa la accion de exportar
+     * @return si el proceso se realiza correctamente respuesta de estado 200
+     * en caso contrario se devuelve un mensaje con el error que se ha generado
+     */
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     public ResponseEntity<Object> importExport(
             @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {

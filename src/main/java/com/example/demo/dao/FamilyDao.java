@@ -40,19 +40,32 @@ public class FamilyDao {
 
     }
 
+    /**
+     *
+     * @return List<Family>
+     */
     public List<Family> listarTodos() {
 
         return datastore.createQuery(Family.class).asList();
 
     }
 
-
+    /**
+     *
+     * @param id referencia a la propierdad selfId del objeto Family
+     * @return Family
+     */
     public Family obtenerPorId(int id) {
 
         return datastore.find(Family.class).field("selfId").equal(id).get();
 
     }
 
+    /**
+     *
+     * @param f Objeto tipo Family
+     * @return WriteResult
+     */
     public WriteResult eliminar(Family f) {
 
         return datastore.delete(f);
@@ -62,8 +75,8 @@ public class FamilyDao {
     /**
      * Para la creacion de familias debemos setear correctamente los objetos anidados en este caso personas.
      * por ello primero debemos recuperar las personas pertenecientes en caso de que existan si no existen habra que crearla
-     * @param f
-     * @return
+     * @param f objeto tipo Familia
+     * @return Key<Family>
      */
     public Key<Family> crear(Family f) {
 
@@ -92,12 +105,23 @@ public class FamilyDao {
 
     }
 
+    /**
+     *
+     * @param familias  tipo ArrayList<Family>
+     * @return Iterable<Key<Family>>
+     */
     public Iterable<Key<Family>> crearPorLote(ArrayList<Family> familias) {
 
         return datastore.save(familias);
 
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del campo Family
+     * @param f Objeto tipo Family
+     * @return Key<Family>
+     */
     public Key<Family> modificar(int id, Family f) {
 
         Key<Family> familyUpdate = null;
@@ -119,9 +143,12 @@ public class FamilyDao {
         if (fOld != null) {
 
             f.setId(fOld.getId());
-            //inicialmente use merge pero los objetos embebidos no los actualizaba
-            //ahora seteo el id de la db con el objeto entrante y hago un save
-            //dando el mismo resultado que el uptade ya que mongo al detectar el mismo id actualiza
+            /**
+             *  inicialmente use merge pero los objetos embebidos no los actualizaba
+             *  ahora seteo el id de la db con el objeto entrante y hago un save
+             *  dando el mismo resultado que el uptade ya que mongo al detectar el mismo id actualiza
+             */
+
             familyUpdate = datastore.save(f);
 
         }

@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
+/**
+ * Gestiona las operaciones entre el controlador y la capa modelo
+ */
 public class FamilyService {
 
     private static FamilyService INSTANCE = null;
@@ -42,6 +45,10 @@ public class FamilyService {
 
     }
 
+    /**
+     *
+     * @return ArrayList<Resource<Family>> con los objetos Family y sus enlaces hateoas
+     */
     public ArrayList<Resource<Family>> listar() {
 
         ArrayList<Family> familias;
@@ -86,6 +93,11 @@ public class FamilyService {
         return resourcesFamilyArray;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto familia
+     * @return ArrayList<Resource<Family>> con el objeto familias con sus enlaces hateoas
+     */
     public ArrayList<Resource<Family>> obtenerPorId(int id) {
 
         Family f = familiasDao.obtenerPorId(id);
@@ -115,6 +127,12 @@ public class FamilyService {
         return resourcesFamilyArray;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto familia
+     * @return true : en caso de eliminacion correcta
+     *         false: si no ha sido posible
+     */
     public boolean eliminar(int id) {
 
         boolean resul = false;
@@ -129,6 +147,11 @@ public class FamilyService {
         return resul;
     }
 
+    /**
+     *
+     * @param f objeto familia
+     * @return ArrayList<Resource<Family>> con el objeto familia y enlaces hateoas
+     */
     public ArrayList<Resource<Family>> crear(Family f) {
 
         Resource<Family> familyresource;
@@ -154,6 +177,12 @@ public class FamilyService {
         return familyresourceArray;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto Family
+     * @param f Objeto tipo Family
+     * @return ArrayList<Resource<Family>> con el objeto Family modificado mas enlaces hateoas
+     */
     public ArrayList<Resource<Family>> modficar(int id, Family f) {
 
         ArrayList<Resource<Family>> resoucesFamily = new ArrayList<>();
@@ -182,11 +211,22 @@ public class FamilyService {
         return resoucesFamily;
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la exportacion de una coleccion que entra como parametro de tipo String
+     * @param collection nombre de la coleccion sobre la que se hara la operacion de exportacion
+
+     */
     public void exportar(String collection) throws Exception {
 
         dataFlowDao.objectExport(collection);
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la importacion de documentos xml a mongoDB
+     * @param collectionName nombre de la coleccion sobre la que se hara la operacion de exportacion
+     */
     public void importar(String collectionName) throws Exception {
 
         dataFlowDao.objectImport(collectionName);

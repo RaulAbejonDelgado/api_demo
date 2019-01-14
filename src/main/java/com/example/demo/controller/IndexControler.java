@@ -14,7 +14,10 @@ import java.util.ArrayList;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-
+/**
+ * Genera y  muestra los principales endpoints de la api.(Hardcodeados)
+ * Para ello he creado una clase Index donde agregao una descripcion del endpoint y con hateoas agrego hypermedia
+ */
 @Controller
 @CrossOrigin(origins = "*")
 @RequestMapping("/API")
@@ -28,6 +31,11 @@ public class IndexControler {
 
     }
 
+    /**
+     *
+     * @return Resource con objetos Index y enlaces hatoas a los recursos que se ofrecen
+     * Tambien devolvemos el estado de respuesta http 200
+     */
     @RequestMapping(method = RequestMethod.GET, produces={"application/x-resource+json"})
     public ResponseEntity<Object> resourcesList() {
 

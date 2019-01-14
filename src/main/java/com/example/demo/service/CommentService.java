@@ -49,7 +49,10 @@ public class CommentService {
         return INSTANCE;
     }
 
-
+    /**
+     *
+     * @return ArrayList<Resource<Comment>> objetos comentarios mas enlaces hateoas
+     */
     public ArrayList<Resource<Comment>> listar() {
 
         ArrayList<Comment> comentarios;
@@ -98,6 +101,11 @@ public class CommentService {
         return resourcesComentariosArray;
     }
 
+    /**
+     *
+     * @param id referencia al objeto selfId del objeto Comment
+     * @return ArrayList<Resource<Comment>> objeto comentario + enlaces hateoas
+     */
     public ArrayList<Resource<Comment>> obtenerPorId(int id) {
 
         Comment c = comentarioDao.obtenerPorId(id);
@@ -108,16 +116,21 @@ public class CommentService {
         Family f1 = familyDao.obtenerPorId(c.getSelfId());
         c.setFamilia(new Family[]{f1});
 
-        if (c != null) {
-            resource = new Resource<>(c);
-            Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
-            resource.add(selfLink);
-            resoucesPerson.add(resource);
-        }
+        resource = new Resource<>(c);
+        Link selfLink = linkTo(CommentsController.class).slash(c.getSelfId()).withSelfRel();
+        resource.add(selfLink);
+        resoucesPerson.add(resource);
+
 
         return resoucesPerson;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto comentario
+     * @return true: si se ha eliminado correctametne<br>
+     *          false : si no se ha eliminado
+     */
     public boolean eliminar(int id) {
 
         boolean resul = false;
@@ -131,6 +144,11 @@ public class CommentService {
         return resul;
     }
 
+    /**
+     *
+     * @param c Objeto comentario
+     * @return ArrayList<Resource<Comment>> objeto creado + enlacez hateoas
+     */
     public ArrayList<Resource<Comment>> crear(Comment c) {
 
         Key<Comment> commentKey = comentarioDao.crear(c);
@@ -172,6 +190,12 @@ public class CommentService {
         return resoucesPerson;
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto comentario
+     * @param c objeto Tipo Commentari
+     * @return  ArrayList<Resource<Comment>> resoucesPerson objeto comentario modificado + enlaces hateoas
+     */
     public ArrayList<Resource<Comment>> modficar(int id, Comment c) {
 
         ArrayList<Resource<Comment>> resoucesPerson = new ArrayList<>();
@@ -218,21 +242,37 @@ public class CommentService {
 
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la exportacion de una coleccion que entra como parametro de tipo String
+     * @param collection nombre de la coleccion sobre la que se hara la operacion de exportacion
+
+     */
     public void exportar(String collection) throws Exception {
 
         dataFlowDao.objectExport(collection);
 
     }
 
+    /**
+     * Esta funcion es previa a la investigacion de spring batch
+     * Usada para realizar la importacion de documentos xml a mongoDB
+     * @param collectionName nombre de la coleccion sobre la que se hara la operacion de exportacion
+     */
     public void importar(String collectionName) throws Exception {
 
         dataFlowDao.objectImport(collectionName);
 
     }
 
+    /**
+     * Comentarios por usuario
+     * @param id referrencia a la propiedad selfId del objeto Person
+     * @return ArrayList<Resource<Comment>> objetos comentarios(fltrados por selfId de la persona) + enlaces hateoas
+     */
     public ArrayList<Resource<Comment>> byUserId(int id) {
         Person p = personaDao.obtenerPorId(id);
-        ArrayList<Comment> comentariosPorPersona = new ArrayList<>();
+        ArrayList<Comment> comentariosPorPersona;
         ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
         Resource<Comment> resourceComment;
         comentariosPorPersona = (ArrayList<Comment>) comentarioDao.obtenerByUser(p);
@@ -247,10 +287,15 @@ public class CommentService {
 
     }
 
+    /**
+     * Comentarios por familias
+     * @param id referencia a la propiedad selfId del objeto familia
+     * @return ArrayList<Resource<Comment>> objetos comentarios(fltrados por selfId de la familia) + enlaces hateoas
+     */
     public ArrayList<Resource<Comment>> byFamilyId(int id) {
 
         Family f = familyDao.obtenerPorId(id);
-        ArrayList<Comment> comentariosPorFamilia = new ArrayList<>();
+        ArrayList<Comment> comentariosPorFamilia;
         ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
         Resource<Comment> resourceComment;
         comentariosPorFamilia = (ArrayList<Comment>) comentarioDao.obtenerByFamily(f);

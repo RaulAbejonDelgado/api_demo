@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Para la practica de lectura  con spring batch y mongoDB
+ * el problema que me he encontrado con esta practica, es que en el flujo entre el reader,process y writer
+ * pierdo parte de los datos sacando solo la mitad de datos
+ */
 @RestController
 @RequestMapping("/API/MongobatchRead")
 public class MongoBatch1Controller {

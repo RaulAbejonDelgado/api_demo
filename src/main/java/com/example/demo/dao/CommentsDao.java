@@ -38,18 +38,32 @@ public class CommentsDao {
 
     }
 
+    /**
+     *
+     * @return List<Comment>
+     */
     public List<Comment> listarTodos() {
 
         return datastore.createQuery(Comment.class).asList();
 
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto Comment
+     * @return Objeto tipo Comment
+     */
     public Comment obtenerPorId(int id) {
 
         return datastore.find(Comment.class).field("selfId").equal(id).get();
 
     }
 
+    /**
+     *
+     * @param p objeto tipo Persona
+     * @return List<Comment>
+     */
     public List<Comment> obtenerByUser(Person p) {
 
         //List<Comment> comentarios =  datastore.find(Comment.class).field("persona.selfId").equal(p.getselfId()).asList();
@@ -69,12 +83,22 @@ public class CommentsDao {
         return comentariosRetorno;
     }
 
+    /**
+     *
+     * @param c Objeto tipo Comentario
+     * @return WriteResult
+     */
     public WriteResult delete(Comment c) {
 
         return datastore.delete(c);
 
     }
 
+    /**
+     *
+     * @param c Objeto tipo Comentario
+     * @return Key<Comment>
+     */
     public Key<Comment> crear(Comment c) {
 
         c.setSelfId(listarTodos().size() + 1);
@@ -83,12 +107,23 @@ public class CommentsDao {
 
     }
 
+    /**
+     *
+     * @param comentarios tipo ArrayList<Comment>
+     * @return Iterable<Key<Comment>>
+     */
     public Iterable<Key<Comment>> crearPorLote(ArrayList<Comment> comentarios) {
 
         return datastore.save(comentarios);
 
     }
 
+    /**
+     *
+     * @param id referencia a la propiedad selfId del objeto Comment
+     * @param c Objeto tipo Comment
+     * @return Key<Comment>
+     */
     public Key<Comment> modificar(int id, Comment c) {
 
         Key<Comment> personUpdate = null;
@@ -107,6 +142,11 @@ public class CommentsDao {
 
     }
 
+    /**
+     *
+     * @param f Objeto tipo Family
+     * @return List<Comment>
+     */
     public List<Comment> obtenerByFamily(Family f) {
 
         List<Comment> comentariosRetorno = new ArrayList<>();

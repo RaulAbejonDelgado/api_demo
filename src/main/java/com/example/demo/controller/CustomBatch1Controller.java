@@ -1,6 +1,5 @@
 package com.example.demo.controller;
  
-import com.example.demo.service.Batch1Service;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -10,28 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controlador encargado de cargar los datos demo atraves de una peticcion http en el endpoint localhost:8080//API/batch<br>
+ * El proceso mira en la carpeta raiz del proyyecto en las siquientes carpetaas, comentarios, familias, personas
+ * Este controlador esta pensado para la practica de spring batch
+ */
 @RestController
 @RequestMapping("/API/batch")
 public class CustomBatch1Controller {
 
-    private static Batch1Service batch1Service = null;
-
-    private String msg = "<a href='http://localhost:8080'>http://localhost:8080</a>";
 
     @Autowired
+    private
     JobLauncher jobLauncher;
 
     @Autowired
+    private
     Job customProcessJob;
 
-    public CustomBatch1Controller(){
-        try {
-            batch1Service = Batch1Service.getInstance();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
  
     @RequestMapping( method = RequestMethod.GET)
     public String mongoBatch() throws Exception {
@@ -40,7 +35,8 @@ public class CustomBatch1Controller {
                     .toJobParameters();
             jobLauncher.run(customProcessJob, jobParameters);
 
-        return msg;
+        return "<a href='http://localhost:8080'>http://localhost:8080</a>";
+
 
     }
 

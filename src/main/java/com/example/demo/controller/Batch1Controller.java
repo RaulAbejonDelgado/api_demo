@@ -10,26 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Primera practica con spring batch
+ */
 @RestController
 @RequestMapping("/API/batchExample")
 public class Batch1Controller {
 
-    private static Batch1Service batch1Service = null;
  
     @Autowired
+    private
     JobLauncher jobLauncher;
 
     @Autowired
+    private
     Job processJob;
 
-    public Batch1Controller(){
-        try {
-            batch1Service = Batch1Service.getInstance();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
  
     @RequestMapping( method = RequestMethod.GET)
     public String batch1() throws Exception {
