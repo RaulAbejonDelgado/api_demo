@@ -87,6 +87,8 @@ public class PersonController {
 
         } catch (Exception e) {
             e.printStackTrace();
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            //console.log
         }
 
 

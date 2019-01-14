@@ -246,4 +246,23 @@ public class CommentService {
 
 
     }
+
+    public ArrayList<Resource<Comment>> byFamilyId(int id) {
+
+        Family f = familyDao.obtenerPorId(id);
+        ArrayList<Comment> comentariosPorFamilia = new ArrayList<>();
+        ArrayList<Resource<Comment>> resourcesComentariosArray = new ArrayList<>();
+        Resource<Comment> resourceComment;
+        comentariosPorFamilia = (ArrayList<Comment>) comentarioDao.obtenerByFamily(f);
+
+        for(Comment c: comentariosPorFamilia){
+            resourceComment = new Resource<>(c);
+            resourcesComentariosArray.add(resourceComment);
+        }
+
+        return resourcesComentariosArray;
+
+
+    }
+
 }

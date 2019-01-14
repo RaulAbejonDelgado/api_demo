@@ -284,4 +284,33 @@ public class CommentsController {
 
     }
 
+    @RequestMapping(value = "/byFamily/{id}", method = RequestMethod.GET, produces={"application/x-resource+json"})
+    public ResponseEntity<Object> byFamily(@PathVariable int id ) {
+
+        ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ArrayList<Resource<Comment>> resoucesComent;
+
+        try {
+
+            resoucesComent = servicioComent.byFamilyId(id);
+
+            if (resoucesComent.size() > 0) {
+
+                response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
+
+            } else {
+
+                response = new ResponseEntity<>(resoucesComent,HttpStatus.OK);
+            }
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return response;
+
+    }
+
 }

@@ -119,7 +119,10 @@ public class FamilyDao {
         if (fOld != null) {
 
             f.setId(fOld.getId());
-            familyUpdate = datastore.merge(f);
+            //inicialmente use merge pero los objetos embebidos no los actualizaba
+            //ahora seteo el id de la db con el objeto entrante y hago un save
+            //dando el mismo resultado que el uptade ya que mongo al detectar el mismo id actualiza
+            familyUpdate = datastore.save(f);
 
         }
 

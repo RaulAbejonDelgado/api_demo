@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.DataSourceConfiguration;
 import com.example.demo.pojo.Comment;
+import com.example.demo.pojo.Family;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Datastore;
@@ -104,6 +105,23 @@ public class CommentsDao {
 
         return personUpdate;
 
+    }
+
+    public List<Comment> obtenerByFamily(Family f) {
+
+        List<Comment> comentariosRetorno = new ArrayList<>();
+        ArrayList<Comment> comentarios = (ArrayList<Comment>) datastore.createQuery(Comment.class).asList();
+        for (Comment c : comentarios) {
+
+            for (Family fe : c.getFamilia()) {
+                if (fe.getSelfId() == f.getSelfId()) {
+                    comentariosRetorno.add(c);
+                }
+            }
+
+        }
+
+        return comentariosRetorno;
     }
 
 }
