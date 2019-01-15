@@ -85,7 +85,7 @@ public class CommentsController {
             if (resourcesComentariosArray.size() > 0) {
 
                 response = new ResponseEntity<>(resourcesComentariosArray, HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 
@@ -134,7 +134,7 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 
@@ -171,7 +171,7 @@ public class CommentsController {
             if (servicioComent.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 
@@ -244,7 +244,7 @@ public class CommentsController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
-                    LOG.info(response);
+
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -320,7 +320,7 @@ public class CommentsController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-                    LOG.info(response);
+
                 } else {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CONFLICT);
@@ -372,7 +372,7 @@ public class CommentsController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
-            LOG.info(response);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -404,7 +404,7 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 
@@ -443,7 +443,7 @@ public class CommentsController {
             if (resoucesComent.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesComent, HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 

@@ -12,7 +12,7 @@
             font-size: 12px;
             background:#031849;
         }
-        h1{
+        h1, h2{
 
             text-align: center;
 
@@ -64,12 +64,54 @@
 
             color: black;
         }
+        ul > li > a {
+            color: black;
+           }
 
     </style>
 </head>
 <body>
     <div class="container info">
-        <h1>API REST DOCUMENTACIÓN</h1>
+        <h2>Resumen de actividad</h2>
+        <p>Primer contacto con MongoDB y java <a href="https://github.com/RaulAbejonDelgado/mongo_crud" target="blank"> Aplicacion terminal,</a>
+            <br>
+            <ul>
+                <li>Probar conexion a mongo desde java</li>
+                <li>Probar la conversion entre objetos java a mongoDB y viceversa</li>
+            </ul>
+        </p>
+        <p>Api con hateoas <a href="https://github.com/RaulAbejonDelgado/api_demo/tree/hateoas"> api_demo_hateoas</a><br>
+            <ul>
+                <li>Crud sobre los objetos personas,familias, comentarios</li>
+                <li>Implementacion de hateoas, (Clases extiendan de ResourceSupport)</li>
+                <li>Pruebas con mongoJack para el mapeo de objetos java a mongoDB</li>
+            </ul>
+        </p>
+        <p>Morphia, parseo de xml y spring batch<br>
+            <ul>
+                <li>Practica importando de mongoDB a xml y exportando de xml a mongoDB
+                    <a href="https://github.com/RaulAbejonDelgado/mongodb_xml_json">mongodb_xml_json</a>
+                </li>
+                <li>Api_demo con morphia y funcionalidad de importacion exportacion
+                    <a href="https://github.com/RaulAbejonDelgado/api_demo/tree/morphia">api_demo_morphia</a>
+                </li>
+                <li>Repositorios usados como sparring para practicas spring batch
+                    <ul>
+                        <li><a href="https://github.com/RaulAbejonDelgado/XML-JSON-MongoDB-Spring-Batch-Example">Tasklets</a> </li>
+                        <li><a href="https://github.com/RaulAbejonDelgado/spring_batch_demo.git">Carga de archivos xml a mongoDB con spring batch</a> </li>
+                    </ul>
+                </li>
+                <p>Spring data</p>
+                <li>
+                    <ul>
+                        <li><a href="https://github.com/RaulAbejonDelgado/spring_data_api_demo.git">Spring data api demo</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </p>
+        <h2>API REST DOCUMENTACIÓN</h2>
         <hr>
         <p>Api para la práctica JavaEE Rest Full (hatoas) con MongoDB, usando el ODM Morphia y spring batch</p>
         <p>La siguiente api nos ofrece las operaciones crud básicas de los objetos : personas, familias, comentarios</p>

@@ -91,7 +91,7 @@ public class FamilyController {
 
 
             response = new ResponseEntity<>(resourcesFamilyArray, HttpStatus.OK);
-            LOG.info(response);
+
 
         } catch (Exception e) {
             LOG.error(e.getMessage());
@@ -132,7 +132,7 @@ public class FamilyController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-                LOG.info(response);
+
             } else {
 
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -165,7 +165,7 @@ public class FamilyController {
             if (familyService.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
                 rm.setMensaje("Error Eliminando familia");
@@ -236,7 +236,7 @@ public class FamilyController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
-                    LOG.info(response);
+
 
                 } else {
 
@@ -300,7 +300,7 @@ public class FamilyController {
                 if (resoucesFamily.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesFamily, HttpStatus.OK);
-                    LOG.info(response);
+
 
                 } else {
 
@@ -355,7 +355,7 @@ public class FamilyController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
-            LOG.info(response);
+
 
 
         } catch (Exception e) {

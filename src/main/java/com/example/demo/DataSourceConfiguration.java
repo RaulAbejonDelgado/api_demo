@@ -9,11 +9,16 @@ import org.springframework.context.annotation.Configuration;
 
 import java.net.UnknownHostException;
 
+/**
+ * Usado para instaciar el ODM Moprhia , donde crea la conexcion En base a los valores<br>
+ *     DB_LOCATION<br>
+ *     DB_NAME
+ */
 @Configuration
 public class DataSourceConfiguration {
 
-    static final String DB_LOCATION = "mongodb://localhost:27017";
-    static final String DB_NAME = "publicaciones";
+    private static final String DB_LOCATION = "mongodb://localhost:27017";
+    private static final String DB_NAME = "publicaciones";
     private Morphia morphia() {
         final Morphia morphia = new Morphia();
 

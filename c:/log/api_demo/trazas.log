@@ -1,0 +1,315 @@
+2019/01/14_18:06:43  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_18:06:44  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_18:06:44  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_18:06:50  INFO  PersonController-126  - <200 OK,[Resource { content: Person{selfId=16, familyId=12, nombre='bugFixer', email='bugfixer@gmail.com', password='****************', _id=5c3a4217a4f227232eff423a}, links: [<http://localhost:8080/API/publicaciones/person/16>;rel="self", <http://localhost:8080/API/publicaciones/family/12>;rel="Familia"] }, Resource { content: Person{selfId=1, familyId=1, nombre='Asier', email='asier@gmail.com', password='****************', _id=5c3a4217a4f227232eff423c}, links: [<http://localhost:8080/API/publicaciones/person/1>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/1>;rel="Comentarios"] }, Resource { content: Person{selfId=2, familyId=2, nombre='adrian', email='adrian@gmail.com', password='****************', _id=5c3a4217a4f227232eff423d}, links: [<http://localhost:8080/API/publicaciones/person/2>;rel="self", <http://localhost:8080/API/publicaciones/family/2>;rel="Familia"] }, Resource { content: Person{selfId=3, familyId=2, nombre='valeria', email='valeria@gmail.com', password='****************', _id=5c3a4217a4f227232eff423f}, links: [<http://localhost:8080/API/publicaciones/person/3>;rel="self", <http://localhost:8080/API/publicaciones/family/2>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/9>;rel="Comentarios"] }, Resource { content: Person{selfId=4, familyId=7, nombre='Marisa', email='marisa@gmail.com', password='****************', _id=5c3a4217a4f227232eff4240}, links: [<http://localhost:8080/API/publicaciones/person/4>;rel="self", <http://localhost:8080/API/publicaciones/family/7>;rel="Familia"] }, Resource { content: Person{selfId=5, familyId=3, nombre='Adriana', email='adriana@gmail.com', password='****************', _id=5c3a4217a4f227232eff4241}, links: [<http://localhost:8080/API/publicaciones/person/5>;rel="self", <http://localhost:8080/API/publicaciones/family/3>;rel="Familia"] }, Resource { content: Person{selfId=6, familyId=3, nombre='andrea', email='andrea@gmail.com', password='****************', _id=5c3a4217a4f227232eff4242}, links: [<http://localhost:8080/API/publicaciones/person/6>;rel="self", <http://localhost:8080/API/publicaciones/family/3>;rel="Familia"] }, Resource { content: Person{selfId=7, familyId=1, nombre='Raul', email='raul@gmail.com', password='****************', _id=5c3a4217a4f227232eff4243}, links: [<http://localhost:8080/API/publicaciones/person/7>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia"] }, Resource { content: Person{selfId=18, familyId=13, nombre='admin', email='admin@gmail.com', password='****************', _id=5c3a4217a4f227232eff4246}, links: [<http://localhost:8080/API/publicaciones/person/18>;rel="self", <http://localhost:8080/API/publicaciones/family/13>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/11>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/11>;rel="Comentarios"] }, Resource { content: Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='****************', _id=5c3a4217a4f227232eff4247}, links: [<http://localhost:8080/API/publicaciones/person/8>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/10>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/3>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/7>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/4>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/6>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/5>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/12>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/13>;rel="Comentarios"] }, Resource { content: Person{selfId=9, familyId=4, nombre='Luisete', email='luis@gmail.com', password='****************', _id=5c3a4217a4f227232eff4248}, links: [<http://localhost:8080/API/publicaciones/person/9>;rel="self", <http://localhost:8080/API/publicaciones/family/4>;rel="Familia"] }, Resource { content: Person{selfId=10, familyId=1, nombre='Enhord', email='enhord@gmail.com', password='****************', _id=5c3a4217a4f227232eff424a}, links: [<http://localhost:8080/API/publicaciones/person/10>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia"] }],{}>
+2019/01/14_18:06:51  INFO  PersonController-88  - <200 OK,[Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasd', texto='wqeqweqweqwe', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4260}], selfId=10, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff425c}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/10>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una vez', texto='YikaYey joputa', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4264}], selfId=3, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4261}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/3>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Pues claro', texto='Que te den maricarmen', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4268}], selfId=7, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4265}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/7>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Saludos!', texto='El admin ya esta aqui !', persona=[Person{selfId=18, familyId=13, nombre='admin@gmail.com', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff426c}], selfId=11, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4269}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una segunda vez', texto='Pues si pues si ', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4270}], selfId=4, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff426d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/4>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasdaasda', texto='qweqweqweqweqeqw', persona=[Person{selfId=3, familyId=2, nombre='valeria', email='valeria@gmail.com', password='valeria', _id=5c3a4217a4f227232eff4275}], selfId=9, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4271}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/9>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/3>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Poco a poco', texto='poco a poco se va a avanzando', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4279}], selfId=6, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4276}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/6>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Reformulando la extructura', persona=[Person{selfId=21, familyId=1, nombre='Asier', email='', password='', _id=5c3a4217a4f227232eff428c}], selfId=2, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428a}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/2>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/21>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Probando comentarios', texto='Esto es una prueba no ?
+', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4290}], selfId=5, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/5>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Editando el comentario', persona=[Person{selfId=1, familyId=1, nombre='Raul', email='', password='', _id=5c3a4217a4f227232eff4293}], selfId=1, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4291}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/1>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/1>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Un poco de orden', texto='Hasta las pelotas', persona=[Person{selfId=18, familyId=13, nombre='admin', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4246}], selfId=11, fecha=Sun Jan 13 02:35:31 CET 2019, _id=5c3a95f8a4f2273551f5e917}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº 5 Terminada', texto='Vale comentar que acabo de subir la ultima actualizacion que corrige el problema mencionado en la incidencia x', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=12, fecha=Sun Jan 13 12:39:03 CET 2019, _id=5c3b23b8a4f22706c4edd310}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/12>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº6 ', texto='Voy a necesitar ayuda para esta tarea por x ....', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=13, fecha=Sun Jan 13 12:42:31 CET 2019, _id=5c3b244ca4f22706c4edd315}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/13>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }],{}>
+2019/01/14_20:58:21  INFO  PersonController-126  - <200 OK,[Resource { content: Person{selfId=16, familyId=12, nombre='bugFixer', email='bugfixer@gmail.com', password='****************', _id=5c3a4217a4f227232eff423a}, links: [<http://localhost:8080/API/publicaciones/person/16>;rel="self", <http://localhost:8080/API/publicaciones/family/12>;rel="Familia"] }, Resource { content: Person{selfId=1, familyId=1, nombre='Asier', email='asier@gmail.com', password='****************', _id=5c3a4217a4f227232eff423c}, links: [<http://localhost:8080/API/publicaciones/person/1>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/1>;rel="Comentarios"] }, Resource { content: Person{selfId=2, familyId=2, nombre='adrian', email='adrian@gmail.com', password='****************', _id=5c3a4217a4f227232eff423d}, links: [<http://localhost:8080/API/publicaciones/person/2>;rel="self", <http://localhost:8080/API/publicaciones/family/2>;rel="Familia"] }, Resource { content: Person{selfId=3, familyId=2, nombre='valeria', email='valeria@gmail.com', password='****************', _id=5c3a4217a4f227232eff423f}, links: [<http://localhost:8080/API/publicaciones/person/3>;rel="self", <http://localhost:8080/API/publicaciones/family/2>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/9>;rel="Comentarios"] }, Resource { content: Person{selfId=4, familyId=7, nombre='Marisa', email='marisa@gmail.com', password='****************', _id=5c3a4217a4f227232eff4240}, links: [<http://localhost:8080/API/publicaciones/person/4>;rel="self", <http://localhost:8080/API/publicaciones/family/7>;rel="Familia"] }, Resource { content: Person{selfId=5, familyId=3, nombre='Adriana', email='adriana@gmail.com', password='****************', _id=5c3a4217a4f227232eff4241}, links: [<http://localhost:8080/API/publicaciones/person/5>;rel="self", <http://localhost:8080/API/publicaciones/family/3>;rel="Familia"] }, Resource { content: Person{selfId=6, familyId=3, nombre='andrea', email='andrea@gmail.com', password='****************', _id=5c3a4217a4f227232eff4242}, links: [<http://localhost:8080/API/publicaciones/person/6>;rel="self", <http://localhost:8080/API/publicaciones/family/3>;rel="Familia"] }, Resource { content: Person{selfId=7, familyId=1, nombre='Raul', email='raul@gmail.com', password='****************', _id=5c3a4217a4f227232eff4243}, links: [<http://localhost:8080/API/publicaciones/person/7>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia"] }, Resource { content: Person{selfId=18, familyId=13, nombre='admin', email='admin@gmail.com', password='****************', _id=5c3a4217a4f227232eff4246}, links: [<http://localhost:8080/API/publicaciones/person/18>;rel="self", <http://localhost:8080/API/publicaciones/family/13>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/11>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/11>;rel="Comentarios"] }, Resource { content: Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='****************', _id=5c3a4217a4f227232eff4247}, links: [<http://localhost:8080/API/publicaciones/person/8>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia", <http://localhost:8080/API/publicaciones/coments/10>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/3>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/7>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/4>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/6>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/5>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/12>;rel="Comentarios", <http://localhost:8080/API/publicaciones/coments/13>;rel="Comentarios"] }, Resource { content: Person{selfId=9, familyId=4, nombre='Luisete', email='luis@gmail.com', password='****************', _id=5c3a4217a4f227232eff4248}, links: [<http://localhost:8080/API/publicaciones/person/9>;rel="self", <http://localhost:8080/API/publicaciones/family/4>;rel="Familia"] }, Resource { content: Person{selfId=10, familyId=1, nombre='Enhord', email='enhord@gmail.com', password='****************', _id=5c3a4217a4f227232eff424a}, links: [<http://localhost:8080/API/publicaciones/person/10>;rel="self", <http://localhost:8080/API/publicaciones/family/1>;rel="Familia"] }],{}>
+2019/01/14_20:58:49  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_20:58:49  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_20:58:49  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_20:58:54  INFO  PersonController-88  - <200 OK,[Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasd', texto='wqeqweqweqwe', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4260}], selfId=10, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff425c}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/10>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una vez', texto='YikaYey joputa', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4264}], selfId=3, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4261}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/3>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Pues claro', texto='Que te den maricarmen', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4268}], selfId=7, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4265}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/7>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Saludos!', texto='El admin ya esta aqui !', persona=[Person{selfId=18, familyId=13, nombre='admin@gmail.com', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff426c}], selfId=11, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4269}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una segunda vez', texto='Pues si pues si ', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4270}], selfId=4, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff426d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/4>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasdaasda', texto='qweqweqweqweqeqw', persona=[Person{selfId=3, familyId=2, nombre='valeria', email='valeria@gmail.com', password='valeria', _id=5c3a4217a4f227232eff4275}], selfId=9, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4271}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/9>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/3>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Poco a poco', texto='poco a poco se va a avanzando', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4279}], selfId=6, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4276}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/6>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Reformulando la extructura', persona=[Person{selfId=21, familyId=1, nombre='Asier', email='', password='', _id=5c3a4217a4f227232eff428c}], selfId=2, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428a}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/2>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/21>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Probando comentarios', texto='Esto es una prueba no ?
+', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4290}], selfId=5, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/5>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Editando el comentario', persona=[Person{selfId=1, familyId=1, nombre='Raul', email='', password='', _id=5c3a4217a4f227232eff4293}], selfId=1, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4291}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/1>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/1>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Un poco de orden', texto='Hasta las pelotas', persona=[Person{selfId=18, familyId=13, nombre='admin', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4246}], selfId=11, fecha=Sun Jan 13 02:35:31 CET 2019, _id=5c3a95f8a4f2273551f5e917}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº 5 Terminada', texto='Vale comentar que acabo de subir la ultima actualizacion que corrige el problema mencionado en la incidencia x', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=12, fecha=Sun Jan 13 12:39:03 CET 2019, _id=5c3b23b8a4f22706c4edd310}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/12>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº6 ', texto='Voy a necesitar ayuda para esta tarea por x ....', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=13, fecha=Sun Jan 13 12:42:31 CET 2019, _id=5c3b244ca4f22706c4edd315}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/13>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }],{}>
+2019/01/14_20:59:11  INFO  PersonController-88  - <200 OK,[Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasd', texto='wqeqweqweqwe', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4260}], selfId=10, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff425c}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/10>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una vez', texto='YikaYey joputa', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4264}], selfId=3, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4261}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/3>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Pues claro', texto='Que te den maricarmen', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4268}], selfId=7, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4265}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/7>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Saludos!', texto='El admin ya esta aqui !', persona=[Person{selfId=18, familyId=13, nombre='admin@gmail.com', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff426c}], selfId=11, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4269}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Erase una segunda vez', texto='Pues si pues si ', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4270}], selfId=4, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff426d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/4>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='asdasdaasda', texto='qweqweqweqweqeqw', persona=[Person{selfId=3, familyId=2, nombre='valeria', email='valeria@gmail.com', password='valeria', _id=5c3a4217a4f227232eff4275}], selfId=9, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4271}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/9>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/3>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Poco a poco', texto='poco a poco se va a avanzando', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4279}], selfId=6, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4276}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/6>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Reformulando la extructura', persona=[Person{selfId=21, familyId=1, nombre='Asier', email='', password='', _id=5c3a4217a4f227232eff428c}], selfId=2, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428a}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/2>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/21>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Probando comentarios', texto='Esto es una prueba no ?
+', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4290}], selfId=5, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff428d}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/5>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='titulo comentario', texto='Editando el comentario', persona=[Person{selfId=1, familyId=1, nombre='Raul', email='', password='', _id=5c3a4217a4f227232eff4293}], selfId=1, fecha=Sat Jan 12 20:37:59 CET 2019, _id=5c3a4217a4f227232eff4291}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/1>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/1>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bec], titulo='Un poco de orden', texto='Hasta las pelotas', persona=[Person{selfId=18, familyId=13, nombre='admin', email='admin@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4246}], selfId=11, fecha=Sun Jan 13 02:35:31 CET 2019, _id=5c3a95f8a4f2273551f5e917}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/11>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/13>;rel="Familias", <http://localhost:8080/API/publicaciones/person/18>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº 5 Terminada', texto='Vale comentar que acabo de subir la ultima actualizacion que corrige el problema mencionado en la incidencia x', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=12, fecha=Sun Jan 13 12:39:03 CET 2019, _id=5c3b23b8a4f22706c4edd310}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/12>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }, Resource { content: Comment{familia=[com.example.demo.pojo.Family@bc57bfa], titulo='Tarea nº6 ', texto='Voy a necesitar ayuda para esta tarea por x ....', persona=[Person{selfId=8, familyId=1, nombre='drohne', email='drohne@gmail.com', password='drohne', _id=5c3a4217a4f227232eff4247}], selfId=13, fecha=Sun Jan 13 12:42:31 CET 2019, _id=5c3b244ca4f22706c4edd315}, links: [<http://localhost:8080/API/publicaciones/coments>;rel="self", <http://localhost:8080/API/publicaciones/coments/13>;rel="Detalle comentario", <http://localhost:8080/API/publicaciones/family/1>;rel="Familias", <http://localhost:8080/API/publicaciones/person/8>;rel="Detalle Author"] }],{}>
+2019/01/14_21:00:01  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_21:00:01  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_21:00:01  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_21:02:35  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_21:02:35  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_21:02:35  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:19:48  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:19:48  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:19:48  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:20:56  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:20:57  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:20:57  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:29:11  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:29:12  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:29:12  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:47:13  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:47:13  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:47:13  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:49:00  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:49:00  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:49:00  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:50:02  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:50:03  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:50:03  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:50:41  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:50:42  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:50:42  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:53:22  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_22:53:22  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_22:53:22  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_22:58:13  ERROR PersonController-99  - 
+2019/01/14_22:58:15  ERROR PersonController-99  - 
+2019/01/14_22:58:18  ERROR PersonController-99  - 
+2019/01/14_22:58:20  ERROR PersonController-99  - 
+2019/01/14_22:58:22  ERROR PersonController-99  - 
+2019/01/14_22:58:24  ERROR PersonController-99  - 
+2019/01/14_22:58:28  ERROR PersonController-99  - 
+2019/01/14_22:58:30  ERROR PersonController-99  - 
+2019/01/14_22:58:33  ERROR PersonController-99  - 
+2019/01/14_22:58:35  ERROR PersonController-99  - 
+2019/01/14_22:58:38  ERROR PersonController-99  - 
+2019/01/14_23:00:02  ERROR PersonController-99  - 
+2019/01/14_23:00:06  ERROR PersonController-99  - 
+2019/01/14_23:00:08  ERROR PersonController-99  - 
+2019/01/14_23:00:11  ERROR PersonController-99  - 
+2019/01/14_23:00:12  ERROR PersonController-99  - 
+2019/01/14_23:00:12  ERROR PersonController-99  - 
+2019/01/14_23:00:15  ERROR PersonController-99  - 
+2019/01/14_23:00:16  ERROR PersonController-99  - 
+2019/01/14_23:00:16  ERROR PersonController-99  - 
+2019/01/14_23:00:17  ERROR PersonController-99  - 
+2019/01/14_23:00:18  ERROR PersonController-99  - 
+2019/01/14_23:01:23  ERROR PersonController-99  - 
+2019/01/14_23:01:55  ERROR PersonController-99  - 
+2019/01/14_23:02:08  ERROR PersonController-99  - 
+2019/01/14_23:02:23  ERROR PersonController-99  - 
+2019/01/14_23:02:28  ERROR PersonController-99  - 
+2019/01/14_23:02:28  ERROR PersonController-99  - 
+2019/01/14_23:02:29  ERROR PersonController-99  - 
+2019/01/14_23:02:29  ERROR PersonController-99  - 
+2019/01/14_23:02:37  ERROR PersonController-99  - 
+2019/01/14_23:03:15  ERROR PersonController-99  - 
+2019/01/14_23:03:27  ERROR PersonController-99  - 
+2019/01/14_23:03:37  ERROR PersonController-99  - 
+2019/01/14_23:03:43  ERROR PersonController-99  - 
+2019/01/14_23:04:15  ERROR PersonController-99  - 
+2019/01/14_23:04:36  ERROR PersonController-99  - 
+2019/01/14_23:04:39  ERROR PersonController-99  - 
+2019/01/14_23:04:42  ERROR PersonController-99  - 
+2019/01/14_23:04:45  ERROR PersonController-99  - 
+2019/01/14_23:05:02  WARN  PersonController-231  - <409 Conflict,ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters]],{}>
+2019/01/14_23:05:05  ERROR PersonController-99  - 
+2019/01/14_23:05:16  ERROR PersonController-99  - 
+2019/01/14_23:05:18  ERROR PersonController-99  - 
+2019/01/14_23:06:19  ERROR PersonController-99  - 
+2019/01/14_23:07:11  ERROR PersonController-99  - 
+2019/01/14_23:07:29  ERROR PersonController-99  - 
+2019/01/14_23:08:41  WARN  PersonController-231  - <409 Conflict,ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters]],{}>
+2019/01/14_23:08:44  ERROR PersonController-99  - 
+2019/01/14_23:09:57  ERROR PersonController-99  - 
+2019/01/14_23:11:18  ERROR PersonController-99  - 
+2019/01/14_23:11:21  ERROR PersonController-99  - 
+2019/01/14_23:11:21  ERROR PersonController-99  - 
+2019/01/14_23:11:22  ERROR PersonController-99  - 
+2019/01/14_23:11:22  ERROR PersonController-99  - 
+2019/01/14_23:11:29  ERROR PersonController-99  - 
+2019/01/14_23:12:23  ERROR PersonController-99  - 
+2019/01/14_23:12:23  ERROR PersonController-99  - 
+2019/01/14_23:14:35  ERROR PersonController-99  - 
+2019/01/14_23:14:35  ERROR PersonController-99  - 
+2019/01/14_23:14:37  ERROR PersonController-99  - 
+2019/01/14_23:14:38  ERROR PersonController-99  - 
+2019/01/14_23:16:32  ERROR PersonController-99  - 
+2019/01/14_23:16:32  ERROR PersonController-99  - 
+2019/01/14_23:16:57  ERROR PersonController-99  - 
+2019/01/14_23:18:26  ERROR PersonController-99  - 
+2019/01/14_23:18:27  ERROR PersonController-99  - 
+2019/01/14_23:18:27  ERROR PersonController-99  - 
+2019/01/14_23:18:30  ERROR PersonController-99  - 
+2019/01/14_23:18:30  ERROR PersonController-99  - 
+2019/01/14_23:18:30  ERROR PersonController-99  - 
+2019/01/14_23:19:11  ERROR PersonController-99  - 
+2019/01/14_23:19:32  ERROR PersonController-99  - 
+2019/01/14_23:19:32  ERROR PersonController-99  - 
+2019/01/14_23:19:36  ERROR PersonController-99  - 
+2019/01/14_23:19:58  ERROR PersonController-99  - 
+2019/01/14_23:20:15  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:20:28  ERROR PersonController-99  - 
+2019/01/14_23:20:46  ERROR PersonController-99  - 
+2019/01/14_23:20:54  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:21:00  ERROR PersonController-99  - 
+2019/01/14_23:21:21  ERROR PersonController-99  - 
+2019/01/14_23:21:35  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:21:40  ERROR PersonController-99  - 
+2019/01/14_23:21:47  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:21:52  ERROR PersonController-99  - 
+2019/01/14_23:22:18  ERROR PersonController-99  - 
+2019/01/14_23:22:41  ERROR PersonController-99  - 
+2019/01/14_23:22:54  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:22:57  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters, password:Password must be between 5 and 150 characters]]
+2019/01/14_23:23:00  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters, password:Password must be between 5 and 150 characters]]
+2019/01/14_23:23:02  ERROR PersonController-99  - 
+2019/01/14_23:23:33  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:23:39  ERROR PersonController-99  - 
+2019/01/14_23:23:44  ERROR PersonController-143  - Content must not be null!
+2019/01/14_23:23:47  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[password:Password must be between 5 and 150 characters, nombre:Name must be between 5 and 150 characters]]
+2019/01/14_23:23:51  ERROR PersonController-99  - 
+2019/01/14_23:24:55  ERROR PersonController-99  - 
+2019/01/14_23:24:56  ERROR PersonController-99  - 
+2019/01/14_23:25:03  ERROR PersonController-99  - 
+2019/01/14_23:25:04  ERROR PersonController-99  - 
+2019/01/14_23:25:04  ERROR PersonController-99  - 
+2019/01/14_23:25:19  WARN  PersonController-240  - <409 Conflict,ResponseMensaje [mensaje=error de validación, errores=[texto:Name must be between 5 and 150 characters]],{}>
+2019/01/14_23:25:57  WARN  PersonController-240  - <409 Conflict,ResponseMensaje [mensaje=error de validación, errores=[texto:Name must be between 5 and 150 characters]],{}>
+2019/01/14_23:28:12  ERROR PersonController-99  - 
+2019/01/14_23:28:17  ERROR PersonController-99  - 
+2019/01/14_23:28:17  ERROR PersonController-99  - 
+2019/01/14_23:29:10  WARN  PersonController-353  - <409 Conflict,{}>
+2019/01/14_23:29:10  WARN  PersonController-353  - <409 Conflict,{}>
+2019/01/14_23:29:14  ERROR PersonController-99  - 
+2019/01/14_23:29:23  ERROR PersonController-99  - 
+2019/01/14_23:29:23  ERROR PersonController-99  - 
+2019/01/14_23:30:35  ERROR PersonController-99  - 
+2019/01/14_23:30:38  ERROR PersonController-99  - 
+2019/01/14_23:30:38  ERROR PersonController-99  - 
+2019/01/14_23:31:58  ERROR PersonController-99  - 
+2019/01/14_23:32:00  ERROR PersonController-99  - 
+2019/01/14_23:32:00  ERROR PersonController-99  - 
+2019/01/14_23:32:37  ERROR PersonController-99  - 
+2019/01/14_23:32:39  ERROR PersonController-99  - 
+2019/01/14_23:32:39  ERROR PersonController-99  - 
+2019/01/14_23:35:04  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/14_23:35:04  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/14_23:35:04  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/14_23:35:43  ERROR PersonController-99  - 
+2019/01/14_23:36:51  ERROR PersonController-99  - 
+2019/01/14_23:36:51  ERROR PersonController-99  - 
+2019/01/14_23:36:53  ERROR PersonController-99  - 
+2019/01/14_23:36:54  ERROR PersonController-99  - 
+2019/01/14_23:36:54  ERROR PersonController-99  - 
+2019/01/14_23:36:54  ERROR PersonController-99  - 
+2019/01/14_23:58:14  INFO  CustomBatch1Controller-35  - CustomBatch1Controller -- mongoBatch
+2019/01/14_23:58:57  WARN  PersonController-353  - <409 Conflict,{}>
+2019/01/14_23:58:57  WARN  PersonController-353  - <409 Conflict,{}>
+2019/01/15_00:00:17  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:00:57  ERROR PersonController-321  - 1
+2019/01/15_00:02:52  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:03:00  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:03:00  WARN  PersonController-412  - <404 Not Found,{}>
+2019/01/15_00:03:47  WARN  PersonController-412  - <404 Not Found,{}>
+2019/01/15_00:03:47  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:04:57  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:05:17  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:05:17  WARN  PersonController-412  - <404 Not Found,{}>
+2019/01/15_00:05:59  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:02  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:42  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:50  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:55  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:58  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:06:58  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:01  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:01  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:01  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:02  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:05  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:11  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:57  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:07:58  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:08:57  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:08:58  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:09:04  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:09:13  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:09:13  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_00:17:51  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_00:17:52  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_00:17:52  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_00:18:11  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_00:18:12  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_00:18:12  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_00:19:44  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_00:19:44  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_00:19:44  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_00:34:28  INFO  CustomBatch1Controller-35  - CustomBatch1Controller -- mongoBatch
+2019/01/15_00:35:00  INFO  CustomBatch1Controller-35  - CustomBatch1Controller -- mongoBatch
+2019/01/15_00:35:40  ERROR PersonController-419  - 
+2019/01/15_00:47:12  ERROR PersonController-99  - 
+2019/01/15_00:47:14  ERROR PersonController-99  - 
+2019/01/15_00:47:25  ERROR PersonController-99  - 
+2019/01/15_00:47:34  ERROR PersonController-99  - 
+2019/01/15_00:47:35  ERROR PersonController-99  - 
+2019/01/15_00:47:52  ERROR PersonController-99  - 
+2019/01/15_00:48:12  ERROR PersonController-99  - 
+2019/01/15_00:48:25  ERROR PersonController-99  - 
+2019/01/15_00:48:28  ERROR PersonController-99  - 
+2019/01/15_00:48:35  ERROR PersonController-99  - 
+2019/01/15_00:48:37  ERROR PersonController-99  - 
+2019/01/15_00:48:37  ERROR PersonController-99  - 
+2019/01/15_00:48:48  ERROR PersonController-99  - 
+2019/01/15_00:49:01  ERROR PersonController-99  - 
+2019/01/15_00:49:14  ERROR PersonController-99  - 
+2019/01/15_00:50:03  ERROR PersonController-99  - 
+2019/01/15_00:50:07  ERROR PersonController-143  - Content must not be null!
+2019/01/15_00:50:16  ERROR PersonController-99  - 
+2019/01/15_00:50:23  ERROR PersonController-99  - 
+2019/01/15_00:50:56  ERROR PersonController-143  - Content must not be null!
+2019/01/15_00:51:04  ERROR PersonController-99  - 
+2019/01/15_00:51:05  ERROR PersonController-99  - 
+2019/01/15_00:51:20  ERROR PersonController-99  - 
+2019/01/15_00:51:32  ERROR PersonController-99  - 
+2019/01/15_00:51:43  ERROR PersonController-99  - 
+2019/01/15_00:51:53  ERROR PersonController-99  - 
+2019/01/15_00:51:54  ERROR PersonController-99  - 
+2019/01/15_00:52:04  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[password:Password must be between 5 and 150 characters, nombre:Name must be between 5 and 150 characters]]
+2019/01/15_00:52:07  ERROR PersonController-99  - 
+2019/01/15_00:52:08  ERROR PersonController-99  - 
+2019/01/15_00:53:07  ERROR PersonController-99  - 
+2019/01/15_00:53:10  ERROR PersonController-99  - 
+2019/01/15_00:53:10  ERROR PersonController-99  - 
+2019/01/15_00:53:12  ERROR PersonController-99  - 
+2019/01/15_00:53:13  ERROR PersonController-99  - 
+2019/01/15_00:53:36  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[password:Password must be between 5 and 150 characters, nombre:Name must be between 5 and 150 characters]]
+2019/01/15_00:53:40  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters, password:Password must be between 5 and 150 characters]]
+2019/01/15_00:53:47  WARN  PersonController-418  - ResponseMensaje [mensaje=error de validación, errores=[nombre:Name must be between 5 and 150 characters]]
+2019/01/15_00:53:54  ERROR PersonController-99  - 
+2019/01/15_00:54:47  ERROR PersonController-99  - 
+2019/01/15_00:55:03  ERROR PersonController-99  - 
+2019/01/15_00:55:14  ERROR PersonController-99  - 
+2019/01/15_00:55:21  ERROR PersonController-99  - 
+2019/01/15_00:55:27  ERROR PersonController-99  - 
+2019/01/15_00:55:35  ERROR PersonController-99  - 
+2019/01/15_00:55:44  ERROR PersonController-99  - 
+2019/01/15_00:55:46  ERROR PersonController-99  - 
+2019/01/15_00:55:52  ERROR PersonController-99  - 
+2019/01/15_00:55:52  ERROR PersonController-99  - 
+2019/01/15_00:56:15  ERROR PersonController-99  - 
+2019/01/15_00:56:16  ERROR PersonController-99  - 
+2019/01/15_00:56:16  ERROR PersonController-99  - 
+2019/01/15_00:56:19  ERROR PersonController-99  - 
+2019/01/15_00:56:19  ERROR PersonController-99  - 
+2019/01/15_00:56:19  ERROR PersonController-99  - 
+2019/01/15_00:57:48  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_00:57:49  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_00:57:49  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_00:58:00  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_00:58:01  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_00:58:01  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_00:58:11  ERROR PersonController-99  - 
+2019/01/15_00:58:35  ERROR PersonController-99  - 
+2019/01/15_00:58:35  ERROR PersonController-99  - 
+2019/01/15_00:59:56  ERROR PersonController-99  - 
+2019/01/15_01:00:24  ERROR PersonController-99  - 
+2019/01/15_01:00:24  ERROR PersonController-99  - 
+2019/01/15_01:00:27  ERROR PersonController-99  - 
+2019/01/15_01:00:28  ERROR PersonController-99  - 
+2019/01/15_01:00:28  ERROR PersonController-99  - 
+2019/01/15_01:01:58  ERROR PersonController-99  - 
+2019/01/15_01:02:36  ERROR PersonController-99  - 
+2019/01/15_01:02:36  ERROR PersonController-99  - 
+2019/01/15_01:02:55  ERROR PersonController-99  - 
+2019/01/15_01:03:19  ERROR PersonController-99  - 
+2019/01/15_01:03:30  ERROR PersonController-99  - 
+2019/01/15_01:06:42  ERROR PersonController-99  - 
+2019/01/15_01:07:06  ERROR PersonController-99  - 
+2019/01/15_01:08:53  ERROR PersonController-99  - 
+2019/01/15_01:12:29  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:29  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:29  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:33  INFO  PersonController-50  - CommentsController -- Constructor
+2019/01/15_01:12:33  INFO  PersonController-51  - FamilyController -- Constructor
+2019/01/15_01:12:34  INFO  PersonController-58  - PersonController -- Constructor
+2019/01/15_01:12:37  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:44  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:46  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:48  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:50  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:12:59  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:13:03  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:13:03  WARN  PersonController-93  - <409 Conflict,{}>
+2019/01/15_01:14:37  ERROR PersonController-143  - Content must not be null!
+2019/01/15_07:15:01  INFO  PersonController-50  - CommentsController -- Constructor

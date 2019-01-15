@@ -123,7 +123,7 @@ public class PersonController {
 
             System.out.println("*************Pasamos por PersonController-get*************");
             response = new ResponseEntity<>(personResources, HttpStatus.OK);
-            LOG.info(response);
+
 
         } catch (Exception e) {
 
@@ -184,7 +184,7 @@ public class PersonController {
     public ResponseEntity<Object> detail(@PathVariable int id) {
 
         ArrayList<Resource<Person>> resoucesPerson;
-        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response ;
 
         try {
 
@@ -192,7 +192,7 @@ public class PersonController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-                LOG.info(response);
+
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 LOG.warn(response);
@@ -227,7 +227,7 @@ public class PersonController {
             if (servicioPerson.eliminar(id)) {
 
                 response = new ResponseEntity<>(HttpStatus.OK);
-                LOG.info(response);
+
 
             } else {
 
@@ -309,7 +309,7 @@ public class PersonController {
                 if (resoucesPerson.size() > 0) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.CREATED);
-                    LOG.info(response);
+
                 } else {
 
                     response = new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -345,7 +345,7 @@ public class PersonController {
             if (resoucesPerson != null) {
 
                 response = new ResponseEntity<>(resoucesPerson,HttpStatus.OK);
-                LOG.info((response));
+
 
             } else {
 
@@ -422,7 +422,7 @@ public class PersonController {
                 if (resoucesPerson.size() == 1) {
 
                     response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-                    LOG.info(response);
+
 
                 } else {
 
@@ -456,7 +456,7 @@ public class PersonController {
     public ResponseEntity<Object> importExport(
             @RequestParam(name = "action", required = false, defaultValue = "-1") int action) {
 
-        ResponseEntity<Object> response = new ResponseEntity<>(persons, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<Object> response;
 
         try {
 
@@ -475,7 +475,7 @@ public class PersonController {
             }
 
             response = new ResponseEntity<>(HttpStatus.OK);
-            LOG.info(response);
+
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<>("[{Mensaje:" + e.getMessage() + "}]", HttpStatus.CONFLICT);
@@ -507,7 +507,7 @@ public class PersonController {
             if (resoucesPerson.size() > 0) {
 
                 response = new ResponseEntity<>(resoucesPerson, HttpStatus.OK);
-                LOG.info(response);
+
             } else {
                 response = new ResponseEntity<>(HttpStatus.CONFLICT);
                 LOG.warn(response);

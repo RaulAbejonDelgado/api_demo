@@ -44,7 +44,7 @@ public class IndexControler {
 
         ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
-        System.out.println("*************Pasamos por get*************");
+        LOG.info(("IndexControler"));
         try {
             if (resources.isEmpty()) {
 
@@ -82,7 +82,7 @@ public class IndexControler {
             }
 
             response = new ResponseEntity<>(resources, HttpStatus.OK);
-            LOG.info(response);
+
 
         } catch (Exception e) {
             e.printStackTrace();

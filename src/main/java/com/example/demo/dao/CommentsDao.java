@@ -101,7 +101,13 @@ public class CommentsDao {
      */
     public Key<Comment> crear(Comment c) {
 
-        c.setSelfId(listarTodos().size() + 1);
+        if(listarTodos()!= null){
+
+            c.setSelfId(listarTodos().size() + 1);
+        }else{
+            c.setSelfId(1);
+        }
+
 
         return datastore.save(c);
 

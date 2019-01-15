@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.DataSourceConfiguration;
+import com.example.demo.pojo.Family;
 import com.example.demo.pojo.Person;
 import com.mongodb.WriteResult;
 import org.mongodb.morphia.Datastore;
@@ -8,6 +9,7 @@ import org.mongodb.morphia.Key;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
 public class PersonDao {
 
     private static PersonDao INSTANCE = null;
+    private static FamilyDao familyDao = null;
+    private static CommentsDao comementDao = null;
 
     @Autowired
     private Datastore datastore;
@@ -24,6 +28,8 @@ public class PersonDao {
 
         super();
         datastore = DataSourceConfiguration.getConnection();
+        familyDao = FamilyDao.getInstance();
+        comementDao = CommentsDao.getInstance();
 
     }
 
@@ -113,10 +119,18 @@ public class PersonDao {
 
         Key<Person> personUpdate = null ;
         Person pe = obtenerPorId(id);
+        ArrayList<Person> personas = new ArrayList<>();
+
+
 
         if (pe != null){
-
+            //actualizamos la familia en caso de ser distinta
+            Family familyToUpdateNew = familyDao.obtenerPorId(p.getFamilyId());
+            if(familyToUpdateNew.getSelfId() != p.getselfId()){
+                personas.add(p);
+            }
             p.setId(pe.getId());
+
 
             personUpdate =  datastore.merge(p);
 
