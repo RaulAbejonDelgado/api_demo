@@ -18,8 +18,7 @@ import java.util.List;
 public class PersonDao {
 
     private static PersonDao INSTANCE = null;
-    private static FamilyDao familyDao = null;
-    private static CommentsDao comementDao = null;
+
 
     @Autowired
     private Datastore datastore;
@@ -28,8 +27,7 @@ public class PersonDao {
 
         super();
         datastore = DataSourceConfiguration.getConnection();
-        familyDao = FamilyDao.getInstance();
-        comementDao = CommentsDao.getInstance();
+
 
     }
 
@@ -125,10 +123,7 @@ public class PersonDao {
 
         if (pe != null){
             //actualizamos la familia en caso de ser distinta
-            Family familyToUpdateNew = familyDao.obtenerPorId(p.getFamilyId());
-            if(familyToUpdateNew.getSelfId() != p.getselfId()){
-                personas.add(p);
-            }
+
             p.setId(pe.getId());
 
 
